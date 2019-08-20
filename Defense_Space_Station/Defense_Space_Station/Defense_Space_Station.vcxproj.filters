@@ -5,6 +5,9 @@
     <ClCompile Include="Source\Window.cpp">
       <Filter>Source</Filter>
     </ClCompile>
+    <ClCompile Include="Jump.cpp">
+      <Filter>Source</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Source">
@@ -16,6 +19,9 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Header\Window.h">
+      <Filter>Header</Filter>
+    </ClInclude>
+    <ClInclude Include="Jump.h">
       <Filter>Header</Filter>
     </ClInclude>
   </ItemGroup>
