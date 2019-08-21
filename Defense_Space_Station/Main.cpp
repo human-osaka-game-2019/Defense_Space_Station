@@ -2,10 +2,12 @@
 #include "Header/Window.h"
 
 #pragma comment(lib,"winmm.lib")
+#pragma comment(lib, "d3dx9.lib")
+
 #ifdef _DEBUG
 #pragma comment(lib, "../x64/Debug/DirectX.lib")
 #else
-#pragam comment(lib, "../x64/Release/DirectX.lib")
+#pragma comment(lib, "../x64/Release/DirectX.lib")
 #endif
 
 DirectX dx;
