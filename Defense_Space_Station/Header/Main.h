@@ -1,7 +1,7 @@
 ﻿#ifndef MAIN_H_
 #define MAIN_H_
 
-#include "../../DirectX/DirectX.h"
+#include "../DirectX/DirectX.h"
 
 #define DISPLAY_WIDTH 1920
 #define DISPLAY_HEIGHT 1080
