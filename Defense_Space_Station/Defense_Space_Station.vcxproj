@@ -144,14 +144,20 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="Jump.cpp" />
-    <ClCompile Include="Main.cpp" />
+    <ClCompile Include="Source\Game.cpp" />
+    <ClCompile Include="Source\Jump.cpp" />
+    <ClCompile Include="Source\Main.cpp" />
+    <ClCompile Include="Source\Title.cpp" />
     <ClCompile Include="Source\Window.cpp" />
+    <ClCompile Include="Title.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Header\Game.h" />
+    <ClInclude Include="Header\Jump.h" />
+    <ClInclude Include="Header\Main.h" />
+    <ClInclude Include="Header\Title.h" />
     <ClInclude Include="Header\Window.h" />
-    <ClInclude Include="Jump.h" />
-    <ClInclude Include="Main.h" />
+    <ClInclude Include="Title.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

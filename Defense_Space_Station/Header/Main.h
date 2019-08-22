@@ -11,4 +11,13 @@ using DX::DirectX;
 extern DirectX dx;
 extern RECT WinRect;
 
+enum SCENE {
+	Title,
+	Game,
+	GameOver,
+	GameClear
+};
+
+extern SCENE g_scene;
+
 #endif //MAIN_H_

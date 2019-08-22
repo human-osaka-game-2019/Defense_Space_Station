@@ -13,6 +13,8 @@
 DirectX dx;
 RECT WinRect;
 
+SCENE g_scene = Title;
+
 INT WINAPI WinMain(
 	_In_ HINSTANCE hInstance,
 	_In_opt_ HINSTANCE hPrevInstance,
@@ -39,12 +41,23 @@ INT WINAPI WinMain(
 			}
 			else
 			{
-				//ÉÅÉCÉìèàóù
+				switch (g_scene)
+				{
+				case Title:
+					break;
+				case Game:
+					break;
+				case GameOver:
+					break;
+				case GameClear:
+					break;
+				default:
+					break;
+				}
 			}
 		}
 	}
 
 	dx.AllRelease();
 	return (int)msg.wParam;
-
-};
+}
