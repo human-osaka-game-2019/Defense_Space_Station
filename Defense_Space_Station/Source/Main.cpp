@@ -1,5 +1,5 @@
-#include "Main.h"
-#include "Header/Window.h"
+#include "../Header/Main.h"
+#include "../Header/Window.h"
 
 #pragma comment(lib,"winmm.lib")
 #pragma comment(lib, "d3dx9.lib")
