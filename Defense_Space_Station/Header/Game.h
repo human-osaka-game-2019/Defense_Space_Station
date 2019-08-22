@@ -10,12 +10,12 @@ public:
 
 private:
 	enum STEP {
-		Load,
-		Main,
-		Release
+		LoadStep,
+		MainStep,
+		ReleaseStep
 	};
 
-	STEP step = Load;
+	STEP step = LoadStep;
 
 	void Load();
 	void Control();
