@@ -1,6 +1,6 @@
 #include <Windows.h>
 
-#include "../Main.h"
+#include "../Header/Main.h"
 
 LRESULT CALLBACK WindowProc(
 	HWND hwnd,
