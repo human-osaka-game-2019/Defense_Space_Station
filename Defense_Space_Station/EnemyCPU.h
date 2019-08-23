@@ -9,43 +9,52 @@ public:
 
 	float GetPos_X();
 	void SetPos_X(float Pos_X);
+	float GetPos_Y();
+	void SetPos_Y(float Pos_Y);
 	int GetRePopCount();
-	void SetRePopCount();
+	void SetRePopCount(int RePopCount);
 	int GetMode();
-	void SetMode();
+	void SetMode(int Mode);
+	bool GetDeadFlag();
+	void SetDeadFlag(bool DeadFlag);
+	int GetDirection();
+	void SetDirection(int Direction);
+	bool GetJumpFlag();
+	void SetJumpFlag(bool JumpFlag);
+	void EnemyMove();
+	void EnemyAliveMove();
+	void EnemySwoonMove();
+	void EnemyDeadMove();
 
 private:
+
 	float Pos_X;
+	float Pos_Y;
 	int RePopCount;
 	int Mode;
+	bool DeadFlag;
+	int Direction;
+	bool JumpFlag;
 
 };
 
-float Enemy::GetPos_X()
+
+
+enum MODE 
+{
+	ALIVE,
+	SWOON,
+	DEAD
+
+};
+
+enum DIRECTION
 {
 
-	return this->Pos_X;
+	RIGHT,
+	LEFT
 
-}
-
-void Enemy::SetPos_X(float Pos_X)
-{
-
-	this->Pos_X = Pos_X;
-
-}
-
-int Enemy::GetRePopCount()
-{
-
-	return this->RePopCount;
-
-}
-
-void Enemy::SetRePopCount()
-{
-
-}
+};
 
 #endif // !1
 
