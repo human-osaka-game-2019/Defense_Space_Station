@@ -144,12 +144,14 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Collision.cpp" />
     <ClCompile Include="EnemyCPU.cpp" />
     <ClCompile Include="Jump.cpp" />
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="Source\Window.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Collision.h" />
     <ClInclude Include="EnemyCPU.h" />
     <ClInclude Include="Header\Window.h" />
     <ClInclude Include="Jump.h" />
