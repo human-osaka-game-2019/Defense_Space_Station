@@ -187,7 +187,7 @@ void Enemy::EnemySwoonMove()
 
 void Enemy::EnemyDeadMove()
 {
-	this->SetDeadFlagTrue;
+	this->SetDeadFlagTrue();
 
 
 
