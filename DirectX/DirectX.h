@@ -158,7 +158,6 @@ namespace DX {
 		//! フォント
 		std::unordered_map<std::string, LPD3DXFONT> pFont;
 
-		//! DisplayMode
 		bool WinMode;
 
 		//! キーの状態

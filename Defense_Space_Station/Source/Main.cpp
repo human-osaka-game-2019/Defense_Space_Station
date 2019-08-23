@@ -1,6 +1,5 @@
 #include "../Header/Main.h"
 #include "../Header/Window.h"
-#include "../Header/Game.h"
 
 #pragma comment(lib,"winmm.lib")
 #pragma comment(lib, "d3dx9.lib")
@@ -14,7 +13,7 @@
 DirectX dx;
 RECT WinRect;
 
-SCENE g_scene = Game;
+SCENE g_scene = Title;
 
 INT WINAPI WinMain(
 	_In_ HINSTANCE hInstance,
@@ -26,37 +25,27 @@ INT WINAPI WinMain(
 	MSG msg;
 	const TCHAR API_NAME[] = "Defence_Space_Station";
 
-	GAME game;
-
 	WindowSettings(hInstance, API_NAME, DISPLAY_WIDTH, DISPLAY_HEIGHT, &hWnd);
 	dx.InitDirectX(hWnd, DISPLAY_WIDTH, DISPLAY_HEIGHT);
 
-	DWORD PrevSync = timeGetTime();
-	DWORD CurrSync;
+	while (true)
+	{
+		ZeroMemory(&msg, sizeof(msg));
 
-	timeBeginPeriod(1);
-	ZeroMemory(&msg, sizeof(msg));
-
-	while (msg.message != WM_QUIT) {
-		if (PeekMessage(&msg, NULL, 0, 0, PM_REMOVE))
+		while (msg.message != WM_QUIT)
 		{
-			TranslateMessage(&msg);
-			DispatchMessage(&msg);
-		}
-		else
-		{
-			CurrSync = timeGetTime();
-			if (CurrSync - PrevSync >= 1000 / 60) {
-				dx.pD3Device->Clear(0, NULL, D3DCLEAR_TARGET, D3DCOLOR_XRGB(0x00, 0x00, 0x00), 1.0f, 0);
-				dx.pD3Device->BeginScene();
-
-				dx.UpdateKeyState();
-
+			if (PeekMessage(&msg, NULL, 0, 0, PM_REMOVE))
+			{
+				TranslateMessage(&msg);
+				DispatchMessage(&msg);
+			}
+			else
+			{
 				switch (g_scene)
 				{
 				case Title:
 					break;
-				case Game:game.UpdateScene();
+				case Game:
 					break;
 				case GameOver:
 					break;
@@ -65,15 +54,9 @@ INT WINAPI WinMain(
 				default:
 					break;
 				}
-
-				dx.pD3Device->EndScene();
-				dx.pD3Device->Present(NULL, NULL, NULL, NULL);
-				PrevSync = CurrSync;
 			}
 		}
-		Sleep(1);
 	}
-	timeEndPeriod(1);
 
 	dx.AllRelease();
 	return (int)msg.wParam;

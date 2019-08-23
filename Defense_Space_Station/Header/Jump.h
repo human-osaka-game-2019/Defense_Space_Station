@@ -14,7 +14,7 @@ public:
 	void SetSpeed(float Speed);
 	int GetInitialSpeed();
 	void SetInitialSpeed(float Initial_speed);
-	void Jump(float* Pos_Y, float* Initial_speed, float Speed);
+	void jump(float* Pos_Y, float* Initial_speed, float Speed);
 
 private:
 

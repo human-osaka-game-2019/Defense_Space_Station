@@ -4,6 +4,9 @@
     <ClCompile Include="Source\Window.cpp">
       <Filter>ソース</Filter>
     </ClCompile>
+    <ClCompile Include="Title.cpp">
+      <Filter>ソース</Filter>
+    </ClCompile>
     <ClCompile Include="Source\Game.cpp">
       <Filter>ソース</Filter>
     </ClCompile>
@@ -16,12 +19,12 @@
     <ClCompile Include="Source\Title.cpp">
       <Filter>ソース</Filter>
     </ClCompile>
-    <ClCompile Include="Source\Player.cpp">
-      <Filter>ソース</Filter>
-    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Header\Window.h">
+      <Filter>ヘッダー</Filter>
+    </ClInclude>
+    <ClInclude Include="Title.h">
       <Filter>ヘッダー</Filter>
     </ClInclude>
     <ClInclude Include="Header\Game.h">
@@ -36,15 +39,6 @@
     <ClInclude Include="Header\Title.h">
       <Filter>ヘッダー</Filter>
     </ClInclude>
-    <ClInclude Include="Header\Player.h">
-      <Filter>ヘッダー</Filter>
-    </ClInclude>
-    <ClInclude Include="Header\Vector.h">
-      <Filter>Utility</Filter>
-    </ClInclude>
-    <ClInclude Include="Header\Size.h">
-      <Filter>Utility</Filter>
-    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="ヘッダー">
@@ -52,9 +46,6 @@
     </Filter>
     <Filter Include="ソース">
       <UniqueIdentifier>{6fff82d6-42fd-452e-a487-87ef1b9c4ce3}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Utility">
-      <UniqueIdentifier>{e44be112-4b2f-498c-8a9c-4eb2b29ced0d}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>
