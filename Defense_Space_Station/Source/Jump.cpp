@@ -1,4 +1,4 @@
-﻿#include"Jump.h"
+﻿#include "../Header/Jump.h"
 
 int JUMP_MOVE::GetPos_Y()
 {
@@ -35,7 +35,7 @@ void JUMP_MOVE::SetSpeed(float Speed)
 	Speedは加速度
 
 */
-void JUMP_MOVE::jump(float* Pos_Y, float* Initial_speed, float Speed)
+void JUMP_MOVE::Jump(float* Pos_Y, float* Initial_speed, float Speed)
 {
 
 	*Initial_speed -= Speed;
