@@ -144,18 +144,10 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="Source\Game.cpp" />
-    <ClCompile Include="Source\Jump.cpp" />
-    <ClCompile Include="Source\Main.cpp" />
-    <ClCompile Include="Source\Title.cpp" />
     <ClCompile Include="Source\Window.cpp" />
     <ClCompile Include="Title.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Header\Game.h" />
-    <ClInclude Include="Header\Jump.h" />
-    <ClInclude Include="Header\Main.h" />
-    <ClInclude Include="Header\Title.h" />
     <ClInclude Include="Header\Window.h" />
     <ClInclude Include="Title.h" />
   </ItemGroup>

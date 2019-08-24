@@ -19,6 +19,12 @@
     <ClCompile Include="Source\Title.cpp">
       <Filter>ソース</Filter>
     </ClCompile>
+    <ClCompile Include="EnemyCPU.cpp">
+      <Filter>ソース</Filter>
+    </ClCompile>
+    <ClCompile Include="Collision.cpp">
+      <Filter>ソース</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Header\Window.h">
@@ -37,6 +43,12 @@
       <Filter>ヘッダー</Filter>
     </ClInclude>
     <ClInclude Include="Header\Title.h">
+      <Filter>ヘッダー</Filter>
+    </ClInclude>
+    <ClInclude Include="EnemyCPU.h">
+      <Filter>ヘッダー</Filter>
+    </ClInclude>
+    <ClInclude Include="Collision.h">
       <Filter>ヘッダー</Filter>
     </ClInclude>
   </ItemGroup>
