@@ -17,7 +17,7 @@ void GAME::UpdateScene() {
 }
 
 void GAME::Load() {
-	dx.LoadTexture("../Resource/Player.png", "Player");
+	dx.LoadTexture("Resource/test.png", "test");
 	step = MainStep;
 }
 
@@ -32,11 +32,11 @@ void GAME::Control() {
 }
 
 void GAME::Draw() {
-	dx.Draw(player.GetPos().x, player.GetPos().y, player.GetSize().width, player.GetSize().height, 0.0f, 1.0f, false, "Player");
+	dx.Draw(player.GetPos().x, player.GetPos().y, player.GetSize().width, player.GetSize().height, 0.0f, 1.0f, false, "test");
 }
 
 void GAME::Release() {
-	dx.ReleaseTexture("Player");
+	dx.ReleaseTexture("test");
 }
 
 GAME::GAME() {

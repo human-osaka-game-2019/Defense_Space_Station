@@ -1,4 +1,4 @@
-﻿#include "EnemyCPU.h"
+﻿#include "../Header/Enemy.h"
 
 
 float Enemy::GetPos_X()

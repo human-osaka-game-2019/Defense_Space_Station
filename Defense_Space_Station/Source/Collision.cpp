@@ -1,4 +1,4 @@
-#include "Collision.h"
+#include "../Header/Collision.h"
 
 /*
 	“–‚½‚Á‚Ä‚¢‚é‚©‚Ì”»’è

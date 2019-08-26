@@ -1,5 +1,5 @@
-﻿#ifndef ENEMYCPU
-#define ENEMYCPU
+﻿#ifndef ENEMY_H_
+#define ENEMY_H_
 
 class Enemy
 {
@@ -63,5 +63,5 @@ enum DIRECTION
 
 };
 
-#endif // !1
+#endif // ENEMY_H_
 

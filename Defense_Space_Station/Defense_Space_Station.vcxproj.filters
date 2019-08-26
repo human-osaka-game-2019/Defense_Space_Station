@@ -1,9 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <ClCompile Include="Source\Window.cpp">
-      <Filter>ソース</Filter>
-    </ClCompile>
     <ClCompile Include="Source\Game.cpp">
       <Filter>ソース</Filter>
     </ClCompile>
@@ -13,60 +10,63 @@
     <ClCompile Include="Source\Main.cpp">
       <Filter>ソース</Filter>
     </ClCompile>
+    <ClCompile Include="Source\Player.cpp">
+      <Filter>ソース</Filter>
+    </ClCompile>
     <ClCompile Include="Source\Title.cpp">
       <Filter>ソース</Filter>
     </ClCompile>
-    <ClCompile Include="EnemyCPU.cpp">
+    <ClCompile Include="Source\Window.cpp">
       <Filter>ソース</Filter>
     </ClCompile>
-    <ClCompile Include="Source\Player.cpp">
-	  <Filter>ソース</Fileter>
-	</ClCompile>
-    <ClCompile Include="EnemyCPU.cpp">
+    <ClCompile Include="Source\Collision.cpp">
       <Filter>ソース</Filter>
     </ClCompile>
-    <ClCompile Include="Collision.cpp">
+    <ClCompile Include="Source\Enemy.cpp">
       <Filter>ソース</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Header\Window.h">
-      <Filter>ヘッダー</Filter>
-    </ClInclude>
     <ClInclude Include="Header\Game.h">
       <Filter>ヘッダー</Filter>
     </ClInclude>
     <ClInclude Include="Header\Jump.h">
       <Filter>ヘッダー</Filter>
     </ClInclude>
+    <ClInclude Include="Header\Size.h">
+      <Filter>Utility</Filter>
+    </ClInclude>
+    <ClInclude Include="Header\Vector.h">
+      <Filter>Utility</Filter>
+    </ClInclude>
     <ClInclude Include="Header\Main.h">
+      <Filter>ヘッダー</Filter>
+    </ClInclude>
+    <ClInclude Include="Header\Player.h">
       <Filter>ヘッダー</Filter>
     </ClInclude>
     <ClInclude Include="Header\Title.h">
       <Filter>ヘッダー</Filter>
     </ClInclude>
-    <ClInclude Include="Header\Player.h">
-	  <Filter>ヘッダー</Filter>
-	</ClInclude>
-    <ClInclude Include="Header\Vector.h">
-      <Filter>Utility</Filter>
+    <ClInclude Include="Header\Window.h">
+      <Filter>ヘッダー</Filter>
     </ClInclude>
-    <ClInclude Include="Header\Size.h">
-      <Filter>Utility</Filter>
-	</ClInlucde>
-    <ClInclude Include="Collision.h">
+    <ClInclude Include="Header\Collision.h">
+      <Filter>ヘッダー</Filter>
+    </ClInclude>
+    <ClInclude Include="Header\Enemy.h">
       <Filter>ヘッダー</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
+    <Filter Include="Utility">
+      <UniqueIdentifier>{614e1717-8f66-480b-aec3-e2056af52342}</UniqueIdentifier>
+    </Filter>
     <Filter Include="ヘッダー">
-      <UniqueIdentifier>{08225ad6-1ec9-4cf1-8c58-6603746edb7c}</UniqueIdentifier>
+      <UniqueIdentifier>{0d7cc417-3251-4b99-9287-6878b34caaa2}</UniqueIdentifier>
     </Filter>
     <Filter Include="ソース">
-      <UniqueIdentifier>{6fff82d6-42fd-452e-a487-87ef1b9c4ce3}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Utility">
-      <UniqueIdentifier>{e44be112-4b2f-498c-8a9c-4eb2b29ced0d}</UniqueIdentifier>
+      <UniqueIdentifier>{a0cb6a7e-2e36-42ef-abc8-3e47fbd5358c}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>
