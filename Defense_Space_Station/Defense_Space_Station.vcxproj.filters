@@ -17,8 +17,8 @@
       <Filter>ソース</Filter>
     </ClCompile>
     <ClCompile Include="Source\Player.cpp">
-      <Filter>ソース</Filter>
-    </ClCompile>
+	  <Filter>ソース</Fileter>
+	</ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Header\Window.h">
@@ -37,8 +37,8 @@
       <Filter>ヘッダー</Filter>
     </ClInclude>
     <ClInclude Include="Header\Player.h">
-      <Filter>ヘッダー</Filter>
-    </ClInclude>
+	  <Filter>ヘッダー</Filter>
+	</ClInclude>
     <ClInclude Include="Header\Vector.h">
       <Filter>Utility</Filter>
     </ClInclude>
