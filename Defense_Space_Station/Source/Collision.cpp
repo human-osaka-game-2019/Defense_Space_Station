@@ -1,59 +1,59 @@
 #include "../Header/Collision.h"
 
-/*
-	当たっているかの判定
-	当たっていた場合TRUEを返す。
-*/
-bool JudgeCollision::RectCollion(
-		float FirstRectX, float FirstRectY,
-		int FirstRectWhith, int FirstRectHight,
-		float SecondRectX, float SecondRectY,
-		int SecondRectWhith, int SecondRectHight)
+
+namespace Collision 
 {
-	if(FirstRectX+FirstRectWhith>= SecondRectX
-		&&
-		FirstRectX<=SecondRectX+SecondRectWhith)
-		if (FirstRectY + FirstRectHight >= SecondRectHight
+	/*
+		当たっているかの判定
+		当たっていた場合TRUEを返す。
+	*/
+	bool SquareCollision(
+		const Vec& pos1, const Size& size1,
+		const Vec& pos2, const Size& size2)
+	{
+		if (pos1.x + size1.width >= pos2.x
 			&&
-			FirstRectY <= SecondRectY + SecondRectHight)
-		{
-			return true;
-		}
-	return false;
-}
-
-/*
-	当たっているかの判定
-
-	PastPosYには60分の1秒前のY座標を入れる。
-
-	60分の1秒前のY座標が
-	下だった場合FALSE（当たっていない）を返す。
-
-	60分の1秒前のY座標が
-	上だった場合TRUE（当たっている）を返す。
-*/
-bool JudgeCollision::AirBloackCollion(
-	float FirstRectX, float FirstRectY,
-	int FirstRectWhith, int FirstRectHight,
-	float SecondRectX, float SecondRectY,
-	int SecondRectWhith, int SecondRectHight,
-	int PastPosY) 
-{
-
-	if (FirstRectX + FirstRectWhith >= SecondRectX
-		&&
-		FirstRectX <= SecondRectX + SecondRectWhith)
-		if (FirstRectY + FirstRectHight >= SecondRectHight
-			&&
-			FirstRectY <= SecondRectY + SecondRectHight)
-		{
-			if (PastPosY > FirstRectX)
+			pos1.x <= pos2.x + size2.width)
+			if (pos1.y + size1.height >= pos2.y
+				&&
+				pos1.y <= pos2.y + size2.height)
 			{
-				return false;
+				return true;
 			}
-			else return true;
-		}
-	return false;
+		return false;
+	}
 
+	/*
+		当たっているかの判定
+
+		PreviousPosには1フレーム前のY座標を入れる。
+
+		1フレーム前のY座標が
+		下だった場合FALSE（当たっていない）を返す。
+
+		1フレーム前のY座標が
+		上だった場合TRUE（当たっている）を返す。
+	*/
+	bool AirBloackCollion(
+		const Vec& pos1, const Size& size1,
+		const Vec& pos2, const Size& size2,
+		const Vec& PreviousPos1)
+	{
+
+		if (pos1.x + size1.width >= pos2.x
+			&&
+			pos1.x <= pos2.x + size2.width)
+			if (pos1.y + size1.height >= pos2.y
+				&&
+				pos1.y <= pos2.y + size2.height)
+			{
+				if (PreviousPos1.y > pos1.y)
+				{
+					return false;
+				}
+				else return true;
+			}
+		return false;
+
+	}
 }
