@@ -1,20 +1,9 @@
 ﻿#include "../Header/Jump.h"
 #include "../Header/Main.h"
+#include "../Header/Size.h"
 
 
 
-Vec JUMP_MOVE::GetPos()
-{
-	return this->Pos;
-
-}
-
-void JUMP_MOVE::SetPos(Vec Pos)
-{
-
-	this->Pos = Pos;
-
-}
 
 float JUMP_MOVE::GetSpeed()
 {
@@ -33,37 +22,50 @@ void JUMP_MOVE::SetSpeed(float Speed)
 
 
 */
-void JUMP_MOVE::Jump()
+
+void JUMP_MOVE::JumpFlagTrue()
 {
 
-	if (dx.GetKeyState(DIK_W) == dx.PUSH)
-	{
-		this->JumpFlag = true;
+	this->JumpFlag = true;
+
+}
+
+void JUMP_MOVE::Jump(Vec *PlayerPos)
+{
 		
-	}
 	if (this->JumpFlag == true) 
 	{
 		this->Initial_speed -= this->Speed;
-		this->Pos.y -= this->Initial_speed;
+		PlayerPos->y -= this->Initial_speed;
 	}
-	if (this->Pos.y >= DISPLAY_HEIGHT)
+	else if (this->JumpFlag == false) {
+		this->Gravity(PlayerPos);
+	}
+	if (PlayerPos->y > 940)
 	{
 
 		this->JumpFlag = false;
-		 this->Pos.y -= this->Pos.y - DISPLAY_HEIGHT;
-		 this->SetSpeed(50);
-		 this->Initial_speed = this->GetSpeed();
+		PlayerPos->y = 940;
+		this->Initial_speed = 25;
+
 	}
 
 }
 
-void JUMP_MOVE::EnemyJump()
+void JUMP_MOVE::EnemyJump(Vec EnemyPos)
 {
 
 		this->Initial_speed -= this->Speed;
-		this->Pos.y -= this->Initial_speed;
+		EnemyPos.y -= this->Initial_speed;
 
 
+}
+
+void JUMP_MOVE::Gravity(Vec *Pos)
+{
+
+	Pos->y += 3;
+	
 }
 
 
@@ -81,7 +83,7 @@ void JUMP_MOVE::SetInitialSpeed(float Initial_speed)
 
 }
 
-JUMP_MOVE::JUMP_MOVE() :Initial_speed(50),Pos(0,0), Speed(0.5), JumpFlag(false)
+JUMP_MOVE::JUMP_MOVE() :Initial_speed(25), Speed(0.5), JumpFlag(false)
 {
 
 

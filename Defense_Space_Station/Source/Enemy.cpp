@@ -161,12 +161,11 @@ void Enemy::Chase(Vec PlayerPos)
 	if (PlayerPos.y <= this->Pos.y)
 	{
 		this->JumpFlag = true;
-		Jump_Move.SetPos(this->Pos);
 		if (this->JumpFlag == true) {
-			Jump_Move.EnemyJump();
-			if (this->Pos.y >= DISPLAY_HEIGHT)
+			Jump_Move.EnemyJump(this->Pos);
+			if (this->Pos.y > DISPLAY_HEIGHT)
 			{
-
+				this->JumpFlag = false;
 				this->Pos.y -= this->Pos.y - DISPLAY_HEIGHT;
 
 			}

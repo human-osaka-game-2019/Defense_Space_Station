@@ -1,6 +1,9 @@
 ﻿#include "../Header/Player.h"
 #include "../Header/Main.h"
 
+
+
+
 HAMMER::HAMMER(float x, float y):degree(0.0f) {
 	this->pos.x = x;
 	this->pos.y = y;
@@ -46,6 +49,12 @@ void PLAYER::Control() {
 	if (dx.GetKeyState(DIK_L) == dx.PUSH) {
 		SpecialAttack();
 	}
+	if (dx.GetKeyState(DIK_W) == dx.PUSH) {
+		this->jump.JumpFlagTrue();
+	}
+
+	this->jump.Jump(&this->pos);
+
 }
 
 void PLAYER::Attack() {
