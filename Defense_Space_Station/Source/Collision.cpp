@@ -4,7 +4,7 @@
 	当たっているかの判定
 	当たっていた場合TRUEを返す。
 */
-bool JudgeCollision::RectCollion(
+bool JudgeCollision::RectCollsion(
 		float FirstRectX, float FirstRectY,
 		int FirstRectWhith, int FirstRectHight,
 		float SecondRectX, float SecondRectY,
@@ -33,7 +33,7 @@ bool JudgeCollision::RectCollion(
 	60分の1秒前のY座標が
 	上だった場合TRUE（当たっている）を返す。
 */
-bool JudgeCollision::AirBloackCollion(
+bool JudgeCollision::AirBloackCollsion(
 	float FirstRectX, float FirstRectY,
 	int FirstRectWhith, int FirstRectHight,
 	float SecondRectX, float SecondRectY,

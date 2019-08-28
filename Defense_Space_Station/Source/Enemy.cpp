@@ -193,7 +193,7 @@ void Enemy::EnemyDeadMove()
 
 }
 
-Enemy::Enemy() :Pos_X(), Pos_Y(), RePopCount(600), Mode(ALIVE), DeadFlag(false), Direction(RIGHT), JumpFlag(false)
+Enemy::Enemy() :Pos_X(150), Pos_Y(600), RePopCount(600), Mode(ALIVE), DeadFlag(false), Direction(RIGHT), JumpFlag(false)
 {
 
 

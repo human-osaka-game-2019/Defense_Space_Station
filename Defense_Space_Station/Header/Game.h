@@ -2,6 +2,7 @@
 #define GAME_H_
 
 #include "../Header/Player.h"
+#include "../Header/Enemy.h"
 
 class GAME {
 public:
@@ -20,6 +21,7 @@ private:
 	STEP step = LoadStep;
 
 	PLAYER player;
+	Enemy enemy;
 
 	void Load();
 	void Control();

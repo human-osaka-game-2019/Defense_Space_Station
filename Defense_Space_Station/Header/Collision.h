@@ -6,13 +6,13 @@ class JudgeCollision
 {
 public:
 
-	bool RectCollion(
+	bool RectCollsion(
 		float FirstRectX,float FirstRectY,
 		int FirstRectWhith, int FirstRectHight,
 		float SecondRectX, float SecondRectY,
 		int SecondRectWhith, int ScondRectHight);
 
-	bool AirBloackCollion(
+	bool AirBloackCollsion(
 		float FirstRectX, float FirstRectY,
 		int FirstRectWhith, int FirstRectHight,
 		float SecondRectX, float SecondRectY,
