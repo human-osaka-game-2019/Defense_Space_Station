@@ -1,31 +1,20 @@
 ﻿#include "../Header/Enemy.h"
+#include "../Header/Jump.h"
+#include "../Header/Main.h"
 
+JUMP_MOVE Jump_Move;
 
-float Enemy::GetPos_X()
+Vec Enemy::GetPos()
 {
 
-	return this->Pos_X;
+	return this->Pos;
 
 }
 
-void Enemy::SetPos_X(float Pos_X)
+void Enemy::SetPos(Vec Pos)
 {
 
-	this->Pos_X = Pos_X;
-
-}
-
-float Enemy::GetPos_Y()
-{
-
-	return this->Pos_Y;
-
-}
-
-void Enemy::SetPos_Y(float Pos_Y)
-{
-
-	this->Pos_Y = Pos_Y;
+	this->Pos = Pos;
 
 }
 
@@ -69,26 +58,6 @@ void Enemy::SetMode(int Mode)
 
 }
 
-bool Enemy::GetDeadFlag()
-{
-
-	return this->DeadFlag;
-
-}
-
-void Enemy::SetDeadFlag(bool DeadFlag)
-{
-
-	this->DeadFlag = DeadFlag;
-
-}
-
-void Enemy::SetDeadFlagTrue()
-{
-
-	this->DeadFlag = true;
-
-}
 
 int Enemy::GetDirection()
 {
@@ -118,33 +87,15 @@ void Enemy::SetJumpFlag(bool JumpFlag)
 
 }
 
-void Enemy::SetJumpFlagTrue()
-{
 
-	this->JumpFlag = true;
-
-}
-
-void Enemy::ReSetDeadFlag()
-{
-
-	this->DeadFlag = false;
-
-}
-
-void Enemy::ReSetJumpFlag()
-{
-
-	this->JumpFlag = false;
-
-}
 //敵の状態
-void Enemy::EnemyMove()
+void Enemy::EnemyMove(Vec PlayerPos)
 {
 
 	switch (this->GetMode())
 	{
 	case MODE::ALIVE:
+		this->Chase(PlayerPos);
 		this->EnemyAliveMove();
 		break;
 	case MODE::SWOON:
@@ -159,17 +110,17 @@ void Enemy::EnemyMove()
 //敵の行動
 void Enemy::EnemyAliveMove()
 {
-
+	
 	switch (this->Direction)
 	{
 	case DIRECTION::RIGHT:
 
-		this->Pos_X += this->MoveSpeed;
+		this->Pos.x += this->MoveSpeed;
 
 		break;
 	case DIRECTION::LEFT:
 
-		this->Pos_X -= this->MoveSpeed;
+		this->Pos.x -= this->MoveSpeed;
 
 		break;
 
@@ -187,13 +138,44 @@ void Enemy::EnemySwoonMove()
 
 void Enemy::EnemyDeadMove()
 {
-	this->SetDeadFlagTrue();
+	
 
 
 
 }
 
-Enemy::Enemy() :Pos_X(), Pos_Y(), RePopCount(600), Mode(ALIVE), DeadFlag(false), Direction(RIGHT), JumpFlag(false)
+void Enemy::Chase(Vec PlayerPos)
+{
+
+	if (PlayerPos.x >= this->Pos.x) 
+	{
+		this->Direction = DIRECTION::RIGHT;
+	}
+	else if (PlayerPos.x <= this->Pos.x)
+	{
+
+		this->Direction = DIRECTION::LEFT;
+
+	}
+
+	if (PlayerPos.y <= this->Pos.y)
+	{
+		this->JumpFlag = true;
+		Jump_Move.SetPos(this->Pos);
+		if (this->JumpFlag == true) {
+			Jump_Move.EnemyJump();
+			if (this->Pos.y >= DISPLAY_HEIGHT)
+			{
+
+				this->Pos.y -= this->Pos.y - DISPLAY_HEIGHT;
+
+			}
+		}
+	}
+
+}
+
+Enemy::Enemy() :Pos(0.0f,0.0f), RePopCount(600), Mode(ALIVE), DeadFlag(false), Direction(RIGHT), JumpFlag(false)
 {
 
 

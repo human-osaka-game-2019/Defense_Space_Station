@@ -1,19 +1,22 @@
 ﻿#include "../Header/Jump.h"
+#include "../Header/Main.h"
 
-int JUMP_MOVE::GetPos_Y()
+
+
+Vec JUMP_MOVE::GetPos()
 {
-	return this->Pos_Y;
+	return this->Pos;
 
 }
 
-void JUMP_MOVE::SetPos_Y(float Pos_Y)
+void JUMP_MOVE::SetPos(Vec Pos)
 {
 
-	this->Pos_Y = Pos_Y;
+	this->Pos = Pos;
 
 }
 
-int JUMP_MOVE::GetSpeed()
+float JUMP_MOVE::GetSpeed()
 {
 	return this->Speed;
 
@@ -35,15 +38,41 @@ void JUMP_MOVE::SetSpeed(float Speed)
 	Speedは加速度
 
 */
-void JUMP_MOVE::Jump(float* Pos_Y, float* Initial_speed, float Speed)
+void JUMP_MOVE::Jump()
 {
+	
+		if (dx.GetKeyState(DIK_W) == dx.PUSH)
+		{
+			this->JumpFlag = true;
+			
+		}
+		if (this->JumpFlag == true) 
+		{
+			this->Initial_speed -= this->Speed;
+			this->Pos.y -= this->Initial_speed;
+		}
+	if (this->Pos.y >= DISPLAY_HEIGHT)
+	{
 
-	*Initial_speed -= Speed;
-	*Pos_Y -= *Initial_speed;
+		this->JumpFlag = false;
+		 this->Pos.y -= this->Pos.y - DISPLAY_HEIGHT;
+		 this->SetSpeed(50);
+		 this->Initial_speed = this->GetSpeed();
+	}
 
 }
 
-int JUMP_MOVE::GetInitialSpeed()
+void JUMP_MOVE::EnemyJump()
+{
+
+		this->Initial_speed -= this->Speed;
+		this->Pos.y -= this->Initial_speed;
+
+
+}
+
+
+float JUMP_MOVE::GetInitialSpeed()
 {
 
 	return this->Initial_speed;
@@ -57,7 +86,7 @@ void JUMP_MOVE::SetInitialSpeed(float Initial_speed)
 
 }
 
-JUMP_MOVE::JUMP_MOVE() :Initial_speed(50),Pos_Y(0), Speed(0.5)
+JUMP_MOVE::JUMP_MOVE() :Initial_speed(50),Pos(0,0), Speed(0.5), JumpFlag(false)
 {
 
 

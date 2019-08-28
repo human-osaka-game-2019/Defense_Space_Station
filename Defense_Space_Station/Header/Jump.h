@@ -1,5 +1,6 @@
 ﻿#ifndef JUMP
 #define JUMP
+#include "../Header/Vector.h"
 
 class JUMP_MOVE
 {
@@ -8,21 +9,24 @@ public:
 	JUMP_MOVE();
 	~JUMP_MOVE();
 
-	int GetPos_Y();
-	void SetPos_Y(float Pos_Y);
-	int GetSpeed();
+	Vec GetPos();
+	void SetPos(Vec Pos);
+	float GetSpeed();
 	void SetSpeed(float Speed);
-	int GetInitialSpeed();
+	float GetInitialSpeed();
 	void SetInitialSpeed(float Initial_speed);
-	void Jump(float* Pos_Y, float* Initial_speed, float Speed);
+	void Jump();
+	void EnemyJump();
 
 private:
 
-	float Pos_Y;
+	Vec Pos;
 	float Speed;
 	float Initial_speed;
-
+	bool JumpFlag;
 };
+
+
 
 
 
