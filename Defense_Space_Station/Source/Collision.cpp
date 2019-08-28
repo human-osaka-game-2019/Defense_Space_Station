@@ -1,11 +1,16 @@
-#include "../Header/Collision.h"
+?ｿ#include "../Header/Collision.h"
 
 
 namespace Collision 
 {
 	/*
+		&&
+		FirstRectX<=SecondRectX+SecondRectWhith)
+		if (FirstRectY + FirstRectHight >= SecondRectHight
 		当たっているかの判定
 		当たっていた場合TRUEを返す。
+		?ｽ?ｽ?ｽ?ｽ?ｽ?ｽ?ｽﾄゑｿｽ?ｽ驍ｩ?ｽﾌ費ｿｽ?ｽ?ｽ
+		?ｽ?ｽ?ｽ?ｽ?ｽ?ｽ?ｽﾄゑｿｽ?ｽ?ｽ?ｽ鼾ⅠRUE?ｽ?ｽ?ｽﾔゑｿｽ?ｽB
 	*/
 	bool SquareCollision(
 		const Vec& pos1, const Size& size1,
@@ -24,15 +29,35 @@ namespace Collision
 	}
 
 	/*
+	当たっているかの判定
 		当たっているかの判定
+		?ｽ?ｽ?ｽ?ｽ?ｽ?ｽ?ｽﾄゑｿｽ?ｽ驍ｩ?ｽﾌ費ｿｽ?ｽ?ｽ
 
+	PastPosYには60分の1秒前のY座標を入れる。
 		PreviousPosには1フレーム前のY座標を入れる。
+		PreviousPos?ｽﾉゑｿｽ1?ｽt?ｽ?ｽ?ｽ[?ｽ?ｽ?ｽO?ｽ?ｽY?ｽ?ｽ?ｽW?ｽ?ｽ?ｽ?ｽ?ｽ?ｽ?ｽ?ｽ?ｽB
 
+	60分の1秒前のY座標が
+	下だった場合FALSE（当たっていない）を返す。
 		1フレーム前のY座標が
 		下だった場合FALSE（当たっていない）を返す。
+		1?ｽt?ｽ?ｽ?ｽ[?ｽ?ｽ?ｽO?ｽ?ｽY?ｽ?ｽ?ｽW?ｽ?ｽ
+		?ｽ?ｽ?ｽ?ｽ?ｽ?ｽ?ｽ?ｽ?ｽ鼾⑦ALSE?ｽi?ｽ?ｽ?ｽ?ｽ?ｽ?ｽ?ｽﾄゑｿｽ?ｽﾈゑｿｽ?ｽj?ｽ?ｽ?ｽﾔゑｿｽ?ｽB
 
+	60分の1秒前のY座標が
+	上だった場合TRUE（当たっている）を返す。
+*/
+bool JudgeCollision::AirBloackCollion(
+	float FirstRectX, float FirstRectY,
+	int FirstRectWhith, int FirstRectHight,
+	float SecondRectX, float SecondRectY,
+	int SecondRectWhith, int SecondRectHight,
+	int PastPosY) 
+{
 		1フレーム前のY座標が
 		上だった場合TRUE（当たっている）を返す。
+		1?ｽt?ｽ?ｽ?ｽ[?ｽ?ｽ?ｽO?ｽ?ｽY?ｽ?ｽ?ｽW?ｽ?ｽ
+		?ｽ繧ｾ?ｽ?ｽ?ｽ?ｽ?ｽ鼾ⅠRUE?ｽi?ｽ?ｽ?ｽ?ｽ?ｽ?ｽ?ｽﾄゑｿｽ?ｽ?ｽ?ｽj?ｽ?ｽ?ｽﾔゑｿｽ?ｽB
 	*/
 	bool AirBloackCollion(
 		const Vec& pos1, const Size& size1,
