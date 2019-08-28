@@ -1,4 +1,4 @@
-?�#include "../Header/Jump.h"
+﻿#include "../Header/Jump.h"
 #include "../Header/Main.h"
 
 
@@ -30,27 +30,12 @@ void JUMP_MOVE::SetSpeed(float Speed)
 }
 /*
 
-第�?引数
-	Pos_Yは現在のY座�?
-第二引数
-	Initial_speedは初�??
-第三引数
-	Speedは�?速度
+
 
 */
 void JUMP_MOVE::Jump()
 {
-	
-		if (dx.GetKeyState(DIK_W) == dx.PUSH)
-		{
-			this->JumpFlag = true;
-			
-		}
-		if (this->JumpFlag == true) 
-		{
-			this->Initial_speed -= this->Speed;
-			this->Pos.y -= this->Initial_speed;
-		}
+
 	if (dx.GetKeyState(DIK_W) == dx.PUSH)
 	{
 		this->JumpFlag = true;

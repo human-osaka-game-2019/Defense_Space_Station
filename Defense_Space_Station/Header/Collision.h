@@ -1,4 +1,4 @@
-?¿#ifndef Collision_H_
+ï»¿#ifndef Collision_H_
 #define Collision_H_
 
 #include"Vector.h"

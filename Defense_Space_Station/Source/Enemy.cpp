@@ -1,4 +1,4 @@
-?�#include "../Header/Enemy.h"
+﻿#include "../Header/Enemy.h"
 #include "../Header/Jump.h"
 #include "../Header/Main.h"
 
@@ -88,7 +88,7 @@ void Enemy::SetJumpFlag(bool JumpFlag)
 }
 
 
-//敵の状�?
+//謨ｵ縺ｮ迥ｶ諷?
 void Enemy::EnemyMove(Vec PlayerPos)
 {
 
@@ -107,7 +107,7 @@ void Enemy::EnemyMove(Vec PlayerPos)
     }
 }
 
-//敵の行動
+//謨ｵ縺ｮ陦悟虚
 void Enemy::EnemyAliveMove()
 {
 	
@@ -128,7 +128,7 @@ void Enemy::EnemyAliveMove()
 
 }
 
-//クロボシのAIが�?来たら追�?
+//繧ｯ繝ｭ繝懊す縺ｮAI縺悟?譚･縺溘ｉ霑ｽ險?
 void Enemy::EnemySwoonMove()
 {
 
