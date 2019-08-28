@@ -3,11 +3,12 @@
 
 #include "../Header/Vector.h"
 #include "../Header/Size.h"
+#include "../Header/Jump.h"
 
-class Hammer {
+class HAMMER {
 public:
-	Hammer(float x, float y);
-	~Hammer();
+	HAMMER(float x, float y);
+	~HAMMER();
 
 	void SetPos(float x, float y);
 	Vec GetPos();
@@ -27,6 +28,8 @@ public:
 	PLAYER();
 	~PLAYER();
 
+	bool is_Reverse;
+
 	void SetPos(float x, float y);
 	Vec GetPos();
 	void SetSize(float width, float height);
@@ -36,8 +39,8 @@ public:
 private:
 	Vec pos;
 	Size size;
-	//JUMP_MOVE jump;
-	Hammer hammer;
+	JUMP_MOVE jump;
+	HAMMER hammer;
 	const float speed;
 
 	void Attack();

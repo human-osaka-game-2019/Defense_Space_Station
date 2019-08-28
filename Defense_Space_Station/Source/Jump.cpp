@@ -41,16 +41,16 @@ void JUMP_MOVE::SetSpeed(float Speed)
 void JUMP_MOVE::Jump()
 {
 	
-		if (dx.GetKeyState(DIK_W) == dx.PUSH)
-		{
-			this->JumpFlag = true;
-			
-		}
-		if (this->JumpFlag == true) 
-		{
-			this->Initial_speed -= this->Speed;
-			this->Pos.y -= this->Initial_speed;
-		}
+	if (dx.GetKeyState(DIK_W) == dx.PUSH)
+	{
+		this->JumpFlag = true;
+		
+	}
+	if (this->JumpFlag == true) 
+	{
+		this->Initial_speed -= this->Speed;
+		this->Pos.y -= this->Initial_speed;
+	}
 	if (this->Pos.y >= DISPLAY_HEIGHT)
 	{
 

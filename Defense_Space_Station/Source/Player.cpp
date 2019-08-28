@@ -1,6 +1,14 @@
 ﻿#include "../Header/Player.h"
 #include "../Header/Main.h"
-#include "../Header/Jump.h"
+
+HAMMER::HAMMER(float x, float y):degree(0.0f) {
+	this->pos.x = x;
+	this->pos.y = y;
+}
+
+HAMMER::~HAMMER() {
+
+}
 
 void PLAYER::SetPos(float x, float y) {
 	this->pos.x = x;
@@ -22,13 +30,12 @@ Size PLAYER::GetSize() {
 
 void PLAYER::Control() {
 	if (dx.GetKeyState(DIK_A) == dx.ON) {
+		is_Reverse = true;
 		pos.x -= speed;
 	}
 	if (dx.GetKeyState(DIK_D) == dx.ON) {
+		is_Reverse = false;
 		pos.x += speed;
-	}
-	if (dx.GetKeyState(DIK_W) == dx.PUSH) {
-		//jump.Jump();
 	}
 	if (dx.GetKeyState(DIK_J) == dx.PUSH) {
 		Attack();
@@ -53,7 +60,7 @@ void PLAYER::SpecialAttack() {
 
 }
 
-PLAYER::PLAYER():pos(100.0f,100.0f),speed(5.0f),hammer(pos.x, pos.y){
+PLAYER::PLAYER():is_Reverse(false),pos(100.0f,100.0f),speed(5.0f),hammer(pos.x, pos.y){
 	SetSize(100.0, 100.0f);
 }
 

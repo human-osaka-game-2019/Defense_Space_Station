@@ -39,10 +39,10 @@ void GAME::Control() {
 
 void GAME::Draw() {
 	dx.Draw(0, 0, DISPLAY_WIDTH, DISPLAY_HEIGHT, 0.0f, 1.0f, false, "Game_BG");
-	dx.Draw(player.GetPos().x, player.GetPos().y, player.GetSize().width, player.GetSize().height, 0.0f, 1.0f, false, "test");
+	dx.Draw(player.GetPos().x, player.GetPos().y, player.GetSize().width, player.GetSize().height, 0.0f, 1.0f, player.is_Reverse, "test");
 	dx.Draw(500, 500, 100, 100, 0.0f, 1.0f, false, "Low_Enemy");
 	dx.Draw(700, 500, 100, 100, 0.0f, 1.0f, false, "Boss");
-	dx.Draw(enemy.GetPos_X(), enemy.GetPos_Y(), 100, 100, 0.0f, 1.0f, false, "Enemy");
+	dx.Draw(enemy.GetPos().x, enemy.GetPos().y, 100, 100, 0.0f, 1.0f, false, "Enemy");
 }
 
 void GAME::Release() {
