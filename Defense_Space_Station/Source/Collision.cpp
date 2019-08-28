@@ -1,59 +1,59 @@
-#include "../Header/Collision.h"
+ï»¿#include "../Header/Collision.h"
 
-/*
-	“–‚½‚Á‚Ä‚¢‚é‚©‚Ì”»’è
-	“–‚½‚Á‚Ä‚¢‚½ê‡TRUE‚ð•Ô‚·B
-*/
-bool JudgeCollision::RectCollsion(
-		float FirstRectX, float FirstRectY,
-		int FirstRectWhith, int FirstRectHight,
-		float SecondRectX, float SecondRectY,
-		int SecondRectWhith, int SecondRectHight)
+
+namespace Collision 
 {
-	if(FirstRectX+FirstRectWhith>= SecondRectX
-		&&
-		FirstRectX<=SecondRectX+SecondRectWhith)
-		if (FirstRectY + FirstRectHight >= SecondRectHight
+	/*
+		ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ä‚ï¿½ï¿½é‚©ï¿½Ì”ï¿½ï¿½ï¿½
+		ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ä‚ï¿½ï¿½ï¿½ï¿½ê‡TRUEï¿½ï¿½ï¿½Ô‚ï¿½ï¿½B
+	*/
+	bool SquareCollision(
+		const Vec& pos1, const Size& size1,
+		const Vec& pos2, const Size& size2)
+	{
+		if (pos1.x + size1.width >= pos2.x
 			&&
-			FirstRectY <= SecondRectY + SecondRectHight)
-		{
-			return true;
-		}
-	return false;
-}
-
-/*
-	“–‚½‚Á‚Ä‚¢‚é‚©‚Ì”»’è
-
-	PastPosY‚É‚Í60•ª‚Ì1•b‘O‚ÌYÀ•W‚ð“ü‚ê‚éB
-
-	60•ª‚Ì1•b‘O‚ÌYÀ•W‚ª
-	‰º‚¾‚Á‚½ê‡FALSEi“–‚½‚Á‚Ä‚¢‚È‚¢j‚ð•Ô‚·B
-
-	60•ª‚Ì1•b‘O‚ÌYÀ•W‚ª
-	ã‚¾‚Á‚½ê‡TRUEi“–‚½‚Á‚Ä‚¢‚éj‚ð•Ô‚·B
-*/
-bool JudgeCollision::AirBloackCollsion(
-	float FirstRectX, float FirstRectY,
-	int FirstRectWhith, int FirstRectHight,
-	float SecondRectX, float SecondRectY,
-	int SecondRectWhith, int SecondRectHight,
-	int PastPosY) 
-{
-
-	if (FirstRectX + FirstRectWhith >= SecondRectX
-		&&
-		FirstRectX <= SecondRectX + SecondRectWhith)
-		if (FirstRectY + FirstRectHight >= SecondRectHight
-			&&
-			FirstRectY <= SecondRectY + SecondRectHight)
-		{
-			if (PastPosY > FirstRectX)
+			pos1.x <= pos2.x + size2.width)
+			if (pos1.y + size1.height >= pos2.y
+				&&
+				pos1.y <= pos2.y + size2.height)
 			{
-				return false;
+				return true;
 			}
-			else return true;
-		}
-	return false;
+		return false;
+	}
 
+	/*
+		ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ä‚ï¿½ï¿½é‚©ï¿½Ì”ï¿½ï¿½ï¿½
+
+		PreviousPosï¿½É‚ï¿½1ï¿½tï¿½ï¿½ï¿½[ï¿½ï¿½ï¿½Oï¿½ï¿½Yï¿½ï¿½ï¿½Wï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½B
+
+		1ï¿½tï¿½ï¿½ï¿½[ï¿½ï¿½ï¿½Oï¿½ï¿½Yï¿½ï¿½ï¿½Wï¿½ï¿½
+		ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ê‡FALSEï¿½iï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ä‚ï¿½ï¿½È‚ï¿½ï¿½jï¿½ï¿½ï¿½Ô‚ï¿½ï¿½B
+
+		1ï¿½tï¿½ï¿½ï¿½[ï¿½ï¿½ï¿½Oï¿½ï¿½Yï¿½ï¿½ï¿½Wï¿½ï¿½
+		ï¿½ã‚¾ï¿½ï¿½ï¿½ï¿½ï¿½ê‡TRUEï¿½iï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ä‚ï¿½ï¿½ï¿½ï¿½jï¿½ï¿½ï¿½Ô‚ï¿½ï¿½B
+	*/
+	bool AirBloackCollion(
+		const Vec& pos1, const Size& size1,
+		const Vec& pos2, const Size& size2,
+		const Vec& PreviousPos1)
+	{
+
+		if (pos1.x + size1.width >= pos2.x
+			&&
+			pos1.x <= pos2.x + size2.width)
+			if (pos1.y + size1.height >= pos2.y
+				&&
+				pos1.y <= pos2.y + size2.height)
+			{
+				if (PreviousPos1.y > pos1.y)
+				{
+					return false;
+				}
+				else return true;
+			}
+		return false;
+
+	}
 }
