@@ -1,6 +1,8 @@
 ﻿#ifndef ENEMY_H_
 #define ENEMY_H_
-#include"..//Header/Vector.h"
+#include"../Header/Vector.h"
+#include"../Header/Jump.h"
+#include"../Header/Direction.h"
 
 class Enemy
 {
@@ -8,7 +10,7 @@ public:
 	Enemy();
 	~Enemy();
 	Vec GetPos();
-	void SetPos(Vec Pos);
+	void SetPos(float pos_x, float pos_y);
 	float GetMoveSpeed();
 	void SetMoveSpeed(float MoveSpeed);
 	int GetRePopCount();
@@ -24,6 +26,7 @@ public:
 	void EnemySwoonMove();
 	void EnemyDeadMove();
 	void Chase(Vec PlayerPos);
+	void SetJump(float InitSpeed, float SetSpeed);
 
 private:
 
@@ -32,8 +35,10 @@ private:
 	int RePopCount;
 	int Mode;
 	bool DeadFlag;
-	int Direction;
 	bool JumpFlag;
+	JUMP_MOVE Jump_Move;
+	Direction Direction;
+
 
 };
 

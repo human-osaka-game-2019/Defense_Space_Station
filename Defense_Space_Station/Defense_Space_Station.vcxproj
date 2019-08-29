@@ -144,7 +144,9 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Direction.cpp" />
     <ClCompile Include="Source\Collision.cpp" />
+    <ClCompile Include="Source\Direction.cpp" />
     <ClCompile Include="Source\Enemy.cpp" />
     <ClCompile Include="Source\Game.cpp" />
     <ClCompile Include="Source\Jump.cpp" />
@@ -155,6 +157,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Header\Collision.h" />
+    <ClInclude Include="Header\Direction.h" />
     <ClInclude Include="Header\Enemy.h" />
     <ClInclude Include="Header\Game.h" />
     <ClInclude Include="Header\Jump.h" />

@@ -22,13 +22,14 @@ void GAME::Load() {
 	dx.LoadTexture("Resource/Enemy/LowEnemy.png", "Low_Enemy");
 	dx.LoadTexture("Resource/Enemy/Boss_Purple.png", "Boss");
 	dx.LoadTexture("Resource/BackGround/GameBack.jpg", "Game_BG");
+	enemy.SetJump(8.0f, 0.2f);
 	step = MainStep;
 }
 
 void GAME::Control() {
 	player.Control();
 
-	//enemy.EnemyMove();
+	enemy.EnemyMove(player.GetPos());
 
 #ifdef _DEBUG
 	if (dx.GetKeyState(DIK_ESCAPE) == dx.PUSH) {
@@ -40,7 +41,7 @@ void GAME::Control() {
 void GAME::Draw() {
 	dx.Draw(0, 0, DISPLAY_WIDTH, DISPLAY_HEIGHT, 0.0f, 1.0f, false, "Game_BG");
 	dx.Draw(player.GetPos().x, player.GetPos().y, player.GetSize().width, player.GetSize().height, 0.0f, 1.0f, player.is_Reverse, "test");
-	dx.Draw(500, 500, 100, 100, 0.0f, 1.0f, false, "Low_Enemy");
+	dx.Draw(enemy.GetPos().x, enemy.GetPos().y, 100, 100, 0.0f, 1.0f, false, "Low_Enemy");
 	dx.Draw(700, 500, 100, 100, 0.0f, 1.0f, false, "Boss");
 	dx.Draw(enemy.GetPos().x, enemy.GetPos().y, 100, 100, 0.0f, 1.0f, false, "Enemy");
 }

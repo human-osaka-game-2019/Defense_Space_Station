@@ -53,11 +53,19 @@ void JUMP_MOVE::Jump(Vec *PlayerPos)
 
 }
 
-void JUMP_MOVE::EnemyJump(Vec EnemyPos)
+void JUMP_MOVE::EnemyJumpSet(float SetInitSpeed, float SetSpeed)
+{
+
+	this->Initial_speed = SetInitSpeed;
+	this->Speed = SetSpeed;
+
+}
+
+void JUMP_MOVE::EnemyJump(Vec *EnemyPos)
 {
 
 		this->Initial_speed -= this->Speed;
-		EnemyPos.y -= this->Initial_speed;
+		EnemyPos->y -= this->Initial_speed;
 
 
 }

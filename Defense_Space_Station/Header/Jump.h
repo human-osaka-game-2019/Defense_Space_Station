@@ -17,7 +17,8 @@ public:
 	void SetInitialSpeed(float Initial_speed);
 	void JumpFlagTrue();
 	void Jump(Vec* PlayerPos);
-	void EnemyJump(Vec EnemyPos);
+	void EnemyJumpSet(float InitSpeed, float SetSpeed);
+	void EnemyJump(Vec* EnemyPos);
 	void Gravity(Vec* Pos);
 
 private:
