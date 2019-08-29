@@ -40,6 +40,9 @@ void PLAYER::Control() {
 		is_Reverse = false;
 		pos.x += speed;
 	}
+	if (dx.GetKeyState(DIK_W) == dx.PUSH) {
+		this->jump.JumpFlagTrue();
+	}
 	if (dx.GetKeyState(DIK_J) == dx.PUSH) {
 		Attack();
 	}
@@ -48,9 +51,6 @@ void PLAYER::Control() {
 	}
 	if (dx.GetKeyState(DIK_L) == dx.PUSH) {
 		SpecialAttack();
-	}
-	if (dx.GetKeyState(DIK_W) == dx.PUSH) {
-		this->jump.JumpFlagTrue();
 	}
 
 	this->jump.Jump(&this->pos);
