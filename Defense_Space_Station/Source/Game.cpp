@@ -4,12 +4,15 @@
 void GAME::UpdateScene() {
 	switch (step)
 	{
-	case GAME::LoadStep:Load();
+	case GAME::LoadStep:
+		Load();
 		break;
-	case GAME::MainStep:Control();
+	case GAME::MainStep:
+		Control();
 		Draw();
 		break;
-	case GAME::ReleaseStep:Release();
+	case GAME::ReleaseStep:
+		Release();
 		break;
 	default:
 		break;
@@ -22,11 +25,15 @@ void GAME::Load() {
 	dx.LoadTexture("Resource/Enemy/LowEnemy.png", "Low_Enemy");
 	dx.LoadTexture("Resource/Enemy/Boss_Purple.png", "Boss");
 	dx.LoadTexture("Resource/BackGround/GameBack.jpg", "Game_BG");
+
+	for (int i = 0; i < 20; i++) {
+		enemy[i].SetPos(700, 700);
+	}
 	step = MainStep;
 }
 
 void GAME::Control() {
-	player.Control();
+	player.Control(enemy);
 
 	//enemy.EnemyMove();
 
@@ -39,10 +46,15 @@ void GAME::Control() {
 
 void GAME::Draw() {
 	dx.Draw(0, 0, DISPLAY_WIDTH, DISPLAY_HEIGHT, 0.0f, 1.0f, false, "Game_BG");
-	dx.Draw(player.GetPos().x, player.GetPos().y, player.GetSize().width, player.GetSize().height, 0.0f, 1.0f, player.is_Reverse, "test");
+	dx.Draw(player.GetPos().x, player.GetPos().y, player.GetSize().width, player.GetSize().height, 0.0f, 1.0f, (bool)player.GetDirection(), "test");
 	dx.Draw(500, 500, 100, 100, 0.0f, 1.0f, false, "Low_Enemy");
 	dx.Draw(700, 500, 100, 100, 0.0f, 1.0f, false, "Boss");
-	dx.Draw(enemy.GetPos().x, enemy.GetPos().y, 100, 100, 0.0f, 1.0f, false, "Enemy");
+
+	for (int i = 0; i < 20; i++) {
+		if (!enemy[i].is_dead) {
+			dx.Draw(enemy[i].GetPos().x, enemy[i].GetPos().y, 100, 100, 0.0f, 1.0f, false, "Enemy");
+		}
+	}
 }
 
 void GAME::Release() {

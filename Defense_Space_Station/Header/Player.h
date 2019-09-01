@@ -3,47 +3,31 @@
 
 #include "../Header/Vector.h"
 #include "../Header/Size.h"
+#include "../Header/Enemy.h"
 #include "../Header/Jump.h"
-
-class HAMMER {
-public:
-	HAMMER(float x, float y);
-	~HAMMER();
-
-	void SetPos(float x, float y);
-	Vec GetPos();
-	void SetSize(float width, float height);
-	Size GetSize();
-	void SetDegree();
-	float GetDegree();
-
-private:
-	Vec pos;
-	Size size;
-	float degree;
-};
 
 class PLAYER{
 public:
 	PLAYER();
 	~PLAYER();
 
-	bool is_Reverse;
-
 	void SetPos(float x, float y);
 	Vec GetPos();
 	void SetSize(float width, float height);
 	Size GetSize();
-	void Control();
+	DIRECTION GetDirection();
+	void Control(Enemy enemy[]);
 
 private:
+
 	Vec pos;
+	Vec UnderPos;
 	Size size;
+	DIRECTION direction;
 	JUMP_MOVE jump;
-	HAMMER hammer;
 	const float speed;
 
-	void Attack();
+	void Attack(Enemy enemy[]);
 	void Catch();
 	void SpecialAttack();
 };

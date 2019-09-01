@@ -1,4 +1,6 @@
-﻿#include "../Header/Collision.h"
+﻿#include <math.h>
+
+#include "../Header/Collision.h"
 
 
 namespace Collision 
@@ -68,6 +70,20 @@ namespace Collision
 				else return true;
 			}
 		return false;
+	}
 
+	bool CircleCollision(
+		Vec& pos1, const float radius1,
+		Vec& pos2, const float radius2
+	) {
+		float width = (pos2.x - pos1.x) * (pos2.x - pos1.x);
+		float height = (pos2.y - pos1.y) * (pos2.y - pos1.y);
+		float radius = (radius1 + radius2) * (radius1 + radius2);
+		float diff = sqrt((double)width + (double)height);
+
+		if (sqrt(radius) >= diff) {
+			return true;
+		}
+		return false;
 	}
 }

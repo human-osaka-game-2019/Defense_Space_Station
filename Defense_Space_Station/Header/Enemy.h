@@ -1,14 +1,23 @@
 ﻿#ifndef ENEMY_H_
 #define ENEMY_H_
-#include"..//Header/Vector.h"
+#include "../Header/Vector.h"
+#include "../Header/Size.h"
+
+#define EnemyMax 20
 
 class Enemy
 {
 public:
 	Enemy();
 	~Enemy();
+
+	bool is_dead;
+
 	Vec GetPos();
-	void SetPos(Vec Pos);
+	void SetPos(float x, float y);
+	Size GetSize();
+	void SetSize(float width, float height);
+	float GetRadius();
 	float GetMoveSpeed();
 	void SetMoveSpeed(float MoveSpeed);
 	int GetRePopCount();
@@ -28,10 +37,11 @@ public:
 private:
 
 	Vec Pos;
+	Size size;
+	const float radius;
 	float MoveSpeed;
 	int RePopCount;
 	int Mode;
-	bool DeadFlag;
 	int Direction;
 	bool JumpFlag;
 

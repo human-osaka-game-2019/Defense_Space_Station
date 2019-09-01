@@ -1,17 +1,6 @@
 ﻿#include "../Header/Player.h"
 #include "../Header/Main.h"
-
-
-
-
-HAMMER::HAMMER(float x, float y):degree(0.0f) {
-	this->pos.x = x;
-	this->pos.y = y;
-}
-
-HAMMER::~HAMMER() {
-
-}
+#include "../Header/Collision.h"
 
 void PLAYER::SetPos(float x, float y) {
 	this->pos.x = x;
@@ -31,45 +20,71 @@ Size PLAYER::GetSize() {
 	return size;
 }
 
-void PLAYER::Control() {
+DIRECTION PLAYER::GetDirection() {
+	return direction;
+}
+
+void PLAYER::Control(Enemy enemy[]) {
 	if (dx.GetKeyState(DIK_A) == dx.ON) {
-		is_Reverse = true;
+		direction = LEFT;
 		pos.x -= speed;
 	}
 	if (dx.GetKeyState(DIK_D) == dx.ON) {
-		is_Reverse = false;
+		direction = RIGHT;
 		pos.x += speed;
 	}
 	if (dx.GetKeyState(DIK_W) == dx.PUSH) {
 		this->jump.JumpFlagTrue();
 	}
 	if (dx.GetKeyState(DIK_J) == dx.PUSH) {
-		Attack();
+		Attack(enemy);
 	}
 	if (dx.GetKeyState(DIK_K) == dx.PUSH) {
-		Catch();
+		Catch(enemy);
 	}
 	if (dx.GetKeyState(DIK_L) == dx.PUSH) {
-		SpecialAttack();
+		SpecialAttack(enemy);
 	}
-
+#ifdef _DEBUG
+	if (dx.GetKeyState(DIK_RETURN) == dx.PUSH) {
+		for (int i = 0; i < EnemyMax; i++) {
+			enemy[i].is_dead = false;
+		}
+	}
+#endif
 	this->jump.Jump(&this->pos);
 
 }
 
-void PLAYER::Attack() {
+void PLAYER::Attack(Enemy enemy[]) {
+	for (int i = 0; i < EnemyMax; i++) {
+		Vec EnemyCenter = { enemy[i].GetPos().x + enemy[i].GetSize().width / 2, enemy[i].GetPos().y + enemy[i].GetSize().height / 2 };
+		Vec UnderPos = {pos.x + size.width / 2, pos.y + size.height};
+		if (direction == RIGHT) {
+			if (Collision::CircleCollision(UnderPos, size.height, EnemyCenter, enemy[i].GetRadius()) && pos.x < enemy[i].GetPos().x) {
+				enemy[i].is_dead = true;
+			}
+		}
+		if (direction == LEFT) {
+			if (Collision::CircleCollision(UnderPos, size.height, EnemyCenter, enemy[i].GetRadius()) && pos.x > enemy[i].GetPos().x) {
+				enemy[i].is_dead = true;
+			}
+		}
+		
+	}
+}
+
+void PLAYER::Catch(Enemy enemy[]) {
 
 }
 
-void PLAYER::Catch() {
-
+void PLAYER::SpecialAttack(Enemy enemy[]) {
+	for (int i = 0; i < EnemyMax; i++) {
+		enemy[i].is_dead = true;
+	}
 }
 
-void PLAYER::SpecialAttack() {
-
-}
-
-PLAYER::PLAYER():is_Reverse(false),pos(100.0f,100.0f),speed(5.0f),hammer(pos.x, pos.y){
+PLAYER::PLAYER():pos(100.0f,100.0f),direction(RIGHT),speed(15.0f){
 	SetSize(100.0, 100.0f);
 }
 

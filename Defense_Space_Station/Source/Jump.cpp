@@ -2,9 +2,6 @@
 #include "../Header/Main.h"
 #include "../Header/Size.h"
 
-
-
-
 float JUMP_MOVE::GetSpeed()
 {
 	return this->Speed;
@@ -17,6 +14,7 @@ void JUMP_MOVE::SetSpeed(float Speed)
 	this->Speed = Speed;
 
 }
+
 /*
 
 

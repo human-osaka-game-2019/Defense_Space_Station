@@ -11,11 +11,25 @@ Vec Enemy::GetPos()
 
 }
 
-void Enemy::SetPos(Vec Pos)
+void Enemy::SetPos(float x, float y)
 {
 
-	this->Pos = Pos;
+	this->Pos.x = x;
+	this->Pos.y = y;
 
+}
+
+Size Enemy::GetSize() {
+	return this->size;
+}
+
+void Enemy::SetSize(float width, float height) {
+	this->size.width = width;
+	this->size.height = height;
+}
+
+float Enemy::GetRadius() {
+	return this->radius;
 }
 
 float Enemy::GetMoveSpeed()
@@ -174,18 +188,14 @@ void Enemy::Chase(Vec PlayerPos)
 
 }
 
-Enemy::Enemy() :Pos(0.0f,0.0f), RePopCount(600), Mode(ALIVE), DeadFlag(false), Direction(RIGHT), JumpFlag(false)
+Enemy::Enemy():is_dead(false), Pos(0.0f,0.0f), size(100, 50), radius((size.width / 2 + size.height / 2) / 2), RePopCount(600), Mode(ALIVE), Direction(RIGHT), JumpFlag(false)
 {
-
-
-
+	
 }
 
 
 Enemy::~Enemy()
 {
-
-
 
 }
 
