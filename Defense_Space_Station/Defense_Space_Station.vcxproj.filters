@@ -25,9 +25,6 @@
     <ClCompile Include="Source\Enemy.cpp">
       <Filter>ソース</Filter>
     </ClCompile>
-    <ClCompile Include="Source\Direction.cpp">
-      <Filter>ソース</Filter>
-    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Header\Game.h">

@@ -5,6 +5,7 @@
 #include "../Header/Size.h"
 #include "../Header/Enemy.h"
 #include "../Header/Jump.h"
+#include "../Header/Direction.h"
 
 class PLAYER{
 public:
@@ -15,7 +16,7 @@ public:
 	Vec GetPos();
 	void SetSize(float width, float height);
 	Size GetSize();
-	DIRECTION GetDirection();
+	DIRECTION::Direction GetDirection();
 	void Control(Enemy enemy[]);
 
 private:
@@ -23,13 +24,16 @@ private:
 	Vec pos;
 	Vec UnderPos;
 	Size size;
-	DIRECTION direction;
+	DIRECTION::Direction direction;
 	JUMP_MOVE jump;
-	const float speed;
+	float speed;
+
+	//! Acceleration(加速度)
+	float acc;
 
 	void Attack(Enemy enemy[]);
-	void Catch();
-	void SpecialAttack();
+	void Catch(Enemy enemy[]);
+	void SpecialAttack(Enemy enemy[]);
 };
 
 #endif

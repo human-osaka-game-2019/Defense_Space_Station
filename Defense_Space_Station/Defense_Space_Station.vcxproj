@@ -145,7 +145,6 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Source\Collision.cpp" />
-    <ClCompile Include="Source\Direction.cpp" />
     <ClCompile Include="Source\Enemy.cpp" />
     <ClCompile Include="Source\Game.cpp" />
     <ClCompile Include="Source\Jump.cpp" />

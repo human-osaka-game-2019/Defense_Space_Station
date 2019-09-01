@@ -2,6 +2,9 @@
 #include "../Header/Main.h"
 #include "../Header/Collision.h"
 
+using DIRECTION::RIGHT;
+using DIRECTION::LEFT;
+
 void PLAYER::SetPos(float x, float y) {
 	this->pos.x = x;
 	this->pos.y = y;
@@ -20,7 +23,7 @@ Size PLAYER::GetSize() {
 	return size;
 }
 
-DIRECTION PLAYER::GetDirection() {
+DIRECTION::Direction PLAYER::GetDirection() {
 	return direction;
 }
 
@@ -29,7 +32,7 @@ void PLAYER::Control(Enemy enemy[]) {
 		direction = LEFT;
 		pos.x -= speed;
 	}
-	if (dx.GetKeyState(DIK_D) == dx.ON) {
+	else if (dx.GetKeyState(DIK_D) == dx.ON) {
 		direction = RIGHT;
 		pos.x += speed;
 	}
@@ -60,14 +63,16 @@ void PLAYER::Attack(Enemy enemy[]) {
 	for (int i = 0; i < EnemyMax; i++) {
 		Vec EnemyCenter = { enemy[i].GetPos().x + enemy[i].GetSize().width / 2, enemy[i].GetPos().y + enemy[i].GetSize().height / 2 };
 		Vec UnderPos = {pos.x + size.width / 2, pos.y + size.height};
-		if (direction == RIGHT) {
-			if (Collision::CircleCollision(UnderPos, size.height, EnemyCenter, enemy[i].GetRadius()) && pos.x < enemy[i].GetPos().x) {
-				enemy[i].is_dead = true;
+		if (pos.y <= enemy[i].GetPos().y) {
+			if (direction == RIGHT) {
+				if (Collision::CircleCollision(UnderPos, size.height, EnemyCenter, enemy[i].GetRadius()) && pos.x < enemy[i].GetPos().x) {
+					enemy[i].is_dead = true;
+				}
 			}
-		}
-		if (direction == LEFT) {
-			if (Collision::CircleCollision(UnderPos, size.height, EnemyCenter, enemy[i].GetRadius()) && pos.x > enemy[i].GetPos().x) {
-				enemy[i].is_dead = true;
+			if (direction == LEFT) {
+				if (Collision::CircleCollision(UnderPos, size.height, EnemyCenter, enemy[i].GetRadius()) && pos.x > enemy[i].GetPos().x) {
+					enemy[i].is_dead = true;
+				}
 			}
 		}
 		
@@ -84,7 +89,7 @@ void PLAYER::SpecialAttack(Enemy enemy[]) {
 	}
 }
 
-PLAYER::PLAYER():pos(100.0f,100.0f),direction(RIGHT),speed(15.0f){
+PLAYER::PLAYER():pos(100.0f,100.0f),direction(RIGHT),speed(0.0f), acc(0.0f){
 	SetSize(100.0, 100.0f);
 }
 

@@ -2,6 +2,9 @@
 #include "../Header/Jump.h"
 #include "../Header/Main.h"
 
+using DIRECTION::RIGHT;
+using DIRECTION::LEFT;
+
 JUMP_MOVE Jump_Move;
 
 Vec Enemy::GetPos()
@@ -111,7 +114,7 @@ void Enemy::EnemyMove(Vec PlayerPos)
 void Enemy::EnemyAliveMove()
 {
 	
-	switch (this->Direction.GetDirection())
+	switch (direction)
 	{
 	case DIRECTION::RIGHT:
 
@@ -149,13 +152,11 @@ void Enemy::Chase(Vec PlayerPos)
 	this->Jump_Move.SetSpeed(0.05);
 	if (PlayerPos.x >= this->Pos.x) 
 	{
-		this->Direction.SetDiection(DIRECTION::RIGHT);
+		direction = RIGHT;
 	}else
 	 if (PlayerPos.x <= this->Pos.x)
 	{
-
-		this->Direction.SetDiection(DIRECTION::LEFT);
-
+		 direction = LEFT;
 	}
 	
 	if (PlayerPos.y < this->Pos.y && ((PlayerPos.x  )> (this->Pos.x -200)) && (PlayerPos.x < (this->Pos.x + 200)))
@@ -182,7 +183,7 @@ void Enemy::SetJump(float InitSpeed, float SetSpeed)
 
 }
 
-Enemy::Enemy():is_dead(false), Pos(0.0f,0.0f), size(100, 50), radius((size.width / 2 + size.height / 2) / 2), RePopCount(600), Mode(ALIVE), Direction(RIGHT), JumpFlag(false)
+Enemy::Enemy():is_dead(false), Pos(0.0f,0.0f), size(100, 50), radius((size.width / 2 + size.height / 2) / 2), RePopCount(600), Mode(ALIVE), direction(RIGHT), JumpFlag(false)
 {
 	
 }

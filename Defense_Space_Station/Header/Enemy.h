@@ -26,8 +26,6 @@ public:
 	void SetRePopCount(int RePopCount);
 	int GetMode();
 	void SetMode(int Mode);
-	int GetDirection();
-	void SetDirection(int Direction);
 	bool GetJumpFlag();
 	void SetJumpFlag(bool JumpFlag);
 	void EnemyMove(Vec PlayerPos);
@@ -47,9 +45,7 @@ private:
 	int Mode;
 	bool JumpFlag;
 	JUMP_MOVE Jump_Move;
-	Direction Direction;
-
-
+	DIRECTION::Direction direction;
 };
 
 
@@ -59,14 +55,6 @@ enum MODE
 	ALIVE,
 	SWOON,
 	DEAD
-
-};
-
-enum DIRECTION
-{
-
-	RIGHT,
-	LEFT
 
 };
 
