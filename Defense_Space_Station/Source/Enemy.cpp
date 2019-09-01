@@ -73,20 +73,6 @@ void Enemy::SetMode(int Mode)
 }
 
 
-int Enemy::GetDirection()
-{
-
-	return this->Direction;
-
-}
-
-void Enemy::SetDirection(int Direction)
-{
-
-	this->Direction = Direction;
-
-}
-
 bool Enemy::GetJumpFlag()
 {
 
@@ -125,7 +111,7 @@ void Enemy::EnemyMove(Vec PlayerPos)
 void Enemy::EnemyAliveMove()
 {
 	
-	switch (this->Direction)
+	switch (this->Direction.GetDirection())
 	{
 	case DIRECTION::RIGHT:
 
@@ -160,31 +146,39 @@ void Enemy::EnemyDeadMove()
 
 void Enemy::Chase(Vec PlayerPos)
 {
-
+	this->Jump_Move.SetSpeed(0.05);
 	if (PlayerPos.x >= this->Pos.x) 
 	{
-		this->Direction = DIRECTION::RIGHT;
-	}
-	else if (PlayerPos.x <= this->Pos.x)
+		this->Direction.SetDiection(DIRECTION::RIGHT);
+	}else
+	 if (PlayerPos.x <= this->Pos.x)
 	{
 
-		this->Direction = DIRECTION::LEFT;
+		this->Direction.SetDiection(DIRECTION::LEFT);
 
 	}
-
-	if (PlayerPos.y <= this->Pos.y)
+	
+	if (PlayerPos.y < this->Pos.y && ((PlayerPos.x  )> (this->Pos.x -200)) && (PlayerPos.x < (this->Pos.x + 200)))
 	{
 		this->JumpFlag = true;
+	}
+	 
 		if (this->JumpFlag == true) {
-			Jump_Move.EnemyJump(this->Pos);
-			if (this->Pos.y > DISPLAY_HEIGHT)
+			this->Jump_Move.EnemyJump(&this->Pos);
+			if (this->Pos.y > 939)
 			{
 				this->JumpFlag = false;
-				this->Pos.y -= this->Pos.y - DISPLAY_HEIGHT;
-
+				this->Pos.y = 939;
+				this->Jump_Move.SetInitialSpeed(8.0f);
 			}
 		}
-	}
+	
+
+}
+void Enemy::SetJump(float InitSpeed, float SetSpeed)
+{
+
+	this->Jump_Move.EnemyJumpSet(InitSpeed, SetSpeed);
 
 }
 

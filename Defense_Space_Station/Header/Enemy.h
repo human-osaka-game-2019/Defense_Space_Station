@@ -1,7 +1,9 @@
 ﻿#ifndef ENEMY_H_
 #define ENEMY_H_
-#include "../Header/Vector.h"
+#include"../Header/Vector.h"
 #include "../Header/Size.h"
+#include"../Header/Jump.h"
+#include"../Header/Direction.h"
 
 #define EnemyMax 20
 
@@ -33,6 +35,7 @@ public:
 	void EnemySwoonMove();
 	void EnemyDeadMove();
 	void Chase(Vec PlayerPos);
+	void SetJump(float InitSpeed, float SetSpeed);
 
 private:
 
@@ -42,8 +45,10 @@ private:
 	float MoveSpeed;
 	int RePopCount;
 	int Mode;
-	int Direction;
 	bool JumpFlag;
+	JUMP_MOVE Jump_Move;
+	Direction Direction;
+
 
 };
 

@@ -29,13 +29,14 @@ void GAME::Load() {
 	for (int i = 0; i < 20; i++) {
 		enemy[i].SetPos(700, 700);
 	}
+	enemy.SetJump(8.0f, 0.2f);
 	step = MainStep;
 }
 
 void GAME::Control() {
 	player.Control(enemy);
 
-	//enemy.EnemyMove();
+	enemy.EnemyMove(player.GetPos());
 
 #ifdef _DEBUG
 	if (dx.GetKeyState(DIK_ESCAPE) == dx.PUSH) {
@@ -47,7 +48,6 @@ void GAME::Control() {
 void GAME::Draw() {
 	dx.Draw(0, 0, DISPLAY_WIDTH, DISPLAY_HEIGHT, 0.0f, 1.0f, false, "Game_BG");
 	dx.Draw(player.GetPos().x, player.GetPos().y, player.GetSize().width, player.GetSize().height, 0.0f, 1.0f, (bool)player.GetDirection(), "test");
-	dx.Draw(500, 500, 100, 100, 0.0f, 1.0f, false, "Low_Enemy");
 	dx.Draw(700, 500, 100, 100, 0.0f, 1.0f, false, "Boss");
 
 	for (int i = 0; i < 20; i++) {
