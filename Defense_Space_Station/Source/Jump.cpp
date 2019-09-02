@@ -41,9 +41,8 @@ void JUMP_MOVE::Jump(Vec *PlayerPos)
 	}
 	if (PlayerPos->y > 940)
 	{
-		if (dx.GetKeyState(DIK_W) != dx.ON) {
-			this->JumpFlag = false;
-		}
+		this->JumpFlag = false;
+
 		PlayerPos->y = 940;
 		this->Initial_speed = 25;
 

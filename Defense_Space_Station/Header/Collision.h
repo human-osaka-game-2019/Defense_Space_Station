@@ -21,6 +21,8 @@
 
 namespace Collision
 {
+	const Vec GroundPos = { 0,1030 };
+	const Size GroundSize = { 1920, 50 };
 	
 		bool SquareCollision(
 			const Vec& pos1, const Size& size1,

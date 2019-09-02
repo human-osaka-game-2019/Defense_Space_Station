@@ -28,15 +28,27 @@ DIRECTION::Direction PLAYER::GetDirection() {
 }
 
 void PLAYER::Control(Enemy enemy[]) {
+	if (dx.GetKeyState(DIK_D) == dx.ON) {
+		direction = RIGHT;
+		speed = 15.0f;
+	}
 	if (dx.GetKeyState(DIK_A) == dx.ON) {
 		direction = LEFT;
-		pos.x -= speed;
+		speed = -15.0f;
 	}
-	else if (dx.GetKeyState(DIK_D) == dx.ON) {
-		direction = RIGHT;
-		pos.x += speed;
+	if (dx.GetKeyState(DIK_D) == dx.OFF && speed >= 0.0f) {
+		speed -= acc;
+		if (speed <= 0.0f || Collision::SquareCollision(pos, size, Collision::GroundPos, Collision::GroundSize)) {
+			speed = 0.0f;
+		}
 	}
-	if (dx.GetKeyState(DIK_W) == dx.PUSH) {
+	if (dx.GetKeyState(DIK_A) == dx.OFF && speed <= 0.0f) {
+		speed += acc;
+		if (speed >= 0.0f || Collision::SquareCollision(pos, size, Collision::GroundPos, Collision::GroundSize)) {
+			speed = 0.0f;
+		}
+	}
+	if (dx.GetKeyState(DIK_W) == dx.PUSH || dx.GetKeyState(DIK_W) == dx.ON) {
 		this->jump.JumpFlagTrue();
 	}
 	if (dx.GetKeyState(DIK_J) == dx.PUSH) {
@@ -55,6 +67,7 @@ void PLAYER::Control(Enemy enemy[]) {
 		}
 	}
 #endif
+	pos.x += speed;
 	this->jump.Jump(&this->pos);
 
 }
@@ -89,7 +102,7 @@ void PLAYER::SpecialAttack(Enemy enemy[]) {
 	}
 }
 
-PLAYER::PLAYER():pos(100.0f,100.0f),direction(RIGHT),speed(0.0f), acc(0.0f){
+PLAYER::PLAYER():pos(100.0f,100.0f),direction(RIGHT),speed(0.0f), acc(0.20f){
 	SetSize(100.0, 100.0f);
 }
 
