@@ -146,8 +146,7 @@ void Enemy::EnemyAliveMove(Vec PlayerPos)
 void Enemy::EnemySwoonMove(Vec PlayerPos)
 {
 
-	if (!((PlayerPos.x) > (this->Pos.x - 50)) || !(PlayerPos.x < (this->Pos.x + 50)))
-	{
+	
 		switch (direction)
 		{
 		case DIRECTION::RIGHT:
@@ -162,7 +161,7 @@ void Enemy::EnemySwoonMove(Vec PlayerPos)
 			break;
 
 		}
-	}
+	
 }
 
 void Enemy::EnemyDeadMove()
