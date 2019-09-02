@@ -99,10 +99,11 @@ void Enemy::EnemyMove(Vec PlayerPos)
 	{
 	case MODE::ALIVE:
 		this->Chase(PlayerPos);
-		this->EnemyAliveMove();
+		this->EnemyAliveMove(PlayerPos);
 		break;
 	case MODE::SWOON:
-		this->EnemySwoonMove();
+		this->Escape(PlayerPos);
+		this->EnemySwoonMove(PlayerPos);
 		break;
 	case MODE::DEAD:
 		this->EnemyDeadMove();
@@ -111,32 +112,57 @@ void Enemy::EnemyMove(Vec PlayerPos)
 }
 
 //謨ｵ縺ｮ陦悟虚
-void Enemy::EnemyAliveMove()
+void Enemy::EnemyAliveMove(Vec PlayerPos)
 {
-	
-	switch (direction)
+	if (!((PlayerPos.x) > (this->Pos.x - 50)) || !(PlayerPos.x < (this->Pos.x + 50)))
 	{
-	case DIRECTION::RIGHT:
+		switch (direction)
+		{
+		case DIRECTION::RIGHT:
 
-		this->Pos.x += this->MoveSpeed;
+			this->Pos.x += this->MoveSpeed;
 
-		break;
-	case DIRECTION::LEFT:
+			break;
+		case DIRECTION::LEFT:
 
-		this->Pos.x -= this->MoveSpeed;
+			this->Pos.x -= this->MoveSpeed;
 
-		break;
+			break;
 
+		}
 	}
+
+#ifdef _DEBUG
+
+	if (dx.GetKeyState(DIK_RETURN) == dx.PUSH) {
+		this->SetMode(MODE::SWOON);
+	}
+
+#endif
 
 }
 
 //繧ｯ繝ｭ繝懊す縺ｮAI縺悟?譚･縺溘ｉ霑ｽ險?
-void Enemy::EnemySwoonMove()
+void Enemy::EnemySwoonMove(Vec PlayerPos)
 {
 
+	if (!((PlayerPos.x) > (this->Pos.x - 50)) || !(PlayerPos.x < (this->Pos.x + 50)))
+	{
+		switch (direction)
+		{
+		case DIRECTION::RIGHT:
 
+			this->Pos.x += this->MoveSpeed;
 
+			break;
+		case DIRECTION::LEFT:
+
+			this->Pos.x -= this->MoveSpeed;
+
+			break;
+
+		}
+	}
 }
 
 void Enemy::EnemyDeadMove()
@@ -149,14 +175,14 @@ void Enemy::EnemyDeadMove()
 
 void Enemy::Chase(Vec PlayerPos)
 {
-	this->Jump_Move.SetSpeed(0.05f);
-	if (PlayerPos.x >= this->Pos.x) 
+
+	if (PlayerPos.x > this->Pos.x) 
 	{
-		direction = RIGHT;
+		this->direction = RIGHT;
 	}else
 	 if (PlayerPos.x <= this->Pos.x)
 	{
-		 direction = LEFT;
+		 this->direction = LEFT;
 	}
 	
 	if (PlayerPos.y < this->Pos.y && ((PlayerPos.x  )> (this->Pos.x -200)) && (PlayerPos.x < (this->Pos.x + 200)))
@@ -176,6 +202,37 @@ void Enemy::Chase(Vec PlayerPos)
 	
 
 }
+
+void Enemy::Escape(Vec PlayerPos)
+{
+
+
+	if (PlayerPos.x < this->Pos.x)
+	{
+		this->direction = RIGHT;
+	}
+	else
+		if (PlayerPos.x >= this->Pos.x)
+		{
+			this->direction = LEFT;
+		}
+
+	
+		this->JumpFlag = true;
+	
+
+	if (this->JumpFlag == true) {
+		this->Jump_Move.EnemyJump(&this->Pos);
+		if (this->Pos.y > 939)
+		{
+			this->JumpFlag = false;
+			this->Pos.y = 939;
+			this->Jump_Move.SetInitialSpeed(8.0f);
+		}
+	}
+
+}
+
 void Enemy::SetJump(float InitSpeed, float SetSpeed)
 {
 
@@ -183,7 +240,7 @@ void Enemy::SetJump(float InitSpeed, float SetSpeed)
 
 }
 
-Enemy::Enemy():is_dead(false), Pos(0.0f,0.0f), size(100, 50), radius((size.width / 2 + size.height / 2) / 2), RePopCount(600), Mode(ALIVE), direction(RIGHT), JumpFlag(false)
+Enemy::Enemy():is_dead(false), Pos(0.0f,0.0f), size(100, 50), radius((size.width / 2 + size.height / 2) / 2), MoveSpeed(5.0f), RePopCount(600), Mode(ALIVE), direction(RIGHT), JumpFlag(false)
 {
 	
 }
