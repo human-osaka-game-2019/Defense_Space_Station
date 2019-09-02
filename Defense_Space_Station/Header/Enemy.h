@@ -13,6 +13,14 @@ public:
 	Enemy();
 	~Enemy();
 
+	enum MODE
+	{
+		ALIVE,
+		SWOON,
+		DEAD
+
+	};
+
 	bool is_dead;
 
 	Vec GetPos();
@@ -25,8 +33,8 @@ public:
 	void SetMoveSpeed(float MoveSpeed);
 	int GetRePopCount();
 	void SetRePopCount(int RePopCount);
-	int GetMode();
-	void SetMode(int Mode);
+	MODE GetMode();
+	void SetMode(MODE Mode);
 	bool GetJumpFlag();
 	void SetJumpFlag(bool JumpFlag);
 	void EnemyMove(Vec PlayerPos);
@@ -44,20 +52,10 @@ private:
 	const float radius;
 	float MoveSpeed;
 	int RePopCount;
-	int Mode;
+	MODE Mode;
 	bool JumpFlag;
 	JUMP_MOVE Jump_Move;
 	DIRECTION::Direction direction;
-};
-
-
-
-enum MODE 
-{
-	ALIVE,
-	SWOON,
-	DEAD
-
 };
 
 #endif // ENEMY_H_

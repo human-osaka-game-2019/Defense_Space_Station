@@ -82,15 +82,17 @@ void PLAYER::Attack(Enemy enemy[]) {
 	for (int i = 0; i < EnemyMax; i++) {
 		Vec EnemyCenter = { enemy[i].GetPos().x + enemy[i].GetSize().width / 2, enemy[i].GetPos().y + enemy[i].GetSize().height / 2 };
 		Vec UnderPos = {pos.x + size.width / 2, pos.y + size.height};
-		if (pos.y <= enemy[i].GetPos().y) {
-			if (direction == RIGHT) {
-				if (Collision::CircleCollision(UnderPos, size.height, EnemyCenter, enemy[i].GetRadius()) && pos.x < enemy[i].GetPos().x) {
-					enemy[i].is_dead = true;
+		if (enemy[i].GetMode() == Enemy::MODE::ALIVE) {
+			if (pos.y <= enemy[i].GetPos().y) {
+				if (direction == RIGHT) {
+					if (Collision::CircleCollision(UnderPos, size.height, EnemyCenter, enemy[i].GetRadius()) && pos.x < enemy[i].GetPos().x) {
+						enemy[i].SetMode(Enemy::MODE::SWOON);
+					}
 				}
-			}
-			if (direction == LEFT) {
-				if (Collision::CircleCollision(UnderPos, size.height, EnemyCenter, enemy[i].GetRadius()) && pos.x > enemy[i].GetPos().x) {
-					enemy[i].is_dead = true;
+				if (direction == LEFT) {
+					if (Collision::CircleCollision(UnderPos, size.height, EnemyCenter, enemy[i].GetRadius()) && pos.x > enemy[i].GetPos().x) {
+						enemy[i].SetMode(Enemy::MODE::SWOON);
+					}
 				}
 			}
 		}
@@ -99,7 +101,24 @@ void PLAYER::Attack(Enemy enemy[]) {
 }
 
 void PLAYER::Catch(Enemy enemy[]) {
-
+	for (int i = 0; i < EnemyMax; i++) {
+		Vec EnemyCenter = { enemy[i].GetPos().x + enemy[i].GetSize().width / 2, enemy[i].GetPos().y + enemy[i].GetSize().height / 2 };
+		Vec UnderPos = { pos.x + size.width / 2, pos.y + size.height };
+		if (enemy[i].GetMode() == Enemy::MODE::SWOON) {
+			if (pos.y <= enemy[i].GetPos().y) {
+				if (direction == RIGHT) {
+					if (Collision::CircleCollision(UnderPos, size.height, EnemyCenter, enemy[i].GetRadius()) && pos.x < enemy[i].GetPos().x) {
+						enemy[i].SetMode(Enemy::MODE::DEAD);
+					}
+				}
+				if (direction == LEFT) {
+					if (Collision::CircleCollision(UnderPos, size.height, EnemyCenter, enemy[i].GetRadius()) && pos.x > enemy[i].GetPos().x) {
+						enemy[i].SetMode(Enemy::MODE::DEAD);
+					}
+				}
+			}
+		}
+	}
 }
 
 void PLAYER::SpecialAttack(Enemy enemy[]) {

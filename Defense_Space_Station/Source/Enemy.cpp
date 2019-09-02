@@ -65,14 +65,14 @@ void Enemy::SetRePopCount(int RePopCount)
 	this->RePopCount = RePopCount;
 }
 
-int Enemy::GetMode()
+Enemy::MODE Enemy::GetMode()
 {
 
 	return this->Mode;
 
 }
 
-void Enemy::SetMode(int Mode)
+void Enemy::SetMode(MODE Mode)
 {
 
 	this->Mode = Mode;

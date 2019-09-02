@@ -33,7 +33,12 @@ void GAME::Load() {
 	dx.LoadTexture("Resource/BackGround/Footing.png", "AirBlock");
 
 	for (int i = 0; i < 20; i++) {
-		enemy[i].SetPos(700, 700);
+		if (i % 2 == 0) {
+			enemy[i].SetPos(1800, 800);
+		}
+		else {
+			enemy[i].SetPos(0, 800);
+		}
 	}
 	enemy[0].SetJump(8.0f, 0.2f);
 	step = MainStep;
@@ -61,7 +66,7 @@ void GAME::Draw() {
 	//dx.Draw(700, 500, 100, 100, 0.0f, 1.0f, false, "Boss");
 
 	for (int i = 0; i < EnemyMax; i++) {
-		if (!enemy[i].is_dead) {
+		if (enemy[i].GetMode() != Enemy::MODE::DEAD) {
 			dx.Draw(enemy[i].GetPos().x, enemy[i].GetPos().y, 100, 100, 0.0f, 1.0f, (bool)enemy[i].GetDirection(), "Enemy");
 		}
 	}
