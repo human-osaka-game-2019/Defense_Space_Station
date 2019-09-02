@@ -19,6 +19,7 @@ public:
 	void SetPos(float x, float y);
 	Size GetSize();
 	void SetSize(float width, float height);
+	DIRECTION::Direction GetDirection();
 	float GetRadius();
 	float GetMoveSpeed();
 	void SetMoveSpeed(float MoveSpeed);

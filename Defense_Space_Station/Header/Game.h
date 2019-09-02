@@ -21,7 +21,7 @@ private:
 	STEP step = LoadStep;
 
 	PLAYER player;
-	Enemy enemy[20];
+	Enemy enemy[EnemyMax];
 
 	void Load();
 	void Control();

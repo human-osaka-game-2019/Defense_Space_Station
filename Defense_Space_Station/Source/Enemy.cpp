@@ -31,6 +31,10 @@ void Enemy::SetSize(float width, float height) {
 	this->size.height = height;
 }
 
+DIRECTION::Direction Enemy::GetDirection() {
+	return direction;
+}
+
 float Enemy::GetRadius() {
 	return this->radius;
 }
@@ -176,6 +180,7 @@ void Enemy::Chase(Vec PlayerPos)
 	
 
 }
+
 void Enemy::SetJump(float InitSpeed, float SetSpeed)
 {
 
@@ -183,7 +188,7 @@ void Enemy::SetJump(float InitSpeed, float SetSpeed)
 
 }
 
-Enemy::Enemy():is_dead(false), Pos(0.0f,0.0f), size(100, 50), radius((size.width / 2 + size.height / 2) / 2), RePopCount(600), Mode(ALIVE), direction(RIGHT), JumpFlag(false)
+Enemy::Enemy():is_dead(false), Pos(0.0f,0.0f), size(100, 50), radius((size.width / 2 + size.height / 2) / 2), MoveSpeed(5.0f),RePopCount(600), Mode(ALIVE), direction(RIGHT), JumpFlag(false)
 {
 	
 }

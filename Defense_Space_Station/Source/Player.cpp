@@ -67,6 +67,12 @@ void PLAYER::Control(Enemy enemy[]) {
 		}
 	}
 #endif
+	if (pos.x <= 0.0f) {
+		pos.x = 0.0f;
+	}
+	else if (pos.x + size.width >= DISPLAY_WIDTH) {
+		pos.x = DISPLAY_WIDTH - size.width;
+	}
 	pos.x += speed;
 	this->jump.Jump(&this->pos);
 

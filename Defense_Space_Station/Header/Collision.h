@@ -4,25 +4,13 @@
 #include"Vector.h"
 #include"Size.h"
 
-#define RIGHT_SIDE_SKY_BLOCK_WIDTH 470
-#define RIGHT_SIDE_SKY_BLOCK_HIGHT 100
-#define RIGHT_SIDE_SKY_BLOCK_X 1240
-#define RIGHT_SIDE_SKY_BLOCK_Y 565
-
-#define LEFT_SIDE_SKY_BLOCK_WIDTH 470
-#define LEFT_SIDE_SKY_BLOCK_HIGHT 100
-#define LEFT_SIDE_SKY_BLOCK_X 210
-#define LEFT_SIDE_SKY_BLOCK_Y 565
-
-#define GROUND_X 0
-#define GROUND_Y 1030
-#define GROUND_WIDTH 1920
-#define GROUND_HEIGHT 50
-
 namespace Collision
 {
 	const Vec GroundPos = { 0,1030 };
 	const Size GroundSize = { 1920, 50 };
+	const Vec RightAirBlockPos = { 1260,530 };
+	const Vec LeftAirBlockPos = { 300, 530 };
+	const Size AirBlockSize = { 470,100 };
 	
 		bool SquareCollision(
 			const Vec& pos1, const Size& size1,
