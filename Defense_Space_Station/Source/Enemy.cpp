@@ -1,4 +1,4 @@
-?�#include "../Header/Enemy.h"
+#include "../Header/Enemy.h"
 #include "../Header/Jump.h"
 #include "../Header/Main.h"
 
@@ -136,14 +136,6 @@ void Enemy::EnemyAliveMove(Vec PlayerPos)
 		}
 	}
 
-#ifdef _DEBUG
-
-	if (dx.GetKeyState(DIK_RETURN) == dx.PUSH) {
-		this->SetMode(MODE::SWOON);
-	}
-
-#endif
-
 }
 
 //繧?�繝ｭ繝懊す縺?�AI縺�??譚･縺溘ｉ霑?�險?
@@ -181,14 +173,13 @@ void Enemy::Chase(Vec PlayerPos)
 
 	if (PlayerPos.x > this->Pos.x) 
 	{
-		this->direction = RIGHT;
-	}else
-	 if (PlayerPos.x <= this->Pos.x)
+		direction = RIGHT;
+	}else if (PlayerPos.x <= this->Pos.x)
 	{
-		 this->direction = LEFT;
+		 direction = LEFT;
 	}
 	
-	if (PlayerPos.y < this->Pos.y && ((PlayerPos.x  )> (this->Pos.x -200)) && (PlayerPos.x < (this->Pos.x + 200)))
+	if (PlayerPos.y < this->Pos.y && ((PlayerPos.x  )> (this->Pos.x - 200)) && (PlayerPos.x < (this->Pos.x + 200)))
 	{
 		this->JumpFlag = true;
 	}

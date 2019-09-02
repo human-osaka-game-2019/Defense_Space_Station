@@ -3,8 +3,8 @@
 
 namespace DIRECTION {
 	enum Direction {
-		RIGHT,
-		LEFT
+		LEFT,
+		RIGHT
 	};
 }
 

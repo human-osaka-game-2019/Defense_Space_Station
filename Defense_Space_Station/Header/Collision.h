@@ -13,14 +13,14 @@ namespace Collision
 	const Size AirBlockSize = { 470,100 };
 	
 	bool SquareCollision(
-		Vec& pos1, Size& size1,
-		Vec& pos2, Size& size2);
+		Vec pos1, Size size1,
+		Vec pos2, Size size2);
 
 
 	bool AirBloackCollion(
-		Vec& pos1, Size& size1,
-		Vec& pos2, Size& size2,
-		Vec& PreviousPos1);
+		Vec pos1, Size size1,
+		Vec pos2, Size size2,
+		Vec PreviousPos1);
 
 
 	/*
@@ -31,8 +31,8 @@ namespace Collision
 	*@param [in] 比較対象2の半径
 	*/
 	bool CircleCollision(
-		Vec& pos1, const float radius1,
-		Vec& pos2, const float radius2
+		Vec pos1, const float radius1,
+		Vec pos2, const float radius2
 	);
 }
 #endif // !Collision_H_
