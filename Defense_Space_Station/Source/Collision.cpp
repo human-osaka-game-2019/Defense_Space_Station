@@ -79,7 +79,7 @@ namespace Collision
 		float width = (pos2.x - pos1.x) * (pos2.x - pos1.x);
 		float height = (pos2.y - pos1.y) * (pos2.y - pos1.y);
 		float radius = (radius1 + radius2) * (radius1 + radius2);
-		float diff = sqrt((double)width + (double)height);
+		double diff = sqrt((double)width + (double)height);
 
 		if (sqrt(radius) >= diff) {
 			return true;

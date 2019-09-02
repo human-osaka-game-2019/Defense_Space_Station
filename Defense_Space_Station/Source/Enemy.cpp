@@ -149,7 +149,7 @@ void Enemy::EnemyDeadMove()
 
 void Enemy::Chase(Vec PlayerPos)
 {
-	this->Jump_Move.SetSpeed(0.05);
+	this->Jump_Move.SetSpeed(0.05f);
 	if (PlayerPos.x >= this->Pos.x) 
 	{
 		direction = RIGHT;
