@@ -12,27 +12,27 @@ namespace Collision
 	const Vec LeftAirBlockPos = { 300, 530 };
 	const Size AirBlockSize = { 470,100 };
 	
-		bool SquareCollision(
-			const Vec& pos1, const Size& size1,
-			const Vec& pos2, const Size& size2);
+	bool SquareCollision(
+		Vec& pos1, Size& size1,
+		Vec& pos2, Size& size2);
 
 
-		bool AirBloackCollion(
-			const Vec& pos1, const Size& size1,
-			const Vec& pos2, const Size& size2,
-			const Vec& PreviousPos1);
+	bool AirBloackCollion(
+		Vec& pos1, Size& size1,
+		Vec& pos2, Size& size2,
+		Vec& PreviousPos1);
 
 
-		/*
-		*@brief 円同士の当たり判定
-		*@param [in] 比較対象1の位置(中心の座標)
-		*@param [in] 比較対象1の半径
-		*@param [in] 比較対象2の位置(中心の座標)
-		*@param [in] 比較対象2の半径
-		*/
-		bool CircleCollision(
-			Vec& pos1, const float radius1,
-			Vec& pos2, const float radius2
-		);
+	/*
+	*@brief 円同士の当たり判定
+	*@param [in] 比較対象1の位置(中心の座標)
+	*@param [in] 比較対象1の半径
+	*@param [in] 比較対象2の位置(中心の座標)
+	*@param [in] 比較対象2の半径
+	*/
+	bool CircleCollision(
+		Vec& pos1, const float radius1,
+		Vec& pos2, const float radius2
+	);
 }
 #endif // !Collision_H_
