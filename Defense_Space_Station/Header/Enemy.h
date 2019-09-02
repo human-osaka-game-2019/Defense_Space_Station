@@ -30,10 +30,11 @@ public:
 	bool GetJumpFlag();
 	void SetJumpFlag(bool JumpFlag);
 	void EnemyMove(Vec PlayerPos);
-	void EnemyAliveMove();
-	void EnemySwoonMove();
+	void EnemyAliveMove(Vec PlayerPos);
+	void EnemySwoonMove(Vec PlayerPos);
 	void EnemyDeadMove();
 	void Chase(Vec PlayerPos);
+	void Escape(Vec PlayerPos);
 	void SetJump(float InitSpeed, float SetSpeed);
 
 private:
