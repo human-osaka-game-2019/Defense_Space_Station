@@ -28,5 +28,7 @@ private:
 	void Draw();
 	void Release();
 
+	void Collision(PLAYER player, Enemy enemy[]);
+
 };
 #endif //GAME_H_

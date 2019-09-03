@@ -30,11 +30,11 @@ DIRECTION::Direction PLAYER::GetDirection() {
 void PLAYER::Control(Enemy enemy[]) {
 	if (dx.GetKeyState(DIK_D) == dx.ON) {
 		direction = RIGHT;
-		speed = 15.0f;
+		speed = 5.0f;
 	}
 	if (dx.GetKeyState(DIK_A) == dx.ON) {
 		direction = LEFT;
-		speed = -15.0f;
+		speed = -5.0f;
 	}
 	if (dx.GetKeyState(DIK_D) == dx.OFF && speed >= 0.0f) {
 		speed -= acc;
@@ -66,13 +66,11 @@ void PLAYER::Control(Enemy enemy[]) {
 			enemy[i].is_dead = false;
 		}
 	}
+	if (dx.GetKeyState(DIK_S) == dx.ON) {
+		pos.y += 10.0f;
+	}
 #endif
-	if (pos.x <= 0.0f) {
-		pos.x = 0.0f;
-	}
-	else if (pos.x + size.width >= DISPLAY_WIDTH) {
-		pos.x = DISPLAY_WIDTH - size.width;
-	}
+	Collision();
 	pos.x += speed;
 	this->jump.Jump(&this->pos);
 
@@ -127,7 +125,30 @@ void PLAYER::SpecialAttack(Enemy enemy[]) {
 	}
 }
 
-PLAYER::PLAYER():pos(100.0f,100.0f),direction(RIGHT),speed(0.0f), acc(0.20f){
+void PLAYER::Collision() {
+	//Left
+	if (Collision::AirBlockCollision(pos, size, Collision::LeftAirBlockPos, Collision::AirBlockSize, PrevPos)) {
+		pos.y = Collision::LeftAirBlockPos.y - size.height;
+	}
+	else {
+		PrevPos = pos;
+	}
+	//Right
+	if (Collision::AirBlockCollision(pos, size, Collision::RightAirBlockPos, Collision::AirBlockSize, PrevPos)) {
+		pos.y = Collision::RightAirBlockPos.y - size.height;
+	}
+	else {
+		PrevPos = pos;
+	}
+	if (pos.x <= 0.0f) {
+		pos.x = 0.0f;
+	}
+	else if (pos.x + size.width >= DISPLAY_WIDTH) {
+		pos.x = DISPLAY_WIDTH - size.width;
+	}
+}
+
+PLAYER::PLAYER():pos(100.0f,100.0f),direction(RIGHT),speed(0.0f),PrevPos(pos), acc(0.20f){
 	SetSize(100.0, 100.0f);
 }
 

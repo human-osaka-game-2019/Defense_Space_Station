@@ -35,7 +35,7 @@ namespace Collision
 		下だった場合FALSE（当たっていない）を返す。
 	*/
 
-	bool AirBloackCollion(
+	bool AirBlockCollision(
 		Vec pos1, Size size1,
 		Vec pos2, Size size2,
 		Vec PreviousPos1)

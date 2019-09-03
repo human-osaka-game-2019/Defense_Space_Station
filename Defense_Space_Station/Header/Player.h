@@ -28,12 +28,16 @@ private:
 	JUMP_MOVE jump;
 	float speed;
 
+	Vec PrevPos;
+
 	//! Acceleration(加速度)
 	float acc;
 
 	void Attack(Enemy enemy[]);
 	void Catch(Enemy enemy[]);
 	void SpecialAttack(Enemy enemy[]);
+
+	void Collision();
 };
 
 #endif
