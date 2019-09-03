@@ -186,10 +186,10 @@ void Enemy::Chase(Vec PlayerPos)
 	 
 		if (this->JumpFlag == true) {
 			this->Jump_Move.EnemyJump(&this->Pos);
-			if (this->Pos.y > 939)
+			if (this->Pos.y > 940)
 			{
 				this->JumpFlag = false;
-				this->Pos.y = 939;
+				this->Pos.y = 940;
 				this->Jump_Move.SetInitialSpeed(8.0f);
 			}
 		}
@@ -234,7 +234,7 @@ void Enemy::SetJump(float InitSpeed, float SetSpeed)
 
 }
 
-Enemy::Enemy():is_dead(false), Pos(0.0f,0.0f), size(100, 50), radius((size.width / 2 + size.height / 2) / 2), MoveSpeed(5.0f), RePopCount(600), Mode(ALIVE), direction(RIGHT), JumpFlag(false)
+Enemy::Enemy():Pos(0.0f,0.0f), size(100, 100), radius((size.width / 2 + size.height / 2) / 2), MoveSpeed(5.0f), RePopCount(600), Mode(ALIVE), direction(RIGHT), JumpFlag(false)
 {
 	
 }

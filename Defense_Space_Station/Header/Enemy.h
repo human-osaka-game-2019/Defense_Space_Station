@@ -21,8 +21,6 @@ public:
 
 	};
 
-	bool is_dead;
-
 	Vec GetPos();
 	void SetPos(float x, float y);
 	Size GetSize();

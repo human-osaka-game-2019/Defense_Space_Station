@@ -1,5 +1,5 @@
-﻿#ifndef JUMP
-#define JUMP
+﻿#ifndef _JUMP
+#define _JUMP
 #include "../Header/Vector.h"
 #include "../Header/Size.h"
 

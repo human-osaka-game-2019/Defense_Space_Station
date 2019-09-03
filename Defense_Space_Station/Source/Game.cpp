@@ -25,12 +25,16 @@ void GAME::UpdateScene() {
 }
 
 void GAME::Load() {
+	dx.LoadTexture("Resource/BackGround/GameBack.png", "GameBack");
+	dx.LoadTexture("Resource/BackGround/Footing.png", "AirBlock");
 	dx.LoadTexture("Resource/Player/test.png", "test");
 	dx.LoadTexture("Resource/Enemy/Enemy.png", "Enemy");
 	dx.LoadTexture("Resource/Enemy/LowEnemy.png", "Low_Enemy");
 	dx.LoadTexture("Resource/Enemy/Boss_Purple.png", "Boss");
-	dx.LoadTexture("Resource/BackGround/GameBack.png", "GameBack");
-	dx.LoadTexture("Resource/BackGround/Footing.png", "AirBlock");
+	dx.LoadTexture("Resource/Enemy/SwoonEnemy.png", "SwoonEnemy");
+	dx.LoadTexture("Resource/UI/hp_border.png", "hp_border");
+	dx.LoadTexture("Resource/UI/hp.png", "hp");
+	dx.LoadTexture("Resource/UI/half_hp.png", "half_hp.png");
 
 	for (int i = 0; i < 20; i++) {
 		if (i % 2 == 0) {
@@ -66,19 +70,22 @@ void GAME::Draw() {
 	//dx.Draw(700, 500, 100, 100, 0.0f, 1.0f, false, "Boss");
 
 	for (int i = 0; i < EnemyMax; i++) {
-		if (enemy[i].GetMode() != Enemy::MODE::DEAD) {
+		if (enemy[i].GetMode() == Enemy::MODE::ALIVE) {
 			dx.Draw(enemy[i].GetPos().x, enemy[i].GetPos().y, 100, 100, 0.0f, 1.0f, (bool)enemy[i].GetDirection(), "Enemy");
+		}
+		if (enemy[i].GetMode() == Enemy::MODE::SWOON) {
+			dx.Draw(enemy[i].GetPos().x, enemy[i].GetPos().y, enemy[i].GetSize().width, enemy[i].GetSize().height, 0.0f, 1.0f, (bool)enemy[i].GetDirection(), "SwoonEnemy");
 		}
 	}
 }
 
 void GAME::Release() {
-	dx.ReleaseTexture("AirBlock");
-	dx.ReleaseTexture("GameBack");
 	dx.ReleaseTexture("Boss");
 	dx.ReleaseTexture("Low_Enemy");
 	dx.ReleaseTexture("Enemy");
 	dx.ReleaseTexture("test");
+	dx.ReleaseTexture("AirBlock");
+	dx.ReleaseTexture("GameBack");
 }
 
 GAME::GAME() {
