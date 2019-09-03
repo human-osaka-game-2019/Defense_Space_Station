@@ -21,23 +21,23 @@ void JUMP_MOVE::SetSpeed(float Speed)
 
 */
 
-void JUMP_MOVE::JumpFlagTrue()
+void JUMP_MOVE::SetJumpFlag(bool flag)
 {
 
-	this->JumpFlag = true;
+	this->JumpFlag = flag;
 
 }
 
 void JUMP_MOVE::Jump(Vec *PlayerPos)
 {
 		
-	if (this->JumpFlag == true) 
+	if (this->JumpFlag) 
 	{
 		this->Initial_speed -= this->Speed;
 		PlayerPos->y -= this->Initial_speed;
 	}
-	else if (this->JumpFlag == false) {
-		this->Gravity(PlayerPos);
+	else {
+		Gravity(PlayerPos);
 	}
 	if (PlayerPos->y > 940)
 	{
@@ -70,7 +70,7 @@ void JUMP_MOVE::EnemyJump(Vec *EnemyPos)
 void JUMP_MOVE::Gravity(Vec *Pos)
 {
 
-	Pos->y += 3;
+	Pos->y += gravity;
 	
 }
 
@@ -89,7 +89,7 @@ void JUMP_MOVE::SetInitialSpeed(float Initial_speed)
 
 }
 
-JUMP_MOVE::JUMP_MOVE() :Initial_speed(25), Speed(0.5), JumpFlag(false)
+JUMP_MOVE::JUMP_MOVE() :Initial_speed(25), Speed(0.5), gravity(10.0f), JumpFlag(false)
 {
 
 

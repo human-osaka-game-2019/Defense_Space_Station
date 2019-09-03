@@ -10,7 +10,8 @@ namespace Collision
 	const Size GroundSize = { 1920, 50 };
 	const Vec RightAirBlockPos = { 1260,530 };
 	const Vec LeftAirBlockPos = { 300, 530 };
-	const Size AirBlockSize = { 470,100 };
+	const Size DrawAirBlockSize = { 470,100 };
+	const Size JudgeAirBlockSize = { 470, 0 };
 	
 	bool SquareCollision(
 		Vec pos1, Size size1,

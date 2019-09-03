@@ -4,7 +4,7 @@
 
 using Collision::RightAirBlockPos;
 using Collision::LeftAirBlockPos;
-using Collision::AirBlockSize;
+using Collision::DrawAirBlockSize;
 
 void GAME::UpdateScene() {
 	switch (step)
@@ -60,8 +60,8 @@ void GAME::Control() {
 
 void GAME::Draw() {
 	dx.Draw(0, 0, DISPLAY_WIDTH, DISPLAY_HEIGHT, 0.0f, 1.0f, false, "GameBack");
-	dx.Draw(RightAirBlockPos.x, RightAirBlockPos.y, AirBlockSize.width, AirBlockSize.height, 0.0f, 1.0f, false, "AirBlock");
-	dx.Draw(LeftAirBlockPos.x, LeftAirBlockPos.y, AirBlockSize.width, AirBlockSize.height, 0.0f, 1.0f, false, "AirBlock");
+	dx.Draw(RightAirBlockPos.x, RightAirBlockPos.y, DrawAirBlockSize.width, DrawAirBlockSize.height, 0.0f, 1.0f, false, "AirBlock");
+	dx.Draw(LeftAirBlockPos.x, LeftAirBlockPos.y, DrawAirBlockSize.width, DrawAirBlockSize.height, 0.0f, 1.0f, false, "AirBlock");
 	dx.Draw(player.GetPos().x, player.GetPos().y, player.GetSize().width, player.GetSize().height, 0.0f, 1.0f, (bool)player.GetDirection(), "test");
 	//dx.Draw(700, 500, 100, 100, 0.0f, 1.0f, false, "Boss");
 
