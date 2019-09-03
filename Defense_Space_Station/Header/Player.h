@@ -6,6 +6,9 @@
 #include "../Header/Enemy.h"
 #include "../Header/Jump.h"
 #include "../Header/Direction.h"
+#include "../Header/Main.h"
+
+#define JUMP DIK_W
 
 class PLAYER{
 public:
@@ -29,6 +32,7 @@ private:
 	float speed;
 
 	Vec PrevPos;
+	bool is_onBlock;
 
 	//! Acceleration(加速度)
 	float acc;

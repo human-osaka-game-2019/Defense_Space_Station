@@ -39,13 +39,8 @@ void JUMP_MOVE::Jump(Vec *PlayerPos)
 	else {
 		Gravity(PlayerPos);
 	}
-	if (PlayerPos->y > 940)
-	{
-		this->JumpFlag = false;
-
-		PlayerPos->y = 940;
-		this->Initial_speed = 25;
-
+	if (!JumpFlag) {
+		Initial_speed = 25.0f;
 	}
 
 }

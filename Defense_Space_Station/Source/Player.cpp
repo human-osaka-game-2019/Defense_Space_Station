@@ -48,7 +48,7 @@ void PLAYER::Control(Enemy enemy[]) {
 			speed = 0.0f;
 		}
 	}
-	if (dx.GetKeyState(DIK_W) == dx.PUSH || dx.GetKeyState(DIK_W) == dx.ON) {
+	if (dx.GetKeyState(JUMP) == dx.PUSH || dx.GetKeyState(JUMP) == dx.ON) {
 		this->jump.SetJumpFlag(true);
 	}
 	if (dx.GetKeyState(DIK_J) == dx.PUSH) {
@@ -127,27 +127,43 @@ void PLAYER::SpecialAttack(Enemy enemy[]) {
 void PLAYER::Collision() {
 	//Left
 	if (Collision::AirBlockCollision(pos, size, Collision::LeftAirBlockPos, Collision::JudgeAirBlockSize, PrevPos)) {
-		jump.SetJumpFlag(false);
+		if (dx.GetKeyState(JUMP) == dx.OFF || dx.GetKeyState(JUMP) == dx.RELEASE) {
+			jump.SetJumpFlag(false);
+			jump.SetInitialSpeed(25.0f);
+		}
 		pos.y = Collision::LeftAirBlockPos.y - size.height;
 	}
 	//Right
 	else if (Collision::AirBlockCollision(pos, size, Collision::RightAirBlockPos, Collision::JudgeAirBlockSize, PrevPos)) {
-		jump.SetJumpFlag(false);
+		if (dx.GetKeyState(JUMP) == dx.OFF || dx.GetKeyState(JUMP) == dx.RELEASE) {
+			jump.SetJumpFlag(false);
+			jump.SetInitialSpeed(25.0f);
+		}
 		pos.y = Collision::RightAirBlockPos.y - size.height;
 	}
 	else {
 		PrevPos = pos;
 	}
+
+	//壁
 	if (pos.x <= 0.0f) {
 		pos.x = 0.0f;
 	}
 	else if (pos.x + size.width >= DISPLAY_WIDTH) {
 		pos.x = DISPLAY_WIDTH - size.width;
 	}
+
+	//床
+	if (pos.y + size.height >= DISPLAY_HEIGHT - Collision::GroundSize.height) {
+		pos.y = DISPLAY_HEIGHT - Collision::GroundSize.height - size.height;
+		if (dx.GetKeyState(JUMP) == dx.OFF || dx.GetKeyState(JUMP) == dx.RELEASE) {
+			jump.SetJumpFlag(false);
+		}
+	}
 }
 
-PLAYER::PLAYER():pos(100.0f,100.0f),direction(RIGHT),speed(0.0f),PrevPos(pos), acc(0.20f){
-	SetSize(100.0, 100.0f);
+PLAYER::PLAYER():pos(100.0f,100.0f),direction(RIGHT),speed(0.0f),PrevPos(pos), is_onBlock(false), acc(0.20f){
+	SetSize(100.0f, 100.0f);
 }
 
 PLAYER::~PLAYER() {
