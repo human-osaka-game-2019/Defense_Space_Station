@@ -36,6 +36,8 @@ void GAME::Load() {
 	dx.LoadTexture("Resource/UI/hp.png", "hp");
 	dx.LoadTexture("Resource/UI/half_hp.png", "half_hp.png");
 
+	soundsManager.AddFile("Resource/Player/test.mp3", "testAudio");
+
 	for (int i = 0; i < 20; i++) {
 		if (i % 2 == 0) {
 			enemy[i].SetPos(1800, 800);

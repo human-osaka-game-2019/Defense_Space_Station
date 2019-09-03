@@ -52,6 +52,7 @@ void PLAYER::Control(Enemy enemy[]) {
 	}
 	if (dx.GetKeyState(DIK_J) == dx.PUSH) {
 		Attack(enemy);
+		soundsManager.Start("testAudio", false);
 	}
 	if (dx.GetKeyState(DIK_K) == dx.PUSH) {
 		Catch(enemy);

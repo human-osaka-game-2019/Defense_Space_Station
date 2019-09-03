@@ -7,11 +7,14 @@
 
 #ifdef _DEBUG
 #pragma comment(lib, "../x64/Debug/DirectX.lib")
+#pragma comment(lib, "SoundLib/Debug/x64/SoundLib.lib")
 #else
 #pragma comment(lib, "../x64/Release/DirectX.lib")
+#pragma comment(lib, "SoundLib/Release/x64/SoundLib.lib")
 #endif
 
 DirectX dx;
+SoundLib::SoundsManager soundsManager;
 RECT WinRect;
 
 SCENE g_scene = Game;
@@ -30,6 +33,7 @@ INT WINAPI WinMain(
 
 	WindowSettings(hInstance, API_NAME, DISPLAY_WIDTH, DISPLAY_HEIGHT, &hWnd);
 	dx.InitDirectX(hWnd, DISPLAY_WIDTH, DISPLAY_HEIGHT);
+	soundsManager.Initialize();
 
 	DWORD PrevSync = timeGetTime();
 	DWORD CurrSync;
