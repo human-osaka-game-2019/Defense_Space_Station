@@ -130,11 +130,8 @@ void PLAYER::Collision() {
 		jump.SetJumpFlag(false);
 		pos.y = Collision::LeftAirBlockPos.y - size.height;
 	}
-	else {
-		PrevPos = pos;
-	}
 	//Right
-	if (Collision::AirBlockCollision(pos, size, Collision::RightAirBlockPos, Collision::JudgeAirBlockSize, PrevPos)) {
+	else if (Collision::AirBlockCollision(pos, size, Collision::RightAirBlockPos, Collision::JudgeAirBlockSize, PrevPos)) {
 		jump.SetJumpFlag(false);
 		pos.y = Collision::RightAirBlockPos.y - size.height;
 	}
