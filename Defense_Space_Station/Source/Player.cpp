@@ -1,5 +1,4 @@
 ﻿#include "../Header/Player.h"
-#include "../Header/Main.h"
 #include "../Header/Collision.h"
 
 using DIRECTION::RIGHT;

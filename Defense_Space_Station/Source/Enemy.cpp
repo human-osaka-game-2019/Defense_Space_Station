@@ -1,5 +1,4 @@
 #include "../Header/Enemy.h"
-#include "../Header/Jump.h"
 #include "../Header/Main.h"
 
 using DIRECTION::RIGHT;
