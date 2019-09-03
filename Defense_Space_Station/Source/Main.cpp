@@ -1,5 +1,6 @@
 #include "../Header/Main.h"
 #include "../Header/Window.h"
+#include "../Header/Title.h"
 #include "../Header/Game.h"
 
 #pragma comment(lib,"winmm.lib")
@@ -17,7 +18,7 @@ DirectX dx;
 SoundLib::SoundsManager soundsManager;
 RECT WinRect;
 
-SCENE g_scene = Game;
+SCENE g_scene = Title;
 
 INT WINAPI WinMain(
 	_In_ HINSTANCE hInstance,
@@ -29,6 +30,7 @@ INT WINAPI WinMain(
 	MSG msg;
 	const TCHAR API_NAME[] = "Defence_Space_Station";
 
+	TITLE title;
 	GAME game;
 
 	WindowSettings(hInstance, API_NAME, DISPLAY_WIDTH, DISPLAY_HEIGHT, &hWnd);
@@ -58,7 +60,7 @@ INT WINAPI WinMain(
 
 				switch (g_scene)
 				{
-				case Title:
+				case Title:title.UpdateScene();
 					break;
 				case Game:game.UpdateScene();
 					break;
