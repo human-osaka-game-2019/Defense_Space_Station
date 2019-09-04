@@ -46,13 +46,15 @@ void GAME::Load() {
 	soundsManager.SetVolume("CatchSE", 15);
 	soundsManager.SetVolume("EnemyAttackSE", 15);
 
+	for(int i = 0; i < EnemyMax; i++)
+	{
 		if (i % 2 == 0) {
 			enemy[i].SetPos(1800, 800);
 		}
 		else {
 			enemy[i].SetPos(0, 800);
 		}
-	}*/
+	}
 
 	enemy[0].SetPos(200, 940);
 	enemy[1].SetPos(940, 940);
@@ -67,7 +69,7 @@ void GAME::Control() {
 	player.Control(enemy);
 
 	for (int i = 0; i < EnemyMax; i++) {
-				enemy[i].EnemyMove(player.GetPos(), player.GetSize());
+		enemy[i].EnemyMove(player.GetPos(), player.GetSize());
 		}
 	//EnemyCollision(enemy);
 
@@ -89,7 +91,7 @@ void GAME::Draw() {
 
 	for (int i = 0; i < EnemyMax; i++) {
 		if (enemy[i].GetMode() == Enemy::MODE::ALIVE) {
-			dx.Draw(enemy[i].GetPos().x, enemy[i].GetPos().y, 100, 100, 0.0f, 1.0f, (bool)enemy[i].GetDirection(), "Enemy");
+			dx.Draw(enemy[i].GetPos().x, enemy[i].GetPos().y, enemy[i].GetSize().width, enemy[i].GetSize().height, 0.0f, 1.0f, (bool)enemy[i].GetDirection(), "Enemy");
 		}
 		if (enemy[i].GetMode() == Enemy::MODE::SWOON) {
 			dx.Draw(enemy[i].GetPos().x, enemy[i].GetPos().y, enemy[i].GetSize().width, enemy[i].GetSize().height, 0.0f, 1.0f, (bool)enemy[i].GetDirection(), "SwoonEnemy");
