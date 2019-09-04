@@ -52,10 +52,11 @@ void PLAYER::Control(Enemy enemy[]) {
 	}
 	if (dx.GetKeyState(DIK_J) == dx.PUSH) {
 		Attack(enemy);
-		soundsManager.Start("testAudio", false);
+		soundsManager.Start("AttackSE", false);
 	}
 	if (dx.GetKeyState(DIK_K) == dx.PUSH) {
 		Catch(enemy);
+		soundsManager.Start("CatchSE", false);
 	}
 	if (dx.GetKeyState(DIK_L) == dx.PUSH) {
 		SpecialAttack(enemy);

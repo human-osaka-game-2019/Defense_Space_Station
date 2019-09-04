@@ -60,3 +60,10 @@
 |Lキー|     必殺技|
 
 ---
+
+## 権利表記 ##
+### 音楽 ###
+<a href = https://otologic.jp/ > OtoLogic </a><br>
+<a href = https://commons.nicovideo.jp/materials/ > ニコニ・コモンズ </a><br>
+<a href = https://maoudamashii.jokersounds.com/ > 魔王魂 </a><br>
+(順不同)
