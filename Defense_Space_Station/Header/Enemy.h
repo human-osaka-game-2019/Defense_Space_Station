@@ -5,7 +5,7 @@
 #include"../Header/Jump.h"
 #include"../Header/Direction.h"
 
-#define EnemyMax 20
+#define EnemyMax 3
 
 class Enemy
 {
@@ -35,13 +35,17 @@ public:
 	void SetMode(MODE Mode);
 	bool GetJumpFlag();
 	void SetJumpFlag(bool JumpFlag);
-	void EnemyMove(Vec PlayerPos);
+	void EnemyMove(Vec PlayerPos, Size PlayerSize);
 	void EnemyAliveMove(Vec PlayerPos);
 	void EnemySwoonMove(Vec PlayerPos);
 	void EnemyDeadMove();
-	void Chase(Vec PlayerPos);
+	void Chase(Vec PlayerPos, Size PlayerSize);
 	void Escape(Vec PlayerPos);
 	void SetJump(float InitSpeed, float SetSpeed);
+	bool Is_Stop;
+	bool PlayerSearch(Vec PlayerPos, DIRECTION::Direction direc);
+
+	
 
 private:
 
@@ -54,6 +58,14 @@ private:
 	bool JumpFlag;
 	JUMP_MOVE Jump_Move;
 	DIRECTION::Direction direction;
+	int DirectionTime;
+	int RandomMove;
+	float SearchLeft;
+	float SearchRight;
+	float SearchTop;
+	float SearchBottom;
+	float SearchHeight;
+	float SearchWidth;
 };
 
 #endif // ENEMY_H_

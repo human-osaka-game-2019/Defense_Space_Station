@@ -44,16 +44,20 @@ void GAME::Load() {
 	soundsManager.SetVolume("AttackSE", 15);
 	soundsManager.SetVolume("CatchSE", 15);
 
-	for (int i = 0; i < 20; i++) {
 		if (i % 2 == 0) {
 			enemy[i].SetPos(1800, 800);
 		}
 		else {
 			enemy[i].SetPos(0, 800);
 		}
-	}
+	}*/
+
+	enemy[0].SetPos(200, 940);
+	enemy[1].SetPos(940, 940);
+	enemy[2].SetPos(400, 940);
 	enemy[0].SetJump(8.0f, 0.2f);
 	step = MainStep;
+
 }
 
 void GAME::Control() {
@@ -61,8 +65,11 @@ void GAME::Control() {
 	player.Control(enemy);
 
 	for (int i = 0; i < EnemyMax; i++) {
-		enemy[i].EnemyMove(player.GetPos());
-	}
+				enemy[i].EnemyMove(player.GetPos(), player.GetSize());
+		}
+	//EnemyCollision(enemy);
+
+	
 
 #ifdef _DEBUG
 	if (dx.GetKeyState(DIK_ESCAPE) == dx.PUSH) {
