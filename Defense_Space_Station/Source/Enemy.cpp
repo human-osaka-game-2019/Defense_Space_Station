@@ -1,11 +1,12 @@
 #include "../Header/Enemy.h"
 #include "../Header/Jump.h"
 #include "../Header/Main.h"
+#include "../Header/Collision.h"
+#include <time.h>
 
 using DIRECTION::RIGHT;
 using DIRECTION::LEFT;
 
-JUMP_MOVE Jump_Move;
 
 Vec Enemy::GetPos()
 {
@@ -95,14 +96,14 @@ void Enemy::SetJumpFlag(bool JumpFlag)
 }
 
 
-//謨?�縺?�迥?�諷?
-void Enemy::EnemyMove(Vec PlayerPos)
+
+void Enemy::EnemyMove(Vec PlayerPos, Size PlayerSize)
 {
 
 	switch (this->GetMode())
 	{
 	case MODE::ALIVE:
-		this->Chase(PlayerPos);
+		this->Chase(PlayerPos, PlayerSize);
 		this->EnemyAliveMove(PlayerPos);
 		break;
 	case MODE::SWOON:
@@ -115,30 +116,59 @@ void Enemy::EnemyMove(Vec PlayerPos)
     }
 }
 
-//謨?�縺?�陦悟虚
+
 void Enemy::EnemyAliveMove(Vec PlayerPos)
 {
-	if (!((PlayerPos.x) > (this->Pos.x - 50)) || !(PlayerPos.x < (this->Pos.x + 50)))
+	if (Is_Stop == false)
 	{
-		switch (direction)
+
+		if(PlayerSearch(PlayerPos, direction))
 		{
-		case DIRECTION::RIGHT:
+			if (!((PlayerPos.x) > (this->Pos.x - 50)) || !(PlayerPos.x < (this->Pos.x + 50)))
+			{
+				switch (direction)
+				{
+				case DIRECTION::RIGHT:
 
-			this->Pos.x += this->MoveSpeed;
+					this->Pos.x += this->MoveSpeed;
 
-			break;
-		case DIRECTION::LEFT:
+					break;
+				case DIRECTION::LEFT:
 
-			this->Pos.x -= this->MoveSpeed;
+					this->Pos.x -= this->MoveSpeed;
 
-			break;
+					break;
 
+
+				}
+			}
+		}
+		else
+		{
+			if (Is_Stop == false) {
+				switch (direction)
+				{
+				case DIRECTION::RIGHT:
+
+					this->Pos.x += this->MoveSpeed;
+
+					break;
+				case DIRECTION::LEFT:
+
+					this->Pos.x -= this->MoveSpeed;
+
+					break;
+
+				}
+			}
 		}
 	}
 
+	
+	
 }
 
-//繧?�繝ｭ繝懊す縺?�AI縺�??譚･縺溘ｉ霑?�險?
+
 void Enemy::EnemySwoonMove(Vec PlayerPos)
 {
 
@@ -168,21 +198,57 @@ void Enemy::EnemyDeadMove()
 
 }
 
-void Enemy::Chase(Vec PlayerPos)
+void Enemy::Chase(Vec PlayerPos, Size PlayerSize)
 {
+	if(PlayerSearch(PlayerPos, direction) == true)
+	{
+		if (PlayerPos.x > this->Pos.x)
+		{
+			direction = RIGHT;
+		}
+		else if (PlayerPos.x <= this->Pos.x)
+		{
+			direction = LEFT;
+		}
+		
+	}
+	else
+	{
+		if (Collision::SquareCollision(Pos, size, PlayerPos, PlayerSize) != true) {
+			DirectionTime++;
+			if (DirectionTime == 160)
+			{
+				RandomMove = rand() % 10;
+				if (this->RandomMove < 4)
+				{
+					direction = LEFT;
+					DirectionTime = NULL;
+				}
+				else
+				{
+					direction = RIGHT;
+					DirectionTime = NULL;
+				}
 
-	if (PlayerPos.x > this->Pos.x) 
-	{
-		direction = RIGHT;
-	}else if (PlayerPos.x <= this->Pos.x)
-	{
-		 direction = LEFT;
+			}
+		}
+
+
+
 	}
-	
-	if (PlayerPos.y < this->Pos.y && ((PlayerPos.x  )> (this->Pos.x - 200)) && (PlayerPos.x < (this->Pos.x + 200)))
+
+	if (Collision::SquareCollision(Pos, size, PlayerPos, PlayerSize) == true)
 	{
-		this->JumpFlag = true;
+		Is_Stop = true;
 	}
+	else 
+	{
+		Is_Stop = false;
+	}
+
+
+
+
 	 
 		if (this->JumpFlag == true) {
 			this->Jump_Move.EnemyJump(&this->Pos);
@@ -194,6 +260,12 @@ void Enemy::Chase(Vec PlayerPos)
 			}
 		}
 	
+		if (Pos.x <= 0.0f) {
+			direction = RIGHT;
+		}
+		else if (Pos.x + size.width >= DISPLAY_WIDTH) {
+			direction = LEFT;
+		}
 
 }
 
@@ -234,9 +306,44 @@ void Enemy::SetJump(float InitSpeed, float SetSpeed)
 
 }
 
-Enemy::Enemy():is_dead(false), Pos(0.0f,0.0f), size(100, 50), radius((size.width / 2 + size.height / 2) / 2), MoveSpeed(5.0f), RePopCount(600), Mode(ALIVE), direction(RIGHT), JumpFlag(false)
+bool Enemy::PlayerSearch(Vec PlayerPos ,DIRECTION::Direction direction)
 {
+
+	if (direction == RIGHT)
+	{
+
+		SearchLeft = Pos.x;
+		SearchRight = Pos.x + (size.width + SearchWidth);
+		SearchTop = (Pos.y - SearchHeight);
+		SearchBottom = (Pos.y + size.height);
+		if (SearchLeft <= PlayerPos.x && PlayerPos.x < SearchRight && SearchTop <=PlayerPos.y && PlayerPos.y <= SearchBottom) 
+		{
+			return true;
+		}
+	}
+	else
+	{
+
+		SearchLeft = (Pos.x - SearchWidth);
+		SearchRight = (Pos.x + size.width);
+		SearchTop = (Pos.y - SearchHeight);
+		SearchBottom = (Pos.y + size.height);
+		if (SearchLeft <= PlayerPos.x && SearchRight > PlayerPos.x && SearchTop <=PlayerPos.y && SearchBottom > PlayerPos.y)
+		{
+			return true;
+		}
+	}
+
 	
+	return false;
+	
+
+
+}
+
+Enemy::Enemy() :is_dead(false), Is_Stop(false), Pos(0.0f, 0.0f), size(100, 50), radius((size.width / 2 + size.height / 2) / 2), MoveSpeed(5.0f), RePopCount(600), Mode(ALIVE), direction(RIGHT), JumpFlag(false), DirectionTime(0), RandomMove(0), SearchLeft(300), SearchRight(300),SearchTop(300),SearchBottom(300),SearchHeight(300),SearchWidth(300)
+{
+	srand((unsigned int)time(NULL));
 }
 
 
@@ -244,5 +351,8 @@ Enemy::~Enemy()
 {
 
 }
+
+
+
 
 
