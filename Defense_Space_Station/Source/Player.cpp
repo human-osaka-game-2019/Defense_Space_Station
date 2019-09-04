@@ -107,16 +107,18 @@ void PLAYER::Catch(Enemy enemy[]) {
 		Vec UnderPos = { pos.x + size.width / 2, pos.y + size.height };
 
 		if (enemy[i].GetMode() == Enemy::MODE::SWOON) {
-			if (pos.y <= enemy[i].GetPos().y) {
-				if (direction == RIGHT) {
-					if (Collision::CircleCollision(UnderPos, size.height, EnemyCenter, enemy[i].GetRadius()) && pos.x < enemy[i].GetPos().x) {
-						enemy[i].SetMode(Enemy::MODE::DEAD);
-					}
+			if (direction == RIGHT) {
+				if (Collision::CircleCollision(UnderPos, size.height, EnemyCenter, enemy[i].GetRadius())
+					&& UnderPos.x <= EnemyCenter.x
+					&& UnderPos.y >= EnemyCenter.y) {
+					enemy[i].SetMode(Enemy::MODE::DEAD);
 				}
-				if (direction == LEFT) {
-					if (Collision::CircleCollision(UnderPos, size.height, EnemyCenter, enemy[i].GetRadius()) && pos.x > enemy[i].GetPos().x) {
-						enemy[i].SetMode(Enemy::MODE::DEAD);
-					}
+			}
+			if (direction == LEFT) {
+				if (Collision::CircleCollision(UnderPos, size.height, EnemyCenter, enemy[i].GetRadius())
+					&& UnderPos.x >= EnemyCenter.x
+					&& UnderPos.y >= EnemyCenter.y) {
+					enemy[i].SetMode(Enemy::MODE::DEAD);
 				}
 			}
 		}
