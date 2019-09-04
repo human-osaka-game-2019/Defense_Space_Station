@@ -37,12 +37,14 @@ void GAME::Load() {
 	dx.LoadTexture("Resource/UI/half_hp.png", "half_hp.png");
 
 	soundsManager.AddFile("Resource/BGM/game_bgm.mp3", "GameBGM");
-	soundsManager.AddFile("Resource/SE/player_attack.mp3", "AttackSE");
+	soundsManager.AddFile("Resource/SE/player_attack.mp3", "PlayerAttackSE");
 	soundsManager.AddFile("Resource/SE/player_catch.mp3", "CatchSE");
+	soundsManager.AddFile("Resource/SE/enemy_attack.mp3", "EnemyAttackSE");
 
 	soundsManager.SetVolume("GameBGM", 10);
 	soundsManager.SetVolume("AttackSE", 15);
 	soundsManager.SetVolume("CatchSE", 15);
+	soundsManager.SetVolume("EnemyAttackSE", 15);
 
 		if (i % 2 == 0) {
 			enemy[i].SetPos(1800, 800);

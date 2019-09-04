@@ -4,9 +4,9 @@
 #include "../../DirectX/DirectX.h"
 
 #ifdef _DEBUG
-#include "../Include/Debug/x64/SoundsManager.h"
+#include "../Include/SoundsManager.h"
 #else
-#include "../Include/Release//x64/SoundsManager.h"
+#include "../Include//SoundsManager.h"
 #endif
 
 #define DISPLAY_WIDTH 1920
