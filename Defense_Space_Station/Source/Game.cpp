@@ -46,13 +46,6 @@ void GAME::Load() {
 	soundsManager.SetVolume("CatchSE", 15);
 	soundsManager.SetVolume("EnemyAttackSE", 15);
 
-		if (i % 2 == 0) {
-			enemy[i].SetPos(1800, 800);
-		}
-		else {
-			enemy[i].SetPos(0, 800);
-		}
-	}*/
 
 	enemy[0].SetPos(200, 940);
 	enemy[1].SetPos(940, 940);
