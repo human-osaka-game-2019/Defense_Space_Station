@@ -37,13 +37,19 @@ void PLAYER::Control(Enemy enemy[]) {
 	}
 	if (dx.GetKeyState(DIK_D) == dx.OFF && speed >= 0.0f) {
 		speed -= acc;
-		if (speed <= 0.0f || Collision::SquareCollision(pos, size, Collision::GroundPos, Collision::GroundSize)) {
+		if (speed <= 0.0f
+			|| Collision::SquareCollision(pos, size, Collision::GroundPos, Collision::GroundSize)
+			|| Collision::SquareCollision(pos, size, Collision::RightAirBlockPos, Collision::DrawAirBlockSize)
+			|| Collision::SquareCollision(pos, size, Collision::LeftAirBlockPos, Collision::DrawAirBlockSize)) {
 			speed = 0.0f;
 		}
 	}
 	if (dx.GetKeyState(DIK_A) == dx.OFF && speed <= 0.0f) {
 		speed += acc;
-		if (speed >= 0.0f || Collision::SquareCollision(pos, size, Collision::GroundPos, Collision::GroundSize)) {
+		if (speed >= 0.0f 
+			|| Collision::SquareCollision(pos, size, Collision::GroundPos, Collision::GroundSize)
+			|| Collision::SquareCollision(pos, size, Collision::RightAirBlockPos, Collision::DrawAirBlockSize)
+			|| Collision::SquareCollision(pos, size, Collision::LeftAirBlockPos, Collision::DrawAirBlockSize)) {
 			speed = 0.0f;
 		}
 	}
@@ -132,7 +138,7 @@ void PLAYER::SpecialAttack(Enemy enemy[]) {
 }
 
 void PLAYER::Collision() {
-	//Left
+	//LeftAirBlock
 	if (Collision::AirBlockCollision(pos, size, Collision::LeftAirBlockPos, Collision::JudgeAirBlockSize, PrevPos)) {
 		if (dx.GetKeyState(JUMP) != dx.PUSH) {
 			jump.SetJumpFlag(false);
@@ -140,7 +146,7 @@ void PLAYER::Collision() {
 		}
 		pos.y = Collision::LeftAirBlockPos.y - size.height;
 	}
-	//Right
+	//RightAirBlock
 	else if (Collision::AirBlockCollision(pos, size, Collision::RightAirBlockPos, Collision::JudgeAirBlockSize, PrevPos)) {
 		if (dx.GetKeyState(JUMP) != dx.PUSH) {
 			jump.SetJumpFlag(false);
@@ -170,7 +176,7 @@ void PLAYER::Collision() {
 }
 
 PLAYER::PLAYER():pos(100.0f,100.0f),direction(RIGHT),speed(0.0f),PrevPos(pos), is_onBlock(false), acc(0.20f){
-	SetSize(100.0f, 100.0f);
+	SetSize(200.0f, 300.0f);
 }
 
 PLAYER::~PLAYER() {
