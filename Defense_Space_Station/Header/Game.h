@@ -3,6 +3,7 @@
 
 #include "../Header/Player.h"
 #include "../Header/Enemy.h"
+#include "../Header/Animation.h"
 
 class GAME {
 public:
@@ -22,6 +23,17 @@ private:
 
 	PLAYER player;
 	Enemy enemy[EnemyMax];
+	AnimeData data[TextureMax]
+	{
+		{0.0f, 0.25f, 0, _4F},
+		{0.0f, 0.25f, 0, _20F},
+		{0.0f, 0.25f, 0, _20F},
+		{0.0f, 0.25f, 0, _20F},
+		{0.0f, 0.25f, 0, _20F},
+		{0.0f, 0.25f, 0, _20F},
+		{0.0f, 0.25f, 0, _20F},
+		{0.0f, 0.25f, 0, _20F},
+	};
 
 	void Load();
 	void Control();

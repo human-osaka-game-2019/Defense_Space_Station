@@ -25,6 +25,9 @@
     <ClCompile Include="Source\Enemy.cpp">
       <Filter>ソース</Filter>
     </ClCompile>
+    <ClCompile Include="Source\Animation.cpp">
+      <Filter>ソース</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Header\Game.h">
@@ -58,6 +61,9 @@
       <Filter>ヘッダー</Filter>
     </ClInclude>
     <ClInclude Include="Header\Direction.h">
+      <Filter>ヘッダー</Filter>
+    </ClInclude>
+    <ClInclude Include="Header\Animation.h">
       <Filter>ヘッダー</Filter>
     </ClInclude>
   </ItemGroup>

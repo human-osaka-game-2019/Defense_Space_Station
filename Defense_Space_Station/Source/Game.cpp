@@ -28,21 +28,22 @@ void GAME::Load() {
 	dx.LoadTexture("Resource/BackGround/GameBack.png", "GameBack");
 	dx.LoadTexture("Resource/BackGround/Footing.png", "AirBlock");
 	dx.LoadTexture("Resource/Player/test.png", "test");
+	dx.LoadTexture("Resource/Player/Animetion.png", "Anime");
 	dx.LoadTexture("Resource/Enemy/Enemy.png", "Enemy");
 	dx.LoadTexture("Resource/Enemy/LowEnemy.png", "Low_Enemy");
 	dx.LoadTexture("Resource/Enemy/Boss_Purple.png", "Boss");
 	dx.LoadTexture("Resource/Enemy/SwoonEnemy.png", "SwoonEnemy");
-
 	soundsManager.AddFile("Resource/BGM/game_bgm.mp3", "GameBGM");
 	soundsManager.AddFile("Resource/SE/player_attack.mp3", "PlayerAttackSE");
 	soundsManager.AddFile("Resource/SE/player_catch.mp3", "CatchSE");
 	soundsManager.AddFile("Resource/SE/enemy_attack.mp3", "EnemyAttackSE");
-
+	
 	soundsManager.SetVolume("GameBGM", 10);
 	soundsManager.SetVolume("AttackSE", 15);
 	soundsManager.SetVolume("CatchSE", 15);
 	soundsManager.SetVolume("EnemyAttackSE", 15);
 
+	
 
 	for (int i = 0; i < EnemyMax; i++) {
 		if ( i % 2 == 0) {
@@ -69,6 +70,7 @@ void GAME::Control() {
 
 	
 
+	Anime::Animation(data, 0.75f);
 #ifdef _DEBUG
 	if (dx.GetKeyState(DIK_ESCAPE) == dx.PUSH) {
 		step = ReleaseStep;
@@ -80,7 +82,8 @@ void GAME::Draw() {
 	dx.Draw(0, 0, DISPLAY_WIDTH, DISPLAY_HEIGHT, 0.0f, 1.0f, false, "GameBack");
 	dx.Draw(RightAirBlockPos.x, RightAirBlockPos.y, DrawAirBlockSize.width, DrawAirBlockSize.height, 0.0f, 1.0f, false, "AirBlock");
 	dx.Draw(LeftAirBlockPos.x, LeftAirBlockPos.y, DrawAirBlockSize.width, DrawAirBlockSize.height, 0.0f, 1.0f, false, "AirBlock");
-	dx.Draw(player.GetPos().x, player.GetPos().y, player.GetSize().width, player.GetSize().height, 0.0f, 1.0f, (bool)player.GetDirection(), "test");
+	dx.DrawEx(player.GetPos().x, player.GetPos().y, 0.0f, player.GetSize().width, player.GetSize().height, 0.0f, 1.0f, (bool)player.GetDirection(), "Anime", data[0].Tu, 0.0f, data[0].Tw, 0.25f);
+	//dx.Draw(player.GetPos().x, player.GetPos().y, player.GetSize().width, player.GetSize().height, 0.0f, 1.0f, (bool)player.GetDirection(), "test");
 	//dx.Draw(700, 500, 100, 100, 0.0f, 1.0f, false, "Boss");
 
 	for (int i = 0; i < EnemyMax; i++) {
@@ -98,6 +101,7 @@ void GAME::Release() {
 	dx.ReleaseTexture("Low_Enemy");
 	dx.ReleaseTexture("Enemy");
 	dx.ReleaseTexture("test");
+	dx.ReleaseTexture("Anime");
 	dx.ReleaseTexture("AirBlock");
 	dx.ReleaseTexture("GameBack");
 }
