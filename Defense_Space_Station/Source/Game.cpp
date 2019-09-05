@@ -32,9 +32,6 @@ void GAME::Load() {
 	dx.LoadTexture("Resource/Enemy/LowEnemy.png", "Low_Enemy");
 	dx.LoadTexture("Resource/Enemy/Boss_Purple.png", "Boss");
 	dx.LoadTexture("Resource/Enemy/SwoonEnemy.png", "SwoonEnemy");
-	dx.LoadTexture("Resource/UI/hp_border.png", "hp_border");
-	dx.LoadTexture("Resource/UI/hp.png", "hp");
-	dx.LoadTexture("Resource/UI/half_hp.png", "half_hp.png");
 
 	soundsManager.AddFile("Resource/BGM/game_bgm.mp3", "GameBGM");
 	soundsManager.AddFile("Resource/SE/player_attack.mp3", "PlayerAttackSE");
@@ -47,9 +44,15 @@ void GAME::Load() {
 	soundsManager.SetVolume("EnemyAttackSE", 15);
 
 
-	enemy[0].SetPos(200, 940);
-	enemy[1].SetPos(940, 940);
-	enemy[2].SetPos(400, 940);
+	for (int i = 0; i < EnemyMax; i++) {
+		if ( i % 2 == 0) {
+			enemy[i].SetPos(200, 940);
+		}
+		else {
+			enemy[i].SetPos(940, 940);
+		}
+	}
+
 	enemy[0].SetJump(8.0f, 0.2f);
 	step = MainStep;
 
