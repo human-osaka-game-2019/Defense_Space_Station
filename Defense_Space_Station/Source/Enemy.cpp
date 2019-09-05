@@ -298,6 +298,13 @@ void Enemy::Escape(Vec PlayerPos)
 		}
 	}
 
+	if (Pos.x <= 0.0f) {
+		direction = RIGHT;
+	}
+	else if (Pos.x + size.width >= DISPLAY_WIDTH) {
+		direction = LEFT;
+	}
+
 }
 
 void Enemy::SetJump(float InitSpeed, float SetSpeed)
