@@ -33,8 +33,18 @@ void TITLE::Load() {
 void TITLE::Control() {
 
 	ZoomLogo();
+	//JumpPushEnter();
+	//if (PushEnterPos.y > 50) {
+	//	JumpSpeed = 7.0f;
+	//}
+	if (is_Slide) {
+		Slide();
+	}
 
 	if (dx.GetKeyState(DIK_RETURN) == dx.PUSH && dx.GetKeyState(DIK_RMENU) == dx.OFF) {
+		is_Slide = true;
+	}
+	if (TopStartButtonPos.x <= -540) {
 		step = ReleaseStep;
 	}
 }
@@ -42,7 +52,8 @@ void TITLE::Control() {
 void TITLE::Draw() {
 	dx.Draw(BackGroundPos.x, BackGroundPos.y, BackGroundSize.width, BackGroundSize.height, 0.0f, 1.0f, false, "BackGround");
 	dx.DrawCenter(LogoCenterPos.x, LogoCenterPos.y, LogoSize.width, LogoSize.height, 0.0f, logo_zoom, false, "Logo");
-	dx.Draw(PushEnterPos.x, PushEnterPos.y, PushEnterSize.width, PushEnterSize.height, 0.0f, 1.0f, false, "PushEnter");
+	dx.DrawEx(TopStartButtonPos.x, TopStartButtonPos.y, 0, TopStartButtonSize.width, TopStartButtonSize.height, 0.0f, 1.0f, false, "PushEnter", 0.0f, 0.0f,1.0f, 910.0f / 1080.0f);
+	dx.DrawEx(UnderStartButtonPos.x, UnderStartButtonPos.y, 0, UnderStartButtonSize.width, UnderStartButtonSize.height, 0.0f, 1.0f, false, "PushEnter", 0.0f, 910.0f / 1080.0f, 1.0f, 1.0f);
 }
 
 void TITLE::Release() {
@@ -68,7 +79,17 @@ void TITLE::ZoomLogo() {
 	}
 }
 
-TITLE::TITLE(){
+//void TITLE::JumpPushEnter() {
+//	JumpSpeed += JumpAcc;
+//	PushEnterPos.y -= JumpSpeed;
+//}
+
+void TITLE::Slide() {
+	TopStartButtonPos.x -= 40.0f;
+	UnderStartButtonPos.x += 40.0f;
+}
+
+TITLE::TITLE():JumpSpeed(0.0f){
 
 }
 

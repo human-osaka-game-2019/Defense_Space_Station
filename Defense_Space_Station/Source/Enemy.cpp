@@ -126,6 +126,7 @@ void Enemy::EnemyMove(Vec PlayerPos, Size PlayerSize)
 void Enemy::EnemyAliveMove(Vec PlayerPos)
 {
 	size = { 200, 300 };
+	Collision();
 	if (Is_Stop == false)
 	{
 
@@ -447,6 +448,11 @@ bool Enemy::ReviveRange()
 	return false;
 }
 
+void Enemy::Collision() {
+	if (Pos.y + size.height >= DISPLAY_HEIGHT - Collision::GroundSize.height) {
+		Pos.y = DISPLAY_HEIGHT - Collision::GroundSize.height - size.height;
+	}
+}
 
 Enemy::Enemy() :Is_Stop(false), Pos(0.0f, 0.0f), size(200, 300), radius(size.width / 2), MoveSpeed(5.0f), RePopCount(600), Mode(ALIVE), direction(RIGHT), JumpFlag(false), DirectionTime(0), RandomMove(0), SearchLeft(300), SearchRight(300),SearchTop(300),SearchBottom(300),SearchHeight(100),SearchWidth(300)
 {
