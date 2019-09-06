@@ -15,12 +15,24 @@ public:
 	PLAYER();
 	~PLAYER();
 
+	enum LAST_ITEM
+	{
+		HAMMER,
+		NET
+	};
+
 	void SetPos(float x, float y);
 	Vec GetPos();
 	void SetSize(float width, float height);
 	Size GetSize();
 	DIRECTION::Direction GetDirection();
 	void Control(Enemy enemy[]);
+	LAST_ITEM Item;
+	bool is_attack;
+	bool is_catch;
+	bool is_move;
+	JUMP_MOVE jump;
+	
 
 private:
 
@@ -28,7 +40,6 @@ private:
 	Vec UnderPos;
 	Size size;
 	DIRECTION::Direction direction;
-	JUMP_MOVE jump;
 	float speed;
 
 	Vec PrevPos;

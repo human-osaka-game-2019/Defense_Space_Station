@@ -25,6 +25,7 @@ struct AnimeData
 	int FrameCount;
 	int TargetValue;
 	bool flag;
+	bool flee_frag;
 };
 
 namespace Anime

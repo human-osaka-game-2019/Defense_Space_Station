@@ -13,6 +13,7 @@ public:
 
 	float GetSpeed();
 	void SetSpeed(float Speed);
+	bool GetJumpFlag();
 	float GetInitialSpeed();
 	void SetInitialSpeed(float Initial_speed);
 	void SetJumpFlag(bool flag);

@@ -14,11 +14,10 @@ void JUMP_MOVE::SetSpeed(float Speed)
 
 }
 
-/*
-
-
-
-*/
+bool JUMP_MOVE::GetJumpFlag()
+{
+	return this->JumpFlag;
+}
 
 void JUMP_MOVE::SetJumpFlag(bool flag)
 {
