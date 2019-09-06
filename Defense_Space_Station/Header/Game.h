@@ -55,7 +55,10 @@ private:
 	const Size HpVarSize{580,100};
 	const Vec HpVarPos{ 40, 35 };
 	UserInterface::UV HpVarUV = { 320.0f / 2480.0f,150.0f / 1024.0f,575.0f / 2480.0f,100.0f / 1024.0f };
-	
+	const Size UltVarSize{ 580,100 };
+	const Vec UltVarPos{ 675,35 };
+	UserInterface::UV UltVarUV = { 980.0f / 2480.f,150.0f / 1024.0f,575.0f / 2480.0f,100.0f / 1024.0f };
+
 
 	void Load();
 	void Control();
