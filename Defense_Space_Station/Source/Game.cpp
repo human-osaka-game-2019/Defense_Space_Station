@@ -99,12 +99,12 @@ void GAME::Control() {
 
 	player.Control(enemy);
 
-	UserInterface::HpUi(player.GetHp(), &HpUV1);
-	UserInterface::HpUi(player.GetHp(), &HpUV2);
-	UserInterface::HpUi(player.GetHp(), &HpUV3);
-	UserInterface::HpUi(player.GetHp(), &HpUV4);
-	UserInterface::HpUi(player.GetHp(), &HpUV5);
-	UserInterface::HpUi(player.GetHp(), &HpUV6);
+	UserInterface::HpUi1(player.GetHp(), &HpUV1);
+	UserInterface::HpUi2(player.GetHp(), &HpUV2);
+	UserInterface::HpUi3(player.GetHp(), &HpUV3);
+	UserInterface::HpUi4(player.GetHp(), &HpUV4);
+	UserInterface::HpUi5(player.GetHp(), &HpUV5);
+	UserInterface::HpUi6(player.GetHp(), &HpUV6);
 
 	for (int i = 0; i < EnemyMax; i++) {
 		enemy[i].EnemyMove(player.GetPos(), player.GetSize());
