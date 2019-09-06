@@ -100,12 +100,12 @@ void PLAYER::Control(Enemy enemy[]) {
 
 void PLAYER::Attack(Enemy enemy[]) {
 	for (int i = 0; i < EnemyMax; i++) {
-		Vec EnemyCenter = { enemy[i].GetPos().x + enemy[i].GetSize().width / 2, enemy[i].GetPos().y + enemy[i].GetSize().height / 2 };
+		Vec EnemyCenter = { enemy[i].GetPos().x + enemy[i].GetSize().width, enemy[i].GetPos().y + enemy[i].GetSize().height / 2 };
 		Vec UnderPos = {pos.x + size.width / 2, pos.y + size.height};
 
 		if (enemy[i].GetMode() == Enemy::MODE::ALIVE) {
 			if (direction == RIGHT) {
-				if (Collision::CircleCollision(UnderPos, size.height / 3, EnemyCenter, enemy[i].GetRadius()) 
+				if (Collision::CircleCollision(UnderPos, size.height, EnemyCenter, enemy[i].GetRadius()) 
 					&& UnderPos.x <= EnemyCenter.x 
 					&& UnderPos.y >= EnemyCenter.y) {
 					soundsManager.Start("PlayerAttackSE", false);
@@ -114,7 +114,7 @@ void PLAYER::Attack(Enemy enemy[]) {
 				}
 			}
 			if (direction == LEFT) {
-				if (Collision::CircleCollision(UnderPos, size.height / 3, EnemyCenter, enemy[i].GetRadius()) 
+				if (Collision::CircleCollision(UnderPos, size.height / 2, EnemyCenter, enemy[i].GetRadius()) 
 					&& UnderPos.x >= EnemyCenter.x 
 					&& UnderPos.y >= EnemyCenter.y) {
 					soundsManager.Start("PlayerAttackSE", false);

@@ -3,6 +3,7 @@
 
 #define TextureMax 8
 
+#define _1F 1
 #define _2F 2
 #define _4F 4
 #define _5F 5

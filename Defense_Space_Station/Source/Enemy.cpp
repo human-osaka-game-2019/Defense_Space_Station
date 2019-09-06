@@ -127,6 +127,7 @@ void Enemy::EnemyAliveMove(Vec PlayerPos)
 {
 	size = { 200, 300 };
 	Collision();
+	this->MoveSpeed = 7.5f;
 	if (Is_Stop == false)
 	{
 
@@ -181,6 +182,8 @@ void Enemy::EnemySwoonMove(Vec PlayerPos)
 {
 	ReviveCount++;
 	size = { 100, 100 };
+
+	this->MoveSpeed = 9.0f;
 	switch (direction)
 	{
 	case DIRECTION::RIGHT:
