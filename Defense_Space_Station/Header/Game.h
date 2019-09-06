@@ -13,12 +13,20 @@ public:
 
 	void UpdateScene();
 
-	UserInterface::UV HpUV1 = { 140.0f / 2480.0f, 148.0f / 1024.0f, 40.0f / 2480.0f, 40.0f / 1024.0f };
-	UserInterface::UV HpUV2 = { 140.0f / 2480.0f, 148.0f / 1024.0f, 40.0f / 2480.0f, 40.0f / 1024.0f };
-	UserInterface::UV HpUV3 = { 140.0f / 2480.0f, 148.0f / 1024.0f, 40.0f / 2480.0f, 40.0f / 1024.0f };
-	UserInterface::UV HpUV4 = { 140.0f / 2480.0f, 148.0f / 1024.0f, 40.0f / 2480.0f, 40.0f / 1024.0f };
-	UserInterface::UV HpUV5 = { 140.0f / 2480.0f, 148.0f / 1024.0f, 40.0f / 2480.0f, 40.0f / 1024.0f };
-	UserInterface::UV HpUV6 = { 140.0f / 2480.0f, 148.0f / 1024.0f, 40.0f / 2480.0f, 40.0f / 1024.0f };
+	UserInterface::UV HpUV1 = { 20.0f / 2480.0f, 148.0f / 1024.0f, 40.0f / 2480.0f, 40.0f / 1024.0f };
+	UserInterface::UV HpUV2 = { 20.0f / 2480.0f, 148.0f / 1024.0f, 40.0f / 2480.0f, 40.0f / 1024.0f };
+	UserInterface::UV HpUV3 = { 20.0f / 2480.0f, 148.0f / 1024.0f, 40.0f / 2480.0f, 40.0f / 1024.0f };
+	UserInterface::UV HpUV4 = { 20.0f / 2480.0f, 148.0f / 1024.0f, 40.0f / 2480.0f, 40.0f / 1024.0f };
+	UserInterface::UV HpUV5 = { 20.0f / 2480.0f, 148.0f / 1024.0f, 40.0f / 2480.0f, 40.0f / 1024.0f };
+	UserInterface::UV HpUV6 = { 20.0f / 2480.0f, 148.0f / 1024.0f, 40.0f / 2480.0f, 40.0f / 1024.0f };
+
+	UserInterface::UV UltUV1 = { 260.0f / 2480.0f, 148.0f / 1024.0f, 40.0f / 2480.0f, 40.0f / 1024.0f };
+	UserInterface::UV UltUV2 = { 260.0f / 2480.0f, 148.0f / 1024.0f, 40.0f / 2480.0f, 40.0f / 1024.0f };
+	UserInterface::UV UltUV3 = { 260.0f / 2480.0f, 148.0f / 1024.0f, 40.0f / 2480.0f, 40.0f / 1024.0f };
+	UserInterface::UV UltUV4 = { 260.0f / 2480.0f, 148.0f / 1024.0f, 40.0f / 2480.0f, 40.0f / 1024.0f };
+	UserInterface::UV UltUV5 = { 260.0f / 2480.0f, 148.0f / 1024.0f, 40.0f / 2480.0f, 40.0f / 1024.0f };
+	UserInterface::UV UltUV6 = { 260.0f / 2480.0f, 148.0f / 1024.0f, 40.0f / 2480.0f, 40.0f / 1024.0f };
+
 
 private:
 	enum STEP {
@@ -32,7 +40,10 @@ private:
 	PLAYER player;
 	Enemy enemy[EnemyMax];
 	const Size HpSize{ 40,40 };
+	const Size UltSize{ 40,40 };
 	Vec HpLeftPos = { 246, 60 };
+	Vec UltLeftPos = {890,60};
+
 	//Vec HpPos[6];
 	Vec HpPos1;
 	Vec HpPos2;
