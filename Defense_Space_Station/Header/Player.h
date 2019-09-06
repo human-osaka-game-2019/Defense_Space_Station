@@ -15,6 +15,12 @@ public:
 	PLAYER();
 	~PLAYER();
 
+	enum LAST_ITEM
+	{
+		HAMMER,
+		NET
+	};
+
 	void SetPos(float x, float y);
 	Vec GetPos();
 	void SetSize(float width, float height);
@@ -23,6 +29,12 @@ public:
 	int GetHp();
 	DIRECTION::Direction GetDirection();
 	void Control(Enemy enemy[]);
+	LAST_ITEM Item;
+	bool is_attack;
+	bool is_catch;
+	bool is_move;
+	JUMP_MOVE jump;
+	
 
 private:
 
@@ -32,7 +44,6 @@ private:
 	Vec collision_pos;
 	Size collision_size;
 	DIRECTION::Direction direction;
-	JUMP_MOVE jump;
 	float speed;
 	int hp;
 	int collision_count;
