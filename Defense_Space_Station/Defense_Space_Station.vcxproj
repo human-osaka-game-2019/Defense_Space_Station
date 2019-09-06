@@ -156,6 +156,7 @@
     <ClCompile Include="Source\Main.cpp" />
     <ClCompile Include="Source\Player.cpp" />
     <ClCompile Include="Source\Title.cpp" />
+    <ClCompile Include="Source\UserInterface.cpp" />
     <ClCompile Include="Source\Window.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -171,6 +172,7 @@
     <ClInclude Include="Header\Player.h" />
     <ClInclude Include="Header\Size.h" />
     <ClInclude Include="Header\Title.h" />
+    <ClInclude Include="Header\UserInterface.h" />
     <ClInclude Include="Header\Vector.h" />
     <ClInclude Include="Header\Window.h" />
   </ItemGroup>

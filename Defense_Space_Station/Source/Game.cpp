@@ -33,6 +33,7 @@ void GAME::Load() {
 	dx.LoadTexture("Resource/Enemy/LowEnemy.png", "Low_Enemy");
 	dx.LoadTexture("Resource/Enemy/Boss_Purple.png", "Boss");
 	dx.LoadTexture("Resource/Enemy/SwoonEnemy.png", "SwoonEnemy");
+	dx.LoadTexture("Resource/UI/UI.png", "UI");
 	soundsManager.AddFile("Resource/BGM/game_bgm.mp3", "GameBGM");
 	soundsManager.AddFile("Resource/SE/player_attack.mp3", "PlayerAttackSE");
 	soundsManager.AddFile("Resource/SE/player_catch.mp3", "CatchSE");
@@ -43,6 +44,12 @@ void GAME::Load() {
 	soundsManager.SetVolume("CatchSE", 15);
 	soundsManager.SetVolume("EnemyAttackSE", 15);
 
+
+	for (int i = 0; i < 6; i++) {
+		float width = 56.0f;
+		HpPos[i].x = HpLeftPos.x + width * i;
+		HpPos[i].y = HpLeftPos.y;
+	}
 	
 
 	for (int i = 0; i < EnemyMax; i++) {
@@ -83,6 +90,7 @@ void GAME::Draw() {
 	dx.Draw(RightAirBlockPos.x, RightAirBlockPos.y, DrawAirBlockSize.width, DrawAirBlockSize.height, 0.0f, 1.0f, false, "AirBlock");
 	dx.Draw(LeftAirBlockPos.x, LeftAirBlockPos.y, DrawAirBlockSize.width, DrawAirBlockSize.height, 0.0f, 1.0f, false, "AirBlock");
 	dx.DrawEx(player.GetPos().x, player.GetPos().y, 0.0f, player.GetSize().width, player.GetSize().height, 0.0f, 1.0f, (bool)player.GetDirection(), "Anime", data[0].Tu, 0.0f, data[0].Tw, 0.25f);
+	dx.DrawEx(HpVarPos.x, HpVarPos.y, 0.0f, HpVarSize.width, HpVarSize.height, 0.0f, 1.0f, false, "UI", HpVarUV.tu, HpVarUV.tv, HpVarUV.tw, HpVarUV.th);
 	//dx.Draw(player.GetPos().x, player.GetPos().y, player.GetSize().width, player.GetSize().height, 0.0f, 1.0f, (bool)player.GetDirection(), "test");
 	//dx.Draw(700, 500, 100, 100, 0.0f, 1.0f, false, "Boss");
 
@@ -94,9 +102,15 @@ void GAME::Draw() {
 			dx.Draw(enemy[i].GetPos().x, enemy[i].GetPos().y, enemy[i].GetSize().width, enemy[i].GetSize().height, 0.0f, 1.0f, (bool)enemy[i].GetDirection(), "SwoonEnemy");
 		}
 	}
+
+	for (int i = 0; i < 6; i++) {
+		dx.DrawEx(HpPos[i].x, HpPos[i].y, 0.0f, HpSize.width, HpSize.height, 0.0f, 1.0f, false, "UI", HpUV.tu, HpUV.tv, HpUV.tw, HpUV.th);
+	}
+
 }
 
 void GAME::Release() {
+	dx.ReleaseTexture("UI");
 	dx.ReleaseTexture("Boss");
 	dx.ReleaseTexture("Low_Enemy");
 	dx.ReleaseTexture("Enemy");

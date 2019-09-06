@@ -34,6 +34,9 @@
     <ClCompile Include="Source\GameClear.cpp">
       <Filter>ソース</Filter>
     </ClCompile>
+    <ClCompile Include="Source\UserInterface.cpp">
+      <Filter>ソース</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Header\Game.h">
@@ -76,6 +79,9 @@
       <Filter>ヘッダー</Filter>
     </ClInclude>
     <ClInclude Include="Header\GameClear.h">
+      <Filter>ヘッダー</Filter>
+    </ClInclude>
+    <ClInclude Include="Header\UserInterface.h">
       <Filter>ヘッダー</Filter>
     </ClInclude>
   </ItemGroup>
