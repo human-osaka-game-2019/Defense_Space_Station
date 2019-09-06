@@ -52,6 +52,8 @@ public:
 
 private:
 
+	void Collision();
+
 	Vec Pos;
 	Size size;
 	const float radius;

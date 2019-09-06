@@ -26,10 +26,10 @@ private:
 	const Size BackGroundSize = { DISPLAY_WIDTH, DISPLAY_HEIGHT };
 	Vec LogoCenterPos = { 924.75, 540 };
 	Size LogoSize = { DISPLAY_WIDTH, DISPLAY_HEIGHT };
-	Vec PushEnterPos = { 0, 0 };
-	const Size PushEnterSize = { DISPLAY_WIDTH , DISPLAY_HEIGHT };
-
-	float jump_speed = 0;
+	Vec TopStartButtonPos = { 0, 0 };
+	Vec UnderStartButtonPos = { 0,910 };
+	const Size TopStartButtonSize = {DISPLAY_WIDTH, 910};
+	const Size UnderStartButtonSize = { DISPLAY_WIDTH, 1080 };
 
 	bool will_big = true;
 	float logo_zoom = 1.0f;
@@ -37,12 +37,19 @@ private:
 	const float MaxZoom = 1.10f;
 	const float MinZoom = 0.9f;
 
+	const float JumpAcc = -0.3f;
+	float JumpSpeed;
+
+	bool is_Slide = false;
+
 	void Load();
 	void Control();
 	void Draw();
 	void Release();
 
 	void ZoomLogo();
+	//void JumpPushEnter();
+	void Slide();
 
 };
 

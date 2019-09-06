@@ -31,18 +31,6 @@ private:
 
 	PLAYER player;
 	Enemy enemy[EnemyMax];
-	AnimeData data[TextureMax]
-	{
-		{0.0f, 0.25f, 0, _4F},
-		{0.0f, 0.25f, 0, _20F},
-		{0.0f, 0.25f, 0, _20F},
-		{0.0f, 0.25f, 0, _20F},
-		{0.0f, 0.25f, 0, _20F},
-		{0.0f, 0.25f, 0, _20F},
-		{0.0f, 0.25f, 0, _20F},
-		{0.0f, 0.25f, 0, _20F},
-	};
-
 	const Size HpSize{ 40,40 };
 	Vec HpLeftPos = { 246, 60 };
 	//Vec HpPos[6];

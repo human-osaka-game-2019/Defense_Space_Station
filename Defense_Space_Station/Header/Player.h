@@ -19,6 +19,8 @@ public:
 	Vec GetPos();
 	void SetSize(float width, float height);
 	Size GetSize();
+	void SetHp(int);
+	int GetHp();
 	DIRECTION::Direction GetDirection();
 	void Control(Enemy enemy[]);
 
@@ -27,12 +29,16 @@ private:
 	Vec pos;
 	Vec UnderPos;
 	Size size;
+	Vec collision_pos;
+	Size collision_size;
 	DIRECTION::Direction direction;
 	JUMP_MOVE jump;
 	float speed;
+	int hp;
+	int collision_count;
+	bool is_god;
 
 	Vec PrevPos;
-	bool is_onBlock;
 
 	//! Acceleration(加速度)
 	float acc;
@@ -41,7 +47,7 @@ private:
 	void Catch(Enemy enemy[]);
 	void SpecialAttack(Enemy enemy[]);
 
-	void Collision();
+	void Collision(Enemy enemy[]);
 };
 
 #endif

@@ -22,6 +22,14 @@ Size PLAYER::GetSize() {
 	return size;
 }
 
+void PLAYER::SetHp(int hp) {
+	this->hp = hp;
+}
+
+int PLAYER::GetHp() {
+	return this->hp;
+}
+
 DIRECTION::Direction PLAYER::GetDirection() {
 	return direction;
 }
@@ -76,7 +84,7 @@ void PLAYER::Control(Enemy enemy[]) {
 		pos.y += 10.0f;
 	}
 #endif
-	Collision();
+	Collision(enemy);
 	pos.x += speed;
 	this->jump.Jump(&this->pos);
 }
@@ -140,17 +148,21 @@ void PLAYER::SpecialAttack(Enemy enemy[]) {
 	}
 }
 
-void PLAYER::Collision() {
+void PLAYER::Collision(Enemy enemy[]) {
 	//LeftAirBlock
-	if (Collision::AirBlockCollision(pos, size, Collision::JudgeLeftAirBlockPos, Collision::JudgeAirBlockSize, PrevPos)) {
+	collision_pos = { pos.x + 150.0f, pos.y + 375.0f};
+	collision_size = { 200.0f,25.0f };
+	if (Collision::AirBlockCollision(collision_pos, collision_size, Collision::JudgeLeftAirBlockPos, Collision::JudgeAirBlockSize, PrevPos)) {
 		if (dx.GetKeyState(JUMP) != dx.PUSH) {
 			jump.SetJumpFlag(false);
+		}
+		else {
 			jump.SetInitialSpeed(25.0f);
 		}
 		pos.y = Collision::LeftAirBlockPos.y - size.height;
 	}
 	//RightAirBlock
-	else if (Collision::AirBlockCollision(pos, size, Collision::JudgeRightAirBlockPos, Collision::JudgeAirBlockSize, PrevPos)) {
+	else if (Collision::AirBlockCollision(collision_pos, collision_size, Collision::JudgeRightAirBlockPos, Collision::JudgeAirBlockSize, PrevPos)) {
 		if (dx.GetKeyState(JUMP) != dx.PUSH) {
 			jump.SetJumpFlag(false);
 			jump.SetInitialSpeed(25.0f);
@@ -162,11 +174,11 @@ void PLAYER::Collision() {
 	}
 
 	//壁
-	if (pos.x <= 0.0f) {
-		pos.x = 0.0f;
+	if (pos.x <= -75.0f) {
+		pos.x = -75.0f;
 	}
-	else if (pos.x + size.width >= DISPLAY_WIDTH) {
-		pos.x = DISPLAY_WIDTH - size.width;
+	else if (pos.x + size.width >= DISPLAY_WIDTH + 75.0f) {
+		pos.x = DISPLAY_WIDTH + 75.0f - size.width;
 	}
 
 	//床
@@ -176,9 +188,29 @@ void PLAYER::Collision() {
 			jump.SetJumpFlag(false);
 		}
 	}
+
+	collision_pos = {pos.x + 150.0f, pos.y};
+	collision_size = { 200.0f,400.0f };
+	//敵
+	if (!is_god) {
+		for (int i = 0; i < EnemyMax; i++) {
+			if (Collision::SquareCollision(collision_pos, collision_size, enemy[i].GetPos(), enemy[i].GetSize())) {
+				hp--;
+				if (collision_count <= 120) {
+					collision_count = 0;
+					is_god = true;
+				}
+			}
+		}
+	}
+	if (collision_count >= 120) {
+		is_god = false;
+		collision_count = 0;
+	}
+	collision_count++;
 }
 
-PLAYER::PLAYER():pos(100.0f,100.0f),direction(RIGHT),speed(0.0f),PrevPos(pos), is_onBlock(false), acc(0.20f){
+PLAYER::PLAYER():pos(100.0f,100.0f),direction(RIGHT),speed(0.0f),hp(12),collision_count(0), is_god(false),PrevPos(pos),acc(0.20f){
 	SetSize(500.0f, 400.0f);
 }
 
