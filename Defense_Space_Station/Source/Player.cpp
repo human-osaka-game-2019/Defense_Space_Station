@@ -219,7 +219,7 @@ void PLAYER::Collision(Enemy enemy[]) {
 	collision_count++;
 }
 
-PLAYER::PLAYER():item(HAMMER), is_attack(false), is_catch(false), is_move(false), pos(100.0f,100.0f),direction(RIGHT),speed(0.0f),hp(12), collision_count(0), is_god(false), PrevPos(pos), acc(0.20f){
+PLAYER::PLAYER():item(HAMMER), is_attack(false), is_catch(false), is_move(false), pos(100.0f,100.0f),direction(RIGHT),speed(0.0f),hp(12), collision_count(0), is_god(false), PrevPos(pos), acc(0.20f), is_damege(false){
 	SetSize(500.0f, 400.0f);
 }
 

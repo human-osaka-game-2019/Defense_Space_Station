@@ -33,6 +33,7 @@ public:
 	bool is_attack;
 	bool is_catch;
 	bool is_move;
+	bool is_damege;
 	JUMP_MOVE jump;
 	
 
