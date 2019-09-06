@@ -51,6 +51,12 @@ private:
 	Vec HpPos4;
 	Vec HpPos5;
 	Vec HpPos6;
+	Vec UltPos1;
+	Vec UltPos2;
+	Vec UltPos3;
+	Vec UltPos4;
+	Vec UltPos5;
+	Vec UltPos6;
 	const Size HpVarSize{580,100};
 	const Vec HpVarPos{ 40, 35 };
 	UserInterface::UV HpVarUV = { 320.0f / 2480.0f,150.0f / 1024.0f,575.0f / 2480.0f,100.0f / 1024.0f };
