@@ -13,7 +13,12 @@ public:
 
 	void UpdateScene();
 
-	UserInterface::UV HpUV = { 20.0f / 2480.0f, 148.0f / 1024.0f, 40.0f / 2480.0f, 40.0f / 1024.0f };
+	UserInterface::UV HpUV1 = { 140.0f / 2480.0f, 148.0f / 1024.0f, 40.0f / 2480.0f, 40.0f / 1024.0f };
+	UserInterface::UV HpUV2 = { 140.0f / 2480.0f, 148.0f / 1024.0f, 40.0f / 2480.0f, 40.0f / 1024.0f };
+	UserInterface::UV HpUV3 = { 140.0f / 2480.0f, 148.0f / 1024.0f, 40.0f / 2480.0f, 40.0f / 1024.0f };
+	UserInterface::UV HpUV4 = { 140.0f / 2480.0f, 148.0f / 1024.0f, 40.0f / 2480.0f, 40.0f / 1024.0f };
+	UserInterface::UV HpUV5 = { 140.0f / 2480.0f, 148.0f / 1024.0f, 40.0f / 2480.0f, 40.0f / 1024.0f };
+	UserInterface::UV HpUV6 = { 140.0f / 2480.0f, 148.0f / 1024.0f, 40.0f / 2480.0f, 40.0f / 1024.0f };
 
 private:
 	enum STEP {
@@ -40,7 +45,13 @@ private:
 
 	const Size HpSize{ 40,40 };
 	Vec HpLeftPos = { 246, 60 };
-	Vec HpPos[6];
+	//Vec HpPos[6];
+	Vec HpPos1;
+	Vec HpPos2;
+	Vec HpPos3;
+	Vec HpPos4;
+	Vec HpPos5;
+	Vec HpPos6;
 	const Size HpVarSize{580,100};
 	const Vec HpVarPos{ 40, 35 };
 	UserInterface::UV HpVarUV = { 320.0f / 2480.0f,150.0f / 1024.0f,575.0f / 2480.0f,100.0f / 1024.0f };

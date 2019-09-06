@@ -44,13 +44,29 @@ void GAME::Load() {
 	soundsManager.SetVolume("CatchSE", 15);
 	soundsManager.SetVolume("EnemyAttackSE", 15);
 
-
+	/*
 	for (int i = 0; i < 6; i++) {
 		float width = 56.0f;
 		HpPos[i].x = HpLeftPos.x + width * i;
 		HpPos[i].y = HpLeftPos.y;
 	}
-	
+	*/
+
+	HpPos1.x = HpLeftPos.x;
+	HpPos2.x = HpLeftPos.x + 56 * 1;
+	HpPos3.x = HpLeftPos.x + 56 * 2;
+	HpPos4.x = HpLeftPos.x + 56 * 3;
+	HpPos5.x = HpLeftPos.x + 56 * 4;
+	HpPos6.x = HpLeftPos.x + 56 * 5;
+
+	HpPos1.y = HpLeftPos.y;
+	HpPos2.y = HpLeftPos.y;
+	HpPos3.y = HpLeftPos.y;
+	HpPos4.y = HpLeftPos.y;
+	HpPos5.y = HpLeftPos.y;
+	HpPos6.y = HpLeftPos.y;
+
+
 
 	for (int i = 0; i < EnemyMax; i++) {
 		if ( i % 2 == 0) {
@@ -103,10 +119,18 @@ void GAME::Draw() {
 		}
 	}
 
+	/*
 	for (int i = 0; i < 6; i++) {
 		dx.DrawEx(HpPos[i].x, HpPos[i].y, 0.0f, HpSize.width, HpSize.height, 0.0f, 1.0f, false, "UI", HpUV.tu, HpUV.tv, HpUV.tw, HpUV.th);
 	}
+	*/
 
+	dx.DrawEx(HpPos1.x, HpPos1.y, 0.0f, HpSize.width, HpSize.height, 0.0f, 1.0f, false, "UI", HpUV1.tu, HpUV1.tv, HpUV1.tw, HpUV1.th);
+	dx.DrawEx(HpPos2.x, HpPos2.y, 0.0f, HpSize.width, HpSize.height, 0.0f, 1.0f, false, "UI", HpUV2.tu, HpUV2.tv, HpUV2.tw, HpUV2.th);
+	dx.DrawEx(HpPos3.x, HpPos3.y, 0.0f, HpSize.width, HpSize.height, 0.0f, 1.0f, false, "UI", HpUV3.tu, HpUV3.tv, HpUV3.tw, HpUV3.th);
+	dx.DrawEx(HpPos4.x, HpPos4.y, 0.0f, HpSize.width, HpSize.height, 0.0f, 1.0f, false, "UI", HpUV4.tu, HpUV4.tv, HpUV4.tw, HpUV4.th);
+	dx.DrawEx(HpPos5.x, HpPos5.y, 0.0f, HpSize.width, HpSize.height, 0.0f, 1.0f, false, "UI", HpUV5.tu, HpUV5.tv, HpUV5.tw, HpUV5.th);
+	dx.DrawEx(HpPos6.x, HpPos6.y, 0.0f, HpSize.width, HpSize.height, 0.0f, 1.0f, false, "UI", HpUV6.tu, HpUV6.tv, HpUV6.tw, HpUV6.th);
 }
 
 void GAME::Release() {
