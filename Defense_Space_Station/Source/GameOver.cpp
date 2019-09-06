@@ -19,7 +19,7 @@ void GAME_OVER::UpdateScene() {
 }
 
 void GAME_OVER::Load() {
-	dx.LoadTexture("Resource/BackGround/GameClearBack.png", "BackGround");
+	dx.LoadTexture("Resource/BackGround/GameOverBack.png", "BackGround");
 	dx.LoadTexture("Resource/UI/ResultUI.png", "ResultUI");
 
 	step = MainStep;

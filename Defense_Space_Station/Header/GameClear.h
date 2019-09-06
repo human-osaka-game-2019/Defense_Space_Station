@@ -27,7 +27,7 @@ private:
 	const Size GoTitleSize = { 600, 100 };
 
 	const Vec RetryCursorPos = { 700,600 };
-	const Vec GoTitleCursorPos = { 600, 750 };
+	const Vec GoTitleCursorPos = { 605, 750 };
 
 	Vec StarPos;
 	const Size StarSize = { 100,100 };

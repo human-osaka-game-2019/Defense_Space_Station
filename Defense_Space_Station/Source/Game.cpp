@@ -111,6 +111,10 @@ void GAME::Control() {
 		}
 	//EnemyCollision(enemy);
 
+	if (player.GetHp() <= 0) {
+		is_clear = false;
+	}
+
 	
 #ifdef _DEBUG
 	if (dx.GetKeyState(DIK_ESCAPE) == dx.PUSH) {
@@ -165,6 +169,14 @@ void GAME::Release() {
 	dx.ReleaseTexture("HammerAction");
 	dx.ReleaseTexture("AirBlock");
 	dx.ReleaseTexture("GameBack");
+
+	if (is_clear) {
+		g_scene = GameClear;
+	}
+	else {
+		g_scene = GameOver;
+	}
+
 }
 
 void GAME::DrawUI() {
@@ -251,7 +263,7 @@ void GAME::PlayerDraw() {
 	}
 }
 
-GAME::GAME() {
+GAME::GAME():is_clear(false) {
 
 }
 

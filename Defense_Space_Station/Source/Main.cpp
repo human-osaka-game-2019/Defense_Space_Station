@@ -20,7 +20,7 @@ DirectX dx;
 SoundLib::SoundsManager soundsManager;
 RECT WinRect;
 
-SCENE g_scene = GameClear;
+SCENE g_scene = Title;
 
 INT WINAPI WinMain(
 	_In_ HINSTANCE hInstance,
