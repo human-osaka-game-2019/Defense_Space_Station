@@ -186,6 +186,12 @@ void GAME::PlayerDraw() {
 			dx.DrawEx(player.GetPos().x, player.GetPos().y, 0.0f, player.GetSize().width, player.GetSize().height, 0.0f, 1.0f, (bool)player.GetDirection(), "HammerAction", AttackMotion.Tu, 0.0f, AttackMotion.Tw, 390.0f / 512.0f);
 			player.is_attack = AttackMotion.flee_frag;
 		}
+		else if (player.is_damege == true)
+		{
+			Anime::Animation(&Damage, 535.0f / 4096.0f * 3, false);
+			dx.DrawEx(player.GetPos().x, player.GetPos().y, 0.0f, player.GetSize().width, player.GetSize().height, 0.0f, 1.0f, (bool)player.GetDirection(), "HammerDamage", Damage.Tu, 0.0f, Damage.Tw, 390.0f / 512.0f);
+			player.is_damege = Damage.flee_frag;
+		}
 		else if (player.is_move && player.jump.GetJumpFlag())
 		{
 			dx.DrawEx(player.GetPos().x, player.GetPos().y, 0.0f, player.GetSize().width, player.GetSize().height, 0.0f, 1.0f, (bool)player.GetDirection(), "RunHammer", Ran.Tu, 0.0f, Ran.Tw, 390.0f / 512.0f);
@@ -214,11 +220,28 @@ void GAME::PlayerDraw() {
 	}
 	else if (player.item == player.LAST_ITEM::NET)
 	{
-		if (player.is_attack)
+		if (player.GetHp() <= 0)
+		{
+			if (Down.Tu == 535.0f / 8192.0f * 11)
+			{
+				dx.DrawEx(player.GetPos().x, player.GetPos().y, 0.0f, player.GetSize().width, player.GetSize().height, 0.0f, 1.0f, (bool)player.GetDirection(), "HammerDown", 535.0f / 8192.0f * 11, 0.0f, 535.0f / 8192.0f , 390.0f / 512.0f);
+			}
+			else 
+			{
+				Anime::Animation(&Down, 535.0f / 8192.0f * 10, false);
+				dx.DrawEx(player.GetPos().x, player.GetPos().y, 0.0f, player.GetSize().width, player.GetSize().height, 0.0f, 1.0f, (bool)player.GetDirection(), "HammerDown", Down.Tu, 0.0f, Down.Tw, 390.0f / 512.0f);
+			}
+		}
+		else if (player.is_attack)
 		{
 			Anime::Animation(&AttackMotion, 535.0f / 16384.0f * 17, false);
 			dx.DrawEx(player.GetPos().x, player.GetPos().y, 0.0f, player.GetSize().width, player.GetSize().height, 0.0f, 1.0f, (bool)player.GetDirection(), "NetAction", AttackMotion.Tu, 0.0f, AttackMotion.Tw, 390.0f / 512.0f);
 			player.is_attack = AttackMotion.flee_frag;
+		}else if (player.is_damege == true)
+		{
+			Anime::Animation(&Damage, 535.0f / 4096.0f * 3, false);
+			dx.DrawEx(player.GetPos().x, player.GetPos().y, 0.0f, player.GetSize().width, player.GetSize().height, 0.0f, 1.0f, (bool)player.GetDirection(), "NetDamage", Damage.Tu, 0.0f, Damage.Tw, 390.0f / 512.0f);
+			player.is_damege = Damage.flee_frag;
 		}
 		else if (player.is_move && player.jump.GetJumpFlag())
 		{
@@ -247,6 +270,10 @@ void GAME::PlayerDraw() {
 	if (AttackMotion.flee_frag == false)
 	{
 		AttackMotion.flee_frag = true;
+	}
+	if (Damage.flee_frag == false)
+	{
+		Damage.flee_frag = true;
 	}
 }
 

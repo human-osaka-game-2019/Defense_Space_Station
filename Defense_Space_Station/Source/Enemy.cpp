@@ -133,8 +133,8 @@ void Enemy::EnemyAliveMove(Vec PlayerPos)
 
 		if(PlayerSearch(PlayerPos, direction))
 		{
-			if (!((PlayerPos.x) > (this->Pos.x - 50)) || !(PlayerPos.x < (this->Pos.x + 50)))
-			{
+			//if (!((PlayerPos.x) > (this->Pos.x - 50)) || !(PlayerPos.x < (this->Pos.x + 50)))
+			//{
 				switch (direction)
 				{
 				case DIRECTION::RIGHT:
@@ -150,7 +150,7 @@ void Enemy::EnemyAliveMove(Vec PlayerPos)
 
 
 				}
-			}
+			//}
 		}
 		else
 		{

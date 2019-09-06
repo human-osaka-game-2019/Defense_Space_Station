@@ -61,8 +61,9 @@ private:
 	AnimeData SwoonEnemy = { 0.0f, 100.0f / 1024.0f, 0, _15F, false};
 	AnimeData Jump = { 0.0f, 535.0f / 16384.0f, 0, _6F, false };
 	AnimeData Ran = { 0.0f, 535.0f / 8192.0f, 0, _8F, false };
-	AnimeData Down = { 0.0f, 100.0f / 1024.0f, 0, _8F, false };
-
+	AnimeData Down = { 0.0f, 535.0f / 8192.0f, 0, _8F, false };
+	AnimeData Damage = { 0.0f, 535.0f / 4096.0f, 0, _15F, false };
+	
 	void DrawUI();
 	void PlayerDraw();
 
