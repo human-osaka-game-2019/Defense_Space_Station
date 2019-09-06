@@ -77,6 +77,20 @@ void GAME::Load() {
 	HpPos5.y = HpLeftPos.y;
 	HpPos6.y = HpLeftPos.y;
 
+	UltPos1.x = UltLeftPos.x;
+	UltPos2.x = UltLeftPos.x + 56 * 1;
+	UltPos3.x = UltLeftPos.x + 56 * 2;
+	UltPos4.x = UltLeftPos.x + 56 * 3;
+	UltPos5.x = UltLeftPos.x + 56 * 4;
+	UltPos6.x = UltLeftPos.x + 56 * 5;
+
+	UltPos1.y = UltLeftPos.y;
+	UltPos2.y = UltLeftPos.y;
+	UltPos3.y = UltLeftPos.y;
+	UltPos4.y = UltLeftPos.y;
+	UltPos5.y = UltLeftPos.y;
+	UltPos6.y = UltLeftPos.y;
+
 
 
 	for (int i = 0; i < EnemyMax; i++) {
@@ -189,6 +203,14 @@ void GAME::DrawUI() {
 	dx.DrawEx(HpPos4.x, HpPos4.y, 0.0f, HpSize.width, HpSize.height, 0.0f, 1.0f, false, "UI", HpUV4.tu, HpUV4.tv, HpUV4.tw, HpUV4.th);
 	dx.DrawEx(HpPos5.x, HpPos5.y, 0.0f, HpSize.width, HpSize.height, 0.0f, 1.0f, false, "UI", HpUV5.tu, HpUV5.tv, HpUV5.tw, HpUV5.th);
 	dx.DrawEx(HpPos6.x, HpPos6.y, 0.0f, HpSize.width, HpSize.height, 0.0f, 1.0f, false, "UI", HpUV6.tu, HpUV6.tv, HpUV6.tw, HpUV6.th);
+
+	dx.DrawEx(UltPos1.x, UltPos1.y, 0.0f, UltSize.width, UltSize.height, 0.0f, 1.0f, false, "UI", UltUV1.tu, UltUV1.tv, UltUV1.tw, UltUV1.th);
+	dx.DrawEx(UltPos2.x, UltPos2.y, 0.0f, UltSize.width, UltSize.height, 0.0f, 1.0f, false, "UI", UltUV2.tu, UltUV2.tv, UltUV2.tw, UltUV2.th);
+	dx.DrawEx(UltPos3.x, UltPos3.y, 0.0f, UltSize.width, UltSize.height, 0.0f, 1.0f, false, "UI", UltUV3.tu, UltUV3.tv, UltUV3.tw, UltUV3.th);
+	dx.DrawEx(UltPos4.x, UltPos4.y, 0.0f, UltSize.width, UltSize.height, 0.0f, 1.0f, false, "UI", UltUV4.tu, UltUV4.tv, UltUV4.tw, UltUV4.th);
+	dx.DrawEx(UltPos5.x, UltPos5.y, 0.0f, UltSize.width, UltSize.height, 0.0f, 1.0f, false, "UI", UltUV5.tu, UltUV5.tv, UltUV5.tw, UltUV5.th);
+	dx.DrawEx(UltPos6.x, UltPos6.y, 0.0f, UltSize.width, UltSize.height, 0.0f, 1.0f, false, "UI", UltUV6.tu, UltUV6.tv, UltUV6.tw, UltUV6.th);
+
 }
 
 void GAME::PlayerDraw() {
