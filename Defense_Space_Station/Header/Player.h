@@ -29,7 +29,7 @@ public:
 	int GetHp();
 	DIRECTION::Direction GetDirection();
 	void Control(Enemy enemy[]);
-	LAST_ITEM Item;
+	LAST_ITEM item;
 	bool is_attack;
 	bool is_catch;
 	bool is_move;

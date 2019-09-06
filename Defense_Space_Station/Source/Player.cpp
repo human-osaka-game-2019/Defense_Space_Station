@@ -37,12 +37,12 @@ DIRECTION::Direction PLAYER::GetDirection() {
 void PLAYER::Control(Enemy enemy[]) {
 	if (dx.GetKeyState(DIK_D) == dx.ON) {
 		direction = RIGHT;
-		speed = 5.0f;
+		speed = 7.5f;
 		is_move = true;
 	}
 	if (dx.GetKeyState(DIK_A) == dx.ON) {
 		direction = LEFT;
-		speed = -5.0f;
+		speed = -7.5f;
 		is_move = true;
 	}
 	if (dx.GetKeyState(DIK_D) == dx.OFF && speed >= 0.0f) {
@@ -71,12 +71,12 @@ void PLAYER::Control(Enemy enemy[]) {
 	}
 	if (dx.GetKeyState(DIK_J) == dx.PUSH) {
 		Attack(enemy);
-		Item = LAST_ITEM::HAMMER;
+		item = LAST_ITEM::HAMMER;
 		is_attack = true;
 	}
 	if (dx.GetKeyState(DIK_K) == dx.PUSH) {
 		Catch(enemy);
-		Item = LAST_ITEM::NET;
+		item = LAST_ITEM::NET;
 		soundsManager.Start("CatchSE", false);
 		is_attack = true;
 	}
@@ -105,7 +105,7 @@ void PLAYER::Attack(Enemy enemy[]) {
 
 		if (enemy[i].GetMode() == Enemy::MODE::ALIVE) {
 			if (direction == RIGHT) {
-				if (Collision::CircleCollision(UnderPos, size.height / 2, EnemyCenter, enemy[i].GetRadius()) 
+				if (Collision::CircleCollision(UnderPos, size.height / 3, EnemyCenter, enemy[i].GetRadius()) 
 					&& UnderPos.x <= EnemyCenter.x 
 					&& UnderPos.y >= EnemyCenter.y) {
 					soundsManager.Start("PlayerAttackSE", false);
@@ -114,7 +114,7 @@ void PLAYER::Attack(Enemy enemy[]) {
 				}
 			}
 			if (direction == LEFT) {
-				if (Collision::CircleCollision(UnderPos, size.height / 2, EnemyCenter, enemy[i].GetRadius()) 
+				if (Collision::CircleCollision(UnderPos, size.height / 3, EnemyCenter, enemy[i].GetRadius()) 
 					&& UnderPos.x >= EnemyCenter.x 
 					&& UnderPos.y >= EnemyCenter.y) {
 					soundsManager.Start("PlayerAttackSE", false);
@@ -219,9 +219,7 @@ void PLAYER::Collision(Enemy enemy[]) {
 	collision_count++;
 }
 
-PLAYER::PLAYER():pos(100.0f,100.0f),direction(RIGHT),speed(0.0f),PrevPos(pos), is_onBlock(false), acc(0.20f){
-PLAYER::PLAYER():pos(100.0f,100.0f),direction(RIGHT),speed(0.0f),hp(12),collision_count(0), is_god(false),PrevPos(pos),acc(0.20f){
-PLAYER::PLAYER():pos(100.0f,100.0f),direction(RIGHT),speed(0.0f),PrevPos(pos), is_onBlock(false), acc(0.20f), Item(LAST_ITEM::HAMMER), is_attack(false), is_catch(false), is_move(false){
+PLAYER::PLAYER():item(HAMMER), is_attack(false), is_catch(false), is_move(false), pos(100.0f,100.0f),direction(RIGHT),speed(0.0f),hp(12), collision_count(0), is_god(false), PrevPos(pos), acc(0.20f){
 	SetSize(500.0f, 400.0f);
 }
 

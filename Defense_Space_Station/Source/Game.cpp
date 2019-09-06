@@ -30,13 +30,13 @@ void GAME::Load() {
 	dx.LoadTexture("Resource/Player/hammer.png", "HammerAction");
 	dx.LoadTexture("Resource/Player/hammerdamage.png", "HammerDamage");
 	dx.LoadTexture("Resource/Player/hammerjump.png", "HammerJump");
+	dx.LoadTexture("Resource/Player/playerdown.png", "HammerDown");
 	dx.LoadTexture("Resource/Player/runhammer.png", "RunHammer");
 	dx.LoadTexture("Resource/Player/net.png", "NetAction");
 	dx.LoadTexture("Resource/Player/netdamage.png", "NetDamage");
 	dx.LoadTexture("Resource/Player/netdown.png", "NetDown");
 	dx.LoadTexture("Resource/Player/netjump.png", "NetJump");
 	dx.LoadTexture("Resource/Player/playerdash.png", "NetDash");
-	dx.LoadTexture("Resource/Player/playerdown.png", "NetDown");
 	dx.LoadTexture("Resource/Enemy/enemyattack.png", "EnemyAttack");
 	dx.LoadTexture("Resource/Enemy/Enemy.png", "Enemy");
 	dx.LoadTexture("Resource/Enemy/LowEnemy.png", "Low_Enemy");
@@ -115,25 +115,80 @@ void GAME::Draw() {
 	dx.Draw(0, 0, DISPLAY_WIDTH, DISPLAY_HEIGHT, 0.0f, 1.0f, false, "GameBack");
 	dx.Draw(RightAirBlockPos.x, RightAirBlockPos.y, DrawAirBlockSize.width, DrawAirBlockSize.height, 0.0f, 1.0f, false, "AirBlock");
 	dx.Draw(LeftAirBlockPos.x, LeftAirBlockPos.y, DrawAirBlockSize.width, DrawAirBlockSize.height, 0.0f, 1.0f, false, "AirBlock");
-dx.DrawEx(HpVarPos.x, HpVarPos.y, 0.0f, HpVarSize.width, HpVarSize.height, 0.0f, 1.0f, false, "UI", HpVarUV.tu, HpVarUV.tv, HpVarUV.tw, HpVarUV.th);
-	dx.DrawEx(UltVarPos.x, UltVarPos.y, 0.0f, UltVarSize.width, UltVarSize.height, 0.0f, 1.0f, false, "UI", UltVarUV.tu, UltVarUV.tv, UltVarUV.tw, UltVarUV.th);
+	//dx.Draw(700, 500, 100, 100, 0.0f, 1.0f, false, "Boss");
+
+	for (int i = 0; i < EnemyMax; i++) {
+		if (enemy[i].GetMode() == Enemy::MODE::ALIVE) {
+			dx.DrawEx(enemy[i].GetPos().x, enemy[i].GetPos().y, 0.0f, enemy[i].GetSize().width, enemy[i].GetSize().height, 0.0f, 1.0f, (bool)enemy[i].GetDirection(), "Enemy", 0.0f, 0.0f, 1.0f, 1295.0f / 1500.0f);
+		}
+		if (enemy[i].GetMode() == Enemy::MODE::SWOON) {
+			Anime::Animation(&SwoonEnemy, 100.0f / 1024.0f * 2, true);
+			dx.DrawEx(enemy[i].GetPos().x, enemy[i].GetPos().y, 0.0f, enemy[i].GetSize().width, enemy[i].GetSize().height, 0.0f, 1.0f, (bool)enemy[i].GetDirection(), "SwoonEnemy", SwoonEnemy.Tu, 0.0f, SwoonEnemy.Tw, 120.0f / 256.0f);
+		}
+	}
+
+	/*
+	for (int i = 0; i < 6; i++) {
+		dx.DrawEx(HpPos[i].x, HpPos[i].y, 0.0f, HpSize.width, HpSize.height, 0.0f, 1.0f, false, "UI", HpUV.tu, HpUV.tv, HpUV.tw, HpUV.th);
+	}
+	*/
+	PlayerDraw();
 	
-	if (player.Item == player.LAST_ITEM::HAMMER) {
-		if(player.is_attack)
+	DrawUI();
+}
+
+void GAME::Release() {
+	dx.ReleaseTexture("SwoonEnemy");
+	dx.ReleaseTexture("UI");
+	dx.ReleaseTexture("Boss");
+	dx.ReleaseTexture("Low_Enemy");
+	dx.ReleaseTexture("Enemy");
+	dx.ReleaseTexture("EnemyAttack");
+	dx.ReleaseTexture("NetDash");
+	dx.ReleaseTexture("NetJump");
+	dx.ReleaseTexture("NetDown");
+	dx.ReleaseTexture("NetDamage");
+	dx.ReleaseTexture("NetAction");
+	dx.ReleaseTexture("RunHammer");
+	dx.ReleaseTexture("HammerDown");
+	dx.ReleaseTexture("HammerJump");
+	dx.ReleaseTexture("HammerDamage");
+	dx.ReleaseTexture("HammerAction");
+	dx.ReleaseTexture("AirBlock");
+	dx.ReleaseTexture("GameBack");
+}
+
+void GAME::DrawUI() {
+	dx.DrawEx(HpVarPos.x, HpVarPos.y, 0.0f, HpVarSize.width, HpVarSize.height, 0.0f, 1.0f, false, "UI", HpVarUV.tu, HpVarUV.tv, HpVarUV.tw, HpVarUV.th);
+	dx.DrawEx(UltVarPos.x, UltVarPos.y, 0.0f, UltVarSize.width, UltVarSize.height, 0.0f, 1.0f, false, "UI", UltVarUV.tu, UltVarUV.tv, UltVarUV.tw, UltVarUV.th);
+
+	dx.DrawEx(HpPos1.x, HpPos1.y, 0.0f, HpSize.width, HpSize.height, 0.0f, 1.0f, false, "UI", HpUV1.tu, HpUV1.tv, HpUV1.tw, HpUV1.th);
+	dx.DrawEx(HpPos2.x, HpPos2.y, 0.0f, HpSize.width, HpSize.height, 0.0f, 1.0f, false, "UI", HpUV2.tu, HpUV2.tv, HpUV2.tw, HpUV2.th);
+	dx.DrawEx(HpPos3.x, HpPos3.y, 0.0f, HpSize.width, HpSize.height, 0.0f, 1.0f, false, "UI", HpUV3.tu, HpUV3.tv, HpUV3.tw, HpUV3.th);
+	dx.DrawEx(HpPos4.x, HpPos4.y, 0.0f, HpSize.width, HpSize.height, 0.0f, 1.0f, false, "UI", HpUV4.tu, HpUV4.tv, HpUV4.tw, HpUV4.th);
+	dx.DrawEx(HpPos5.x, HpPos5.y, 0.0f, HpSize.width, HpSize.height, 0.0f, 1.0f, false, "UI", HpUV5.tu, HpUV5.tv, HpUV5.tw, HpUV5.th);
+	dx.DrawEx(HpPos6.x, HpPos6.y, 0.0f, HpSize.width, HpSize.height, 0.0f, 1.0f, false, "UI", HpUV6.tu, HpUV6.tv, HpUV6.tw, HpUV6.th);
+}
+
+void GAME::PlayerDraw() {
+	if (player.item == player.LAST_ITEM::HAMMER) {
+		if (player.is_attack)
 		{
 			Anime::Animation(&AttackMotion, 535.0f / 16384.0f * 17, false);
 			dx.DrawEx(player.GetPos().x, player.GetPos().y, 0.0f, player.GetSize().width, player.GetSize().height, 0.0f, 1.0f, (bool)player.GetDirection(), "HammerAction", AttackMotion.Tu, 0.0f, AttackMotion.Tw, 400.0f / 512.0f);
 			player.is_attack = AttackMotion.flee_frag;
-		}else if (player.is_move && player.jump.GetJumpFlag()) 
+		}
+		else if (player.is_move && player.jump.GetJumpFlag())
 		{
 			dx.DrawEx(player.GetPos().x, player.GetPos().y, 0.0f, player.GetSize().width, player.GetSize().height, 0.0f, 1.0f, (bool)player.GetDirection(), "RunHammer", Ran.Tu, 0.0f, Ran.Tw, 400.0f / 512.0f);
 		}
-		else if(player.is_move && !player.jump.GetJumpFlag())
+		else if (player.is_move && !player.jump.GetJumpFlag())
 		{
 			Anime::Animation(&Ran, 535.0f / 8192.0f * 11, false);
 			dx.DrawEx(player.GetPos().x, player.GetPos().y, 0.0f, player.GetSize().width, player.GetSize().height, 0.0f, 1.0f, (bool)player.GetDirection(), "RunHammer", Ran.Tu, 0.0f, Ran.Tw, 400.0f / 512.0f);
 
-		}else if (player.jump.GetJumpFlag()) 
+		}
+		else if (player.jump.GetJumpFlag())
 		{
 			Anime::Animation(&Jump, 535.0f / 16384.0f * 17, false);
 			dx.DrawEx(player.GetPos().x, player.GetPos().y, 0.0f, player.GetSize().width, player.GetSize().height, 0.0f, 1.0f, (bool)player.GetDirection(), "HammerJump", Jump.Tu, 0.0f, Jump.Tw, 400.0f / 512.0f);
@@ -149,7 +204,7 @@ dx.DrawEx(HpVarPos.x, HpVarPos.y, 0.0f, HpVarSize.width, HpVarSize.height, 0.0f,
 		//dx.DrawEx(player.GetPos().x, player.GetPos().y, 0.0f, player.GetSize().width, player.GetSize().height, 0.0f, 1.0f, (bool)player.GetDirection(), "RunHammer", AttackMotion.Tu, 0.0f, AttackMotion.Tw, 400.0f / 512.0f);
 		//dx.DrawEx(player.GetPos().x, player.GetPos().y, 0.0f, player.GetSize().width, player.GetSize().height, 0.0f, 1.0f, (bool)player.GetDirection(), "RunHammer", AttackMotion.Tu, 0.0f, AttackMotion.Tw, 400.0f / 512.0f);
 	}
-	else if(player.Item == player.LAST_ITEM::NET)
+	else if (player.item == player.LAST_ITEM::NET)
 	{
 		if (player.is_attack)
 		{
@@ -181,53 +236,10 @@ dx.DrawEx(HpVarPos.x, HpVarPos.y, 0.0f, HpVarSize.width, HpVarSize.height, 0.0f,
 			dx.DrawEx(player.GetPos().x, player.GetPos().y, 0.0f, player.GetSize().width, player.GetSize().height, 0.0f, 1.0f, (bool)player.GetDirection(), "NetAction", 0.0f, 0.0f, 535.0f / 16384.0f * 1, 400.0f / 512.0f);
 		}
 	}
-			if (AttackMotion.flee_frag == false)
-			{
-				AttackMotion.flee_frag = true;
-			}
-	//dx.Draw(700, 500, 100, 100, 0.0f, 1.0f, false, "Boss");
-
-	for (int i = 0; i < EnemyMax; i++) {
-		if (enemy[i].GetMode() == Enemy::MODE::ALIVE) {
-			dx.DrawEx(enemy[i].GetPos().x, enemy[i].GetPos().y, 0.0f, enemy[i].GetSize().width, enemy[i].GetSize().height, 0.0f, 1.0f, (bool)enemy[i].GetDirection(), "Enemy", 0.0f, 0.0f, 1.0f, 1295.0f / 1500.0f);
-		}
-		if (enemy[i].GetMode() == Enemy::MODE::SWOON) {
-			Anime::Animation(&SwoonEnemy, 100.0f / 1024.0f * 2, true);
-			dx.DrawEx(enemy[i].GetPos().x, enemy[i].GetPos().y, 0.0f, enemy[i].GetSize().width, enemy[i].GetSize().height, 0.0f, 1.0f, (bool)enemy[i].GetDirection(), "SwoonEnemy", SwoonEnemy.Tu, 0.0f, SwoonEnemy.Tw, 120.0f / 256.0f);
-		}
+	if (AttackMotion.flee_frag == false)
+	{
+		AttackMotion.flee_frag = true;
 	}
-
-	/*
-	for (int i = 0; i < 6; i++) {
-		dx.DrawEx(HpPos[i].x, HpPos[i].y, 0.0f, HpSize.width, HpSize.height, 0.0f, 1.0f, false, "UI", HpUV.tu, HpUV.tv, HpUV.tw, HpUV.th);
-	}
-	*/
-	dx.DrawEx(player.GetPos().x, player.GetPos().y, 0.0f, player.GetSize().width, player.GetSize().height, 0.0f, 1.0f, (bool)player.GetDirection(), "Anime", AttackMotion.Tu, 0.0f, AttackMotion.Tw, 390.0f / 512.0f);
-	
-	DrawUI();
-}
-
-void GAME::Release() {
-	dx.ReleaseTexture("SwoonEnemy");
-	dx.ReleaseTexture("UI");
-	dx.ReleaseTexture("Boss");
-	dx.ReleaseTexture("Low_Enemy");
-	dx.ReleaseTexture("Enemy");
-	dx.ReleaseTexture("Anime");
-	dx.ReleaseTexture("AirBlock");
-	dx.ReleaseTexture("GameBack");
-}
-
-void GAME::DrawUI() {
-	dx.DrawEx(HpVarPos.x, HpVarPos.y, 0.0f, HpVarSize.width, HpVarSize.height, 0.0f, 1.0f, false, "UI", HpVarUV.tu, HpVarUV.tv, HpVarUV.tw, HpVarUV.th);
-	dx.DrawEx(UltVarPos.x, UltVarPos.y, 0.0f, UltVarSize.width, UltVarSize.height, 0.0f, 1.0f, false, "UI", UltVarUV.tu, UltVarUV.tv, UltVarUV.tw, UltVarUV.th);
-
-	dx.DrawEx(HpPos1.x, HpPos1.y, 0.0f, HpSize.width, HpSize.height, 0.0f, 1.0f, false, "UI", HpUV1.tu, HpUV1.tv, HpUV1.tw, HpUV1.th);
-	dx.DrawEx(HpPos2.x, HpPos2.y, 0.0f, HpSize.width, HpSize.height, 0.0f, 1.0f, false, "UI", HpUV2.tu, HpUV2.tv, HpUV2.tw, HpUV2.th);
-	dx.DrawEx(HpPos3.x, HpPos3.y, 0.0f, HpSize.width, HpSize.height, 0.0f, 1.0f, false, "UI", HpUV3.tu, HpUV3.tv, HpUV3.tw, HpUV3.th);
-	dx.DrawEx(HpPos4.x, HpPos4.y, 0.0f, HpSize.width, HpSize.height, 0.0f, 1.0f, false, "UI", HpUV4.tu, HpUV4.tv, HpUV4.tw, HpUV4.th);
-	dx.DrawEx(HpPos5.x, HpPos5.y, 0.0f, HpSize.width, HpSize.height, 0.0f, 1.0f, false, "UI", HpUV5.tu, HpUV5.tv, HpUV5.tw, HpUV5.th);
-	dx.DrawEx(HpPos6.x, HpPos6.y, 0.0f, HpSize.width, HpSize.height, 0.0f, 1.0f, false, "UI", HpUV6.tu, HpUV6.tv, HpUV6.tw, HpUV6.th);
 }
 
 GAME::GAME() {
