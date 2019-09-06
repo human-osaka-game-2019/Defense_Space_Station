@@ -1,4 +1,6 @@
 #include "../Header/Animation.h"
+#include "../Header/Player.h"
+
 
 namespace Anime {
 	
@@ -13,14 +15,14 @@ namespace Anime {
 				 if(max == data->Tu) {
 
 					data->Tu = 0.0f;
-
+					data->flee_frag = false;
 				 }
 				 else
 				if (data->Tu < max)
 				{
 
 					data->Tu += data->Tw;
-
+					
 				}
 			}
 			else 

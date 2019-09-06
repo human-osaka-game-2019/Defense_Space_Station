@@ -38,10 +38,12 @@ void PLAYER::Control(Enemy enemy[]) {
 	if (dx.GetKeyState(DIK_D) == dx.ON) {
 		direction = RIGHT;
 		speed = 5.0f;
+		is_move = true;
 	}
 	if (dx.GetKeyState(DIK_A) == dx.ON) {
 		direction = LEFT;
 		speed = -5.0f;
+		is_move = true;
 	}
 	if (dx.GetKeyState(DIK_D) == dx.OFF && speed >= 0.0f) {
 		speed -= acc;
@@ -51,6 +53,7 @@ void PLAYER::Control(Enemy enemy[]) {
 			|| Collision::SquareCollision(pos, size, Collision::LeftAirBlockPos, Collision::DrawAirBlockSize)) {
 			speed = 0.0f;
 		}
+		is_move = false;
 	}
 	if (dx.GetKeyState(DIK_A) == dx.OFF && speed <= 0.0f) {
 		speed += acc;
@@ -60,16 +63,22 @@ void PLAYER::Control(Enemy enemy[]) {
 			|| Collision::SquareCollision(pos, size, Collision::LeftAirBlockPos, Collision::DrawAirBlockSize)) {
 			speed = 0.0f;
 		}
+		is_move = false;
 	}
 	if (dx.GetKeyState(JUMP) == dx.PUSH || dx.GetKeyState(JUMP) == dx.ON) {
 		this->jump.SetJumpFlag(true);
+
 	}
 	if (dx.GetKeyState(DIK_J) == dx.PUSH) {
 		Attack(enemy);
+		Item = LAST_ITEM::HAMMER;
+		is_attack = true;
 	}
 	if (dx.GetKeyState(DIK_K) == dx.PUSH) {
 		Catch(enemy);
+		Item = LAST_ITEM::NET;
 		soundsManager.Start("CatchSE", false);
+		is_attack = true;
 	}
 	if (dx.GetKeyState(DIK_L) == dx.PUSH) {
 		SpecialAttack(enemy);
@@ -210,7 +219,9 @@ void PLAYER::Collision(Enemy enemy[]) {
 	collision_count++;
 }
 
+PLAYER::PLAYER():pos(100.0f,100.0f),direction(RIGHT),speed(0.0f),PrevPos(pos), is_onBlock(false), acc(0.20f){
 PLAYER::PLAYER():pos(100.0f,100.0f),direction(RIGHT),speed(0.0f),hp(12),collision_count(0), is_god(false),PrevPos(pos),acc(0.20f){
+PLAYER::PLAYER():pos(100.0f,100.0f),direction(RIGHT),speed(0.0f),PrevPos(pos), is_onBlock(false), acc(0.20f), Item(LAST_ITEM::HAMMER), is_attack(false), is_catch(false), is_move(false){
 	SetSize(500.0f, 400.0f);
 }
 
