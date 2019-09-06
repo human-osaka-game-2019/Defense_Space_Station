@@ -47,10 +47,10 @@ void GAME::Load() {
 
 	for (int i = 0; i < EnemyMax; i++) {
 		if ( i % 2 == 0) {
-			enemy[i].SetPos(200, 940);
+			enemy[i].SetPos(200, 780);
 		}
 		else {
-			enemy[i].SetPos(940, 940);
+			enemy[i].SetPos(940, 780);
 		}
 	}
 

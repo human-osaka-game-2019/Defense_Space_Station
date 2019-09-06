@@ -44,6 +44,9 @@ public:
 	void SetJump(float InitSpeed, float SetSpeed);
 	bool Is_Stop;
 	bool PlayerSearch(Vec PlayerPos, DIRECTION::Direction direc);
+	Vec DeadPos;
+	bool ReviveRange();
+	
 
 	
 
@@ -66,6 +69,9 @@ private:
 	float SearchBottom;
 	float SearchHeight;
 	float SearchWidth;
+	int ReviveCount;
+	int RandomJump;
+	Vec PrevPos;
 };
 
 #endif // ENEMY_H_

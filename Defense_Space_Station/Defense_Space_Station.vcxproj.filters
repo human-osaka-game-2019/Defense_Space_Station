@@ -28,6 +28,12 @@
     <ClCompile Include="Source\Animation.cpp">
       <Filter>ソース</Filter>
     </ClCompile>
+    <ClCompile Include="Source\GameOver.cpp">
+      <Filter>ソース</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\GameClear.cpp">
+      <Filter>ソース</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Header\Game.h">
@@ -64,6 +70,12 @@
       <Filter>ヘッダー</Filter>
     </ClInclude>
     <ClInclude Include="Header\Animation.h">
+      <Filter>ヘッダー</Filter>
+    </ClInclude>
+    <ClInclude Include="Header\GameOver.h">
+      <Filter>ヘッダー</Filter>
+    </ClInclude>
+    <ClInclude Include="Header\GameClear.h">
       <Filter>ヘッダー</Filter>
     </ClInclude>
   </ItemGroup>

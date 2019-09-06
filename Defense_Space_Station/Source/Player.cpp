@@ -93,6 +93,7 @@ void PLAYER::Attack(Enemy enemy[]) {
 					&& UnderPos.x <= EnemyCenter.x 
 					&& UnderPos.y >= EnemyCenter.y) {
 					enemy[i].SetMode(Enemy::MODE::SWOON);
+					enemy[i].DeadPos = enemy[i].GetPos();
 				}
 			}
 			if (direction == LEFT) {
@@ -100,6 +101,7 @@ void PLAYER::Attack(Enemy enemy[]) {
 					&& UnderPos.x >= EnemyCenter.x 
 					&& UnderPos.y >= EnemyCenter.y) {
 					enemy[i].SetMode(Enemy::MODE::SWOON);
+					enemy[i].DeadPos = enemy[i].GetPos();
 				}
 			}
 		}

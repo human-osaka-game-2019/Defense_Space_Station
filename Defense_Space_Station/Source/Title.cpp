@@ -7,11 +7,14 @@ void TITLE::UpdateScene() {
 	switch (step)
 	{
 	case TITLE::LoadStep:Load();
+
 		break;
 	case TITLE::MainStep:Control();
 		Draw();
+
 		break;
 	case TITLE::ReleaseStep:Release();
+
 		break;
 	default:
 		break;

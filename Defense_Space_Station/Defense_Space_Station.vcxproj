@@ -150,6 +150,8 @@
     <ClCompile Include="Source\Collision.cpp" />
     <ClCompile Include="Source\Enemy.cpp" />
     <ClCompile Include="Source\Game.cpp" />
+    <ClCompile Include="Source\GameClear.cpp" />
+    <ClCompile Include="Source\GameOver.cpp" />
     <ClCompile Include="Source\Jump.cpp" />
     <ClCompile Include="Source\Main.cpp" />
     <ClCompile Include="Source\Player.cpp" />
@@ -162,6 +164,8 @@
     <ClInclude Include="Header\Direction.h" />
     <ClInclude Include="Header\Enemy.h" />
     <ClInclude Include="Header\Game.h" />
+    <ClInclude Include="Header\GameClear.h" />
+    <ClInclude Include="Header\GameOver.h" />
     <ClInclude Include="Header\Jump.h" />
     <ClInclude Include="Header\Main.h" />
     <ClInclude Include="Header\Player.h" />
