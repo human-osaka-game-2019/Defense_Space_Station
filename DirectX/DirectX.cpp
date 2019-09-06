@@ -414,16 +414,14 @@ namespace DX {
 
 	VOID DirectX::Scaling(FLOAT x, FLOAT y, FLOAT dw, FLOAT dh,BOOL is_Center, CUSTOMVERTEX result[]) {
 		if (is_Center) {
-			FLOAT CenterX = x + dw / 2;
-			FLOAT CenterY = y + dh / 2;
-			result[0].x = CenterX - dw / 2;
-			result[1].x = CenterX + dw / 2;
-			result[2].x = CenterX + dw / 2;
-			result[3].x = CenterX - dw / 2;
-			result[0].y = CenterY - dh / 2;
-			result[1].y = CenterY - dh / 2;
-			result[2].y = CenterY + dh / 2;
-			result[3].y = CenterY + dh / 2;
+			result[0].x = x - dw / 2;
+			result[1].x = x + dw / 2;
+			result[2].x = x + dw / 2;
+			result[3].x = x - dw / 2;
+			result[0].y = y - dh / 2;
+			result[1].y = y - dh / 2;
+			result[2].y = y + dh / 2;
+			result[3].y = y + dh / 2;
 		}
 		else {
 			result[0].x = x;
@@ -446,7 +444,14 @@ namespace DX {
 		zw *= zoom;
 		zh *= zoom;
 
-		Scaling(x, y, zw, zh, is_Center, customvertex);
+		if (is_Center) {
+			float CenterX = x + width / 2;
+			float CenterY = y + height / 2;
+			Scaling(CenterX, CenterY, zw, zh, is_Center, customvertex);
+		}
+		else {
+			Scaling(x, y, zw, zh, is_Center, customvertex);
+		}
 		return customvertex;
 	}
 
