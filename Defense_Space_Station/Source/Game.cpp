@@ -1,6 +1,7 @@
 ﻿#include "../Header/Game.h"
 #include "../Header/Main.h"
 #include "../Header/Collision.h"
+#include "../Header/UserInterface.h"
 
 using Collision::RightAirBlockPos;
 using Collision::LeftAirBlockPos;
@@ -97,6 +98,13 @@ void GAME::Control() {
 	soundsManager.Start("GameBGM", true);
 
 	player.Control(enemy);
+
+	UserInterface::HpUi(player.GetHp(), &HpUV1);
+	UserInterface::HpUi(player.GetHp(), &HpUV2);
+	UserInterface::HpUi(player.GetHp(), &HpUV3);
+	UserInterface::HpUi(player.GetHp(), &HpUV4);
+	UserInterface::HpUi(player.GetHp(), &HpUV5);
+	UserInterface::HpUi(player.GetHp(), &HpUV6);
 
 	for (int i = 0; i < EnemyMax; i++) {
 		enemy[i].EnemyMove(player.GetPos(), player.GetSize());

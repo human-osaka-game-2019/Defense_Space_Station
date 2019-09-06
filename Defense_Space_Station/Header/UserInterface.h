@@ -14,7 +14,7 @@ namespace UserInterface
 		float th;
 	};
 
-	void HpUi(int hpcount);
+	void HpUi(int hpcount, UV*);
 
 }
 
