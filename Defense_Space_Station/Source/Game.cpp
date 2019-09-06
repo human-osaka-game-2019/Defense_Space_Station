@@ -33,6 +33,7 @@ void GAME::Load() {
 	dx.LoadTexture("Resource/Enemy/Boss_Purple.png", "Boss");
 	dx.LoadTexture("Resource/UI/UI.png", "UI");
 	dx.LoadTexture("Resource/Enemy/kurobosi.png", "SwoonEnemy");
+
 	soundsManager.AddFile("Resource/BGM/game_bgm.mp3", "GameBGM");
 	soundsManager.AddFile("Resource/SE/player_attack.mp3", "PlayerAttackSE");
 	soundsManager.AddFile("Resource/SE/player_catch.mp3", "CatchSE");
@@ -106,9 +107,6 @@ void GAME::Draw() {
 	dx.Draw(0, 0, DISPLAY_WIDTH, DISPLAY_HEIGHT, 0.0f, 1.0f, false, "GameBack");
 	dx.Draw(RightAirBlockPos.x, RightAirBlockPos.y, DrawAirBlockSize.width, DrawAirBlockSize.height, 0.0f, 1.0f, false, "AirBlock");
 	dx.Draw(LeftAirBlockPos.x, LeftAirBlockPos.y, DrawAirBlockSize.width, DrawAirBlockSize.height, 0.0f, 1.0f, false, "AirBlock");
-	dx.DrawEx(HpVarPos.x, HpVarPos.y, 0.0f, HpVarSize.width, HpVarSize.height, 0.0f, 1.0f, false, "UI", HpVarUV.tu, HpVarUV.tv, HpVarUV.tw, HpVarUV.th);
-	dx.DrawEx(UltVarPos.x, UltVarPos.y, 0.0f, UltVarSize.width, UltVarSize.height, 0.0f, 1.0f, false, "UI", UltVarUV.tu, UltVarUV.tv, UltVarUV.tw, UltVarUV.th);
-	dx.DrawEx(player.GetPos().x, player.GetPos().y, 0.0f, player.GetSize().width, player.GetSize().height, 0.0f, 1.0f, (bool)player.GetDirection(), "Anime", AttackMotion.Tu, 0.0f, AttackMotion.Tw, 400.0f / 512.0f);
 	//dx.Draw(player.GetPos().x, player.GetPos().y, player.GetSize().width, player.GetSize().height, 0.0f, 1.0f, (bool)player.GetDirection(), "test");
 	//dx.Draw(700, 500, 100, 100, 0.0f, 1.0f, false, "Boss");
 
@@ -117,7 +115,7 @@ void GAME::Draw() {
 			dx.DrawEx(enemy[i].GetPos().x, enemy[i].GetPos().y, 0.0f, enemy[i].GetSize().width, enemy[i].GetSize().height, 0.0f, 1.0f, (bool)enemy[i].GetDirection(), "Enemy", 0.0f, 0.0f, 1.0f, 1295.0f / 1500.0f);
 		}
 		if (enemy[i].GetMode() == Enemy::MODE::SWOON) {
-			dx.DrawEx(enemy[i].GetPos().x, enemy[i].GetPos().y, 0.0f, enemy[i].GetSize().width, enemy[i].GetSize().height, 0.0f, 1.0f, (bool)enemy[i].GetDirection(), "SwoonEnemy", SwoonEnemy.Tu, 0.0f, SwoonEnemy.Tw, 120.0f / 256.0f);
+			dx.DrawEx(enemy[i].GetPos().x, enemy[i].GetPos().y, 0.0f, enemy[i].GetSize().width, enemy[i].GetSize().height, 0.0f, 1.0f, (bool)enemy[i].GetDirection(), "SwoonEnemy", SwoonEnemy.Tu, 0.0f, SwoonEnemy.Tw, 100.0f / 256.0f);
 		}
 	}
 
@@ -126,6 +124,25 @@ void GAME::Draw() {
 		dx.DrawEx(HpPos[i].x, HpPos[i].y, 0.0f, HpSize.width, HpSize.height, 0.0f, 1.0f, false, "UI", HpUV.tu, HpUV.tv, HpUV.tw, HpUV.th);
 	}
 	*/
+	dx.DrawEx(player.GetPos().x, player.GetPos().y, 0.0f, player.GetSize().width, player.GetSize().height, 0.0f, 1.0f, (bool)player.GetDirection(), "Anime", AttackMotion.Tu, 0.0f, AttackMotion.Tw, 390.0f / 512.0f);
+	
+	DrawUI();
+}
+
+void GAME::Release() {
+	dx.ReleaseTexture("SwoonEnemy");
+	dx.ReleaseTexture("UI");
+	dx.ReleaseTexture("Boss");
+	dx.ReleaseTexture("Low_Enemy");
+	dx.ReleaseTexture("Enemy");
+	dx.ReleaseTexture("Anime");
+	dx.ReleaseTexture("AirBlock");
+	dx.ReleaseTexture("GameBack");
+}
+
+void GAME::DrawUI() {
+	dx.DrawEx(HpVarPos.x, HpVarPos.y, 0.0f, HpVarSize.width, HpVarSize.height, 0.0f, 1.0f, false, "UI", HpVarUV.tu, HpVarUV.tv, HpVarUV.tw, HpVarUV.th);
+	dx.DrawEx(UltVarPos.x, UltVarPos.y, 0.0f, UltVarSize.width, UltVarSize.height, 0.0f, 1.0f, false, "UI", UltVarUV.tu, UltVarUV.tv, UltVarUV.tw, UltVarUV.th);
 
 	dx.DrawEx(HpPos1.x, HpPos1.y, 0.0f, HpSize.width, HpSize.height, 0.0f, 1.0f, false, "UI", HpUV1.tu, HpUV1.tv, HpUV1.tw, HpUV1.th);
 	dx.DrawEx(HpPos2.x, HpPos2.y, 0.0f, HpSize.width, HpSize.height, 0.0f, 1.0f, false, "UI", HpUV2.tu, HpUV2.tv, HpUV2.tw, HpUV2.th);
@@ -133,17 +150,6 @@ void GAME::Draw() {
 	dx.DrawEx(HpPos4.x, HpPos4.y, 0.0f, HpSize.width, HpSize.height, 0.0f, 1.0f, false, "UI", HpUV4.tu, HpUV4.tv, HpUV4.tw, HpUV4.th);
 	dx.DrawEx(HpPos5.x, HpPos5.y, 0.0f, HpSize.width, HpSize.height, 0.0f, 1.0f, false, "UI", HpUV5.tu, HpUV5.tv, HpUV5.tw, HpUV5.th);
 	dx.DrawEx(HpPos6.x, HpPos6.y, 0.0f, HpSize.width, HpSize.height, 0.0f, 1.0f, false, "UI", HpUV6.tu, HpUV6.tv, HpUV6.tw, HpUV6.th);
-}
-
-void GAME::Release() {
-	dx.ReleaseTexture("UI");
-	dx.ReleaseTexture("SwoonEnemy");
-	dx.ReleaseTexture("Boss");
-	dx.ReleaseTexture("Low_Enemy");
-	dx.ReleaseTexture("Enemy");
-	dx.ReleaseTexture("Anime");
-	dx.ReleaseTexture("AirBlock");
-	dx.ReleaseTexture("GameBack");
 }
 
 GAME::GAME() {

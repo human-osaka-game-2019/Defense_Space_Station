@@ -181,27 +181,27 @@ void Enemy::EnemySwoonMove(Vec PlayerPos)
 {
 	ReviveCount++;
 	size = { 100, 100 };
-		switch (direction)
-		{
-		case DIRECTION::RIGHT:
+	switch (direction)
+	{
+	case DIRECTION::RIGHT:
 
-			this->Pos.x += this->MoveSpeed;
+		this->Pos.x += this->MoveSpeed;
 
-			break;
-		case DIRECTION::LEFT:
+		break;
+	case DIRECTION::LEFT:
 
-			this->Pos.x -= this->MoveSpeed;
+		this->Pos.x -= this->MoveSpeed;
 
-			break;
+		break;
 
-		}
+	}
 
-		
+	
 
-		if (ReviveCount >= ReviveTime && ReviveRange() == true)
-		{
-			Mode = MODE::ALIVE;
-		}
+	if (ReviveCount >= ReviveTime && ReviveRange() == true)
+	{
+		Mode = MODE::ALIVE;
+	}
 	
 }
 
@@ -303,48 +303,48 @@ void Enemy::Chase(Vec PlayerPos, Size PlayerSize)
 
 
 	 
-		if (this->JumpFlag == true) 
-		{
-			this->Jump_Move.EnemyJump(&this->Pos);
-			
-		}
-		else
-		{
-			Jump_Move.Gravity(&this->Pos);
-		}
+	if (this->JumpFlag == true) 
+	{
+		this->Jump_Move.EnemyJump(&this->Pos);
+		
+	}
+	else
+	{
+		Jump_Move.Gravity(&this->Pos);
+	}
 
 
-		if (Pos.x <= 0.0f) {
-			direction = RIGHT;
-			DirectionTime = 0;
-		}
-		else if (Pos.x + size.width >= DISPLAY_WIDTH) {
-			direction = LEFT;
-			DirectionTime = 0;
-		}
+	if (Pos.x <= 0.0f) {
+		direction = RIGHT;
+		DirectionTime = 0;
+	}
+	else if (Pos.x + size.width >= DISPLAY_WIDTH) {
+		direction = LEFT;
+		DirectionTime = 0;
+	}
 
-		if(Collision::AirBlockCollision(Pos, size, Collision::JudgeRightAirBlockPos, Collision::DrawAirBlockSize, PrevPos))
-		{
-			this->JumpFlag = false;
-			this->Pos.y = Collision::RightAirBlockPos.y - size.height;
-			this->Jump_Move.SetInitialSpeed(10.0f);
-		}
-		else if (Collision::AirBlockCollision(Pos, size, Collision::JudgeLeftAirBlockPos, Collision::DrawAirBlockSize, PrevPos))
-		{
-			this->JumpFlag = false;
-			this->Pos.y = Collision::RightAirBlockPos.y - size.height;
-			this->Jump_Move.SetInitialSpeed(10.0f);
-		}
-		else 
-		{
-			PrevPos = Pos;
-		}
-		if (this->Pos.y > PopPos_y)
-		{
-			this->JumpFlag = false;
-			this->Pos.y = PopPos_y;
-			this->Jump_Move.SetInitialSpeed(10.0f);
-		}
+	if(Collision::AirBlockCollision(Pos, size, Collision::JudgeRightAirBlockPos, Collision::JudgeAirBlockSize, PrevPos))
+	{
+		this->JumpFlag = false;
+		this->Pos.y = Collision::RightAirBlockPos.y - size.height;
+		this->Jump_Move.SetInitialSpeed(10.0f);
+	}
+	else if (Collision::AirBlockCollision(Pos, size, Collision::JudgeLeftAirBlockPos, Collision::JudgeAirBlockSize, PrevPos))
+	{
+		this->JumpFlag = false;
+		this->Pos.y = Collision::RightAirBlockPos.y - size.height;
+		this->Jump_Move.SetInitialSpeed(10.0f);
+	}
+	else 
+	{
+		PrevPos = Pos;
+	}
+	if (this->Pos.y > PopPos_y)
+	{
+		this->JumpFlag = false;
+		this->Pos.y = PopPos_y;
+		this->Jump_Move.SetInitialSpeed(10.0f);
+	}
 
 }
 
@@ -371,14 +371,30 @@ void Enemy::Escape(Vec PlayerPos)
 
 	if (this->JumpFlag == true) {
 		this->Jump_Move.EnemyJump(&this->Pos);
-		if (this->Pos.y > PopPos_y)
+		if (this->Pos.y > DISPLAY_HEIGHT - Collision::GroundSize.height - size.height)
 		{
 			this->JumpFlag = false;
-			this->Pos.y = PopPos_y;
-			this->Jump_Move.SetInitialSpeed(8.0f);
+			this->Pos.y = DISPLAY_HEIGHT - Collision::GroundSize.height - size.height;
+			this->Jump_Move.SetInitialSpeed(10.0);
 		}
 	}
 
+	if (Collision::AirBlockCollision(Pos, size, Collision::JudgeRightAirBlockPos, Collision::JudgeAirBlockSize, PrevPos))
+	{
+		this->JumpFlag = false;
+		this->Pos.y = Collision::RightAirBlockPos.y - size.height;
+		this->Jump_Move.SetInitialSpeed(7.5f);
+	}
+	else if (Collision::AirBlockCollision(Pos, size, Collision::JudgeLeftAirBlockPos, Collision::JudgeAirBlockSize, PrevPos))
+	{
+		this->JumpFlag = false;
+		this->Pos.y = Collision::RightAirBlockPos.y - size.height;
+		this->Jump_Move.SetInitialSpeed(7.5f);
+	}
+	else
+	{
+		PrevPos = Pos;
+	}
 
 	if (Pos.x <= 0.0f)
 	{
@@ -386,7 +402,7 @@ void Enemy::Escape(Vec PlayerPos)
 		direction = RIGHT;
 
 	}
-	else if (Pos.x > DISPLAY_WIDTH)
+	else if (Pos.x > DISPLAY_WIDTH - size.width)
 	{
 
 		direction = LEFT;

@@ -2,8 +2,6 @@
 #include "../Header/Main.h"
 #include "../Header/Jump.h"
 
-extern SCENE g_scene;
-
 void TITLE::UpdateScene() {
 	switch (step)
 	{
@@ -79,13 +77,12 @@ void TITLE::ZoomLogo() {
 	}
 }
 
-TITLE::TITLE(){
 //void TITLE::JumpPushEnter() {
 //	JumpSpeed += JumpAcc;
 //	PushEnterPos.y -= JumpSpeed;
 //}
 
-void TITLE::Slide() {
+void TITLE::Slide(){
 	TopStartButtonPos.x -= 40.0f;
 	UnderStartButtonPos.x += 40.0f;
 }

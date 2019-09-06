@@ -96,7 +96,7 @@ void PLAYER::Attack(Enemy enemy[]) {
 
 		if (enemy[i].GetMode() == Enemy::MODE::ALIVE) {
 			if (direction == RIGHT) {
-				if (Collision::CircleCollision(UnderPos, size.height / 3, EnemyCenter, enemy[i].GetRadius()) 
+				if (Collision::CircleCollision(UnderPos, size.height / 2, EnemyCenter, enemy[i].GetRadius()) 
 					&& UnderPos.x <= EnemyCenter.x 
 					&& UnderPos.y >= EnemyCenter.y) {
 					soundsManager.Start("PlayerAttackSE", false);
@@ -105,7 +105,7 @@ void PLAYER::Attack(Enemy enemy[]) {
 				}
 			}
 			if (direction == LEFT) {
-				if (Collision::CircleCollision(UnderPos, size.height / 3, EnemyCenter, enemy[i].GetRadius()) 
+				if (Collision::CircleCollision(UnderPos, size.height / 2, EnemyCenter, enemy[i].GetRadius()) 
 					&& UnderPos.x >= EnemyCenter.x 
 					&& UnderPos.y >= EnemyCenter.y) {
 					soundsManager.Start("PlayerAttackSE", false);
