@@ -2,6 +2,8 @@
 #include "../Header/Window.h"
 #include "../Header/Title.h"
 #include "../Header/Game.h"
+#include "../Header/GameClear.h"
+#include "../Header/GameOver.h"
 
 #pragma comment(lib,"winmm.lib")
 #pragma comment(lib, "d3dx9.lib")
@@ -18,7 +20,7 @@ DirectX dx;
 SoundLib::SoundsManager soundsManager;
 RECT WinRect;
 
-SCENE g_scene = Title;
+SCENE g_scene = GameClear;
 
 INT WINAPI WinMain(
 	_In_ HINSTANCE hInstance,
@@ -32,6 +34,8 @@ INT WINAPI WinMain(
 
 	TITLE title;
 	GAME game;
+	GAME_CLEAR gameclear;
+	GAME_OVER gameover;
 
 	WindowSettings(hInstance, API_NAME, DISPLAY_WIDTH, DISPLAY_HEIGHT, &hWnd);
 	dx.InitDirectX(hWnd, DISPLAY_WIDTH, DISPLAY_HEIGHT);
@@ -64,11 +68,12 @@ INT WINAPI WinMain(
 					break;
 				case Game:game.UpdateScene();
 					break;
-				case GameOver:
+				case GameOver:gameover.UpdateScene();
 					break;
-				case GameClear:
+				case GameClear:gameclear.UpdateScene();
 					break;
 				default:
+					MessageBox(0, "シーンエラー\n", "", MB_OK);
 					break;
 				}
 

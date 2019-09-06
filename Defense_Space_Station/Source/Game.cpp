@@ -107,6 +107,7 @@ void GAME::Control() {
 #ifdef _DEBUG
 	if (dx.GetKeyState(DIK_ESCAPE) == dx.PUSH) {
 		step = ReleaseStep;
+		g_scene = GameClear;
 	}
 #endif
 }
