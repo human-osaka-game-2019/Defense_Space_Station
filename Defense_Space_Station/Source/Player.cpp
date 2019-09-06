@@ -58,7 +58,6 @@ void PLAYER::Control(Enemy enemy[]) {
 	}
 	if (dx.GetKeyState(DIK_J) == dx.PUSH) {
 		Attack(enemy);
-		soundsManager.Start("PlayerAttackSE", false);
 	}
 	if (dx.GetKeyState(DIK_K) == dx.PUSH) {
 		Catch(enemy);
@@ -89,17 +88,19 @@ void PLAYER::Attack(Enemy enemy[]) {
 
 		if (enemy[i].GetMode() == Enemy::MODE::ALIVE) {
 			if (direction == RIGHT) {
-				if (Collision::CircleCollision(UnderPos, size.height, EnemyCenter, enemy[i].GetRadius()) 
+				if (Collision::CircleCollision(UnderPos, size.height / 3, EnemyCenter, enemy[i].GetRadius()) 
 					&& UnderPos.x <= EnemyCenter.x 
 					&& UnderPos.y >= EnemyCenter.y) {
+					soundsManager.Start("PlayerAttackSE", false);
 					enemy[i].SetMode(Enemy::MODE::SWOON);
 					enemy[i].DeadPos = enemy[i].GetPos();
 				}
 			}
 			if (direction == LEFT) {
-				if (Collision::CircleCollision(UnderPos, size.height, EnemyCenter, enemy[i].GetRadius()) 
+				if (Collision::CircleCollision(UnderPos, size.height / 3, EnemyCenter, enemy[i].GetRadius()) 
 					&& UnderPos.x >= EnemyCenter.x 
 					&& UnderPos.y >= EnemyCenter.y) {
+					soundsManager.Start("PlayerAttackSE", false);
 					enemy[i].SetMode(Enemy::MODE::SWOON);
 					enemy[i].DeadPos = enemy[i].GetPos();
 				}
@@ -116,14 +117,14 @@ void PLAYER::Catch(Enemy enemy[]) {
 
 		if (enemy[i].GetMode() == Enemy::MODE::SWOON) {
 			if (direction == RIGHT) {
-				if (Collision::CircleCollision(UnderPos, size.height, EnemyCenter, enemy[i].GetRadius())
+				if (Collision::CircleCollision(UnderPos, size.height / 2, EnemyCenter, enemy[i].GetRadius())
 					&& UnderPos.x <= EnemyCenter.x
 					&& UnderPos.y >= EnemyCenter.y) {
 					enemy[i].SetMode(Enemy::MODE::DEAD);
 				}
 			}
 			if (direction == LEFT) {
-				if (Collision::CircleCollision(UnderPos, size.height, EnemyCenter, enemy[i].GetRadius())
+				if (Collision::CircleCollision(UnderPos, size.height / 2, EnemyCenter, enemy[i].GetRadius())
 					&& UnderPos.x >= EnemyCenter.x
 					&& UnderPos.y >= EnemyCenter.y) {
 					enemy[i].SetMode(Enemy::MODE::DEAD);
@@ -141,7 +142,7 @@ void PLAYER::SpecialAttack(Enemy enemy[]) {
 
 void PLAYER::Collision() {
 	//LeftAirBlock
-	if (Collision::AirBlockCollision(pos, size, Collision::LeftAirBlockPos, Collision::JudgeAirBlockSize, PrevPos)) {
+	if (Collision::AirBlockCollision(pos, size, Collision::JudgeLeftAirBlockPos, Collision::JudgeAirBlockSize, PrevPos)) {
 		if (dx.GetKeyState(JUMP) != dx.PUSH) {
 			jump.SetJumpFlag(false);
 			jump.SetInitialSpeed(25.0f);
@@ -149,7 +150,7 @@ void PLAYER::Collision() {
 		pos.y = Collision::LeftAirBlockPos.y - size.height;
 	}
 	//RightAirBlock
-	else if (Collision::AirBlockCollision(pos, size, Collision::RightAirBlockPos, Collision::JudgeAirBlockSize, PrevPos)) {
+	else if (Collision::AirBlockCollision(pos, size, Collision::JudgeRightAirBlockPos, Collision::JudgeAirBlockSize, PrevPos)) {
 		if (dx.GetKeyState(JUMP) != dx.PUSH) {
 			jump.SetJumpFlag(false);
 			jump.SetInitialSpeed(25.0f);
@@ -178,7 +179,7 @@ void PLAYER::Collision() {
 }
 
 PLAYER::PLAYER():pos(100.0f,100.0f),direction(RIGHT),speed(0.0f),PrevPos(pos), is_onBlock(false), acc(0.20f){
-	SetSize(200.0f, 300.0f);
+	SetSize(500.0f, 400.0f);
 }
 
 PLAYER::~PLAYER() {

@@ -1,25 +1,58 @@
 #include "../Header/Animation.h"
 
 namespace Anime {
+	
+	void Animation(AnimeData* data,float max, bool is_loop) {
 
-	void Animation(AnimeData* data,float max) {
 		data->FrameCount++;
+
 		if (data->FrameCount == data->TargetValue)
 		{
+			if (!is_loop) {
 
-			if (data->Tu >= max)
+				 if(max == data->Tu) {
+
+					data->Tu = 0.0f;
+
+				 }
+				 else
+				if (data->Tu < max)
+				{
+
+					data->Tu += data->Tw;
+
+				}
+			}
+			else 
 			{
+				if (!data->flag)
+				{
 
-				data->Tu = 0.0f;
+					if (data->Tu >= max)
+					{
+						data->flag = true;
+					}
+					else {
+
+					data->Tu += data->Tw;
+
+					}
+					
+				}
+				else
+				{
+
+					if (data->Tu > 0.0f)
+					{
+					data->Tu -= data->Tw;
+					}
+					else if (data->Tu == 0.0f)
+					{
+						data->flag = false;
+					}
+				}
 			}
-			else {
-
-				data->Tu += data->Tw;
-			}
-				data->FrameCount = 0;
-			
-
-
+			data->FrameCount = 0;
 		}
 	}
 }
