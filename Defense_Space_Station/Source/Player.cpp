@@ -203,7 +203,7 @@ void PLAYER::Collision(Enemy enemy[]) {
 	//敵
 	if (!is_god) {
 		for (int i = 0; i < EnemyMax; i++) {
-			if (Collision::SquareCollision(collision_pos, collision_size, enemy[i].GetPos(), enemy[i].GetSize())) {
+			if (Collision::SquareCollision(collision_pos, collision_size, enemy[i].GetPos(), enemy[i].GetSize()) && enemy[i].GetMode() == enemy->MODE::ALIVE) {
 				hp--;
 				if (collision_count <= 120) {
 					collision_count = 0;
