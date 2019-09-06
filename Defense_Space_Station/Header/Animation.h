@@ -24,12 +24,12 @@ struct AnimeData
 	float Tw;
 	int FrameCount;
 	int TargetValue;
-	
+	bool flag;
 };
 
 namespace Anime
 {
-void Animation(AnimeData* data, float max);
+void Animation(AnimeData* data, float max, bool is_loop);
 
 }
 

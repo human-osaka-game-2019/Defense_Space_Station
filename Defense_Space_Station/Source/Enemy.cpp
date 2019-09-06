@@ -125,6 +125,7 @@ void Enemy::EnemyMove(Vec PlayerPos, Size PlayerSize)
 
 void Enemy::EnemyAliveMove(Vec PlayerPos)
 {
+	size = { 200, 300 };
 	if (Is_Stop == false)
 	{
 
@@ -178,7 +179,7 @@ void Enemy::EnemyAliveMove(Vec PlayerPos)
 void Enemy::EnemySwoonMove(Vec PlayerPos)
 {
 	ReviveCount++;
-	
+	size = { 100, 100 };
 		switch (direction)
 		{
 		case DIRECTION::RIGHT:
@@ -242,7 +243,7 @@ void Enemy::Chase(Vec PlayerPos, Size PlayerSize)
 	}
 	else
 	{
-		if (Collision::SquareCollision(Pos, size, PlayerPos, PlayerSize) != true) {
+		if (!Collision::SquareCollision(Pos, size, PlayerPos, PlayerSize)) {
 			DirectionTime++;
 			if (DirectionTime == 160)
 			{
@@ -257,27 +258,31 @@ void Enemy::Chase(Vec PlayerPos, Size PlayerSize)
 					direction = RIGHT;
 					DirectionTime = NULL;
 				}
-				if (Collision::RightAirBlockPos.x < Pos.x && Collision::RightAirBlockPos.x + Collision::DrawAirBlockSize.width > Pos.x && Collision::RightAirBlockPos.y < Pos.y)
+
+
+				
+			}
+
+				if (Collision::RightAirBlockPos.x < Pos.x && (Collision::RightAirBlockPos.x + Collision::DrawAirBlockSize.width) > Pos.x && Pos.y > Collision::LeftAirBlockPos.y)
 				{
 					RandomJump = rand() % 100;
-					if (RandomJump < 50)
+					if (RandomJump < 30)
 					{
 						JumpFlag = true;
-						
-					} 
-				
+
+					}
 
 				}
-				if (Collision::LeftAirBlockPos.x < Pos.x && Collision::LeftAirBlockPos.x + Collision::DrawAirBlockSize.width > Pos.x && Collision::LeftAirBlockPos.y < Pos.y)
+
+				if (Pos.x > Collision::LeftAirBlockPos.x && Pos.x < (Collision::LeftAirBlockPos.x + Collision::DrawAirBlockSize.width) && Pos.y > Collision::LeftAirBlockPos.y)
 				{
 					RandomJump = rand() % 100;
-					if (RandomJump < 50)
+					if (RandomJump < 30)
 					{
 						JumpFlag = true;
 						
 					}
 				}
-			}
 		}
 
 
@@ -317,17 +322,17 @@ void Enemy::Chase(Vec PlayerPos, Size PlayerSize)
 			DirectionTime = 0;
 		}
 
-		if(Collision::AirBlockCollision(Pos, size, Collision::RightAirBlockPos, Collision::DrawAirBlockSize, PrevPos))
+		if(Collision::AirBlockCollision(Pos, size, Collision::JudgeRightAirBlockPos, Collision::DrawAirBlockSize, PrevPos))
 		{
 			this->JumpFlag = false;
 			this->Pos.y = Collision::RightAirBlockPos.y - size.height;
-			this->Jump_Move.SetInitialSpeed(8.0f);
+			this->Jump_Move.SetInitialSpeed(10.0f);
 		}
-		else if (Collision::AirBlockCollision(Pos, size, Collision::LeftAirBlockPos, Collision::DrawAirBlockSize, PrevPos))
+		else if (Collision::AirBlockCollision(Pos, size, Collision::JudgeLeftAirBlockPos, Collision::DrawAirBlockSize, PrevPos))
 		{
 			this->JumpFlag = false;
 			this->Pos.y = Collision::RightAirBlockPos.y - size.height;
-			this->Jump_Move.SetInitialSpeed(8.0f);
+			this->Jump_Move.SetInitialSpeed(10.0f);
 		}
 		else 
 		{
@@ -337,7 +342,7 @@ void Enemy::Chase(Vec PlayerPos, Size PlayerSize)
 		{
 			this->JumpFlag = false;
 			this->Pos.y = PopPos_y;
-			this->Jump_Move.SetInitialSpeed(8.0f);
+			this->Jump_Move.SetInitialSpeed(10.0f);
 		}
 
 }
@@ -374,7 +379,7 @@ void Enemy::Escape(Vec PlayerPos)
 	}
 
 
-	if (Pos.x <= -200.0f)
+	if (Pos.x <= 0.0f)
 	{
 		
 		direction = RIGHT;
@@ -443,7 +448,7 @@ bool Enemy::ReviveRange()
 }
 
 
-Enemy::Enemy() :Is_Stop(false), Pos(0.0f, 0.0f), size(200, 300), radius((size.width / 2 + size.height / 2) / 2), MoveSpeed(5.0f), RePopCount(600), Mode(ALIVE), direction(RIGHT), JumpFlag(false), DirectionTime(0), RandomMove(0), SearchLeft(300), SearchRight(300),SearchTop(300),SearchBottom(300),SearchHeight(100),SearchWidth(300)
+Enemy::Enemy() :Is_Stop(false), Pos(0.0f, 0.0f), size(200, 300), radius(size.width / 2), MoveSpeed(5.0f), RePopCount(600), Mode(ALIVE), direction(RIGHT), JumpFlag(false), DirectionTime(0), RandomMove(0), SearchLeft(300), SearchRight(300),SearchTop(300),SearchBottom(300),SearchHeight(100),SearchWidth(300)
 {
 	srand((unsigned int)time(NULL));
 }
