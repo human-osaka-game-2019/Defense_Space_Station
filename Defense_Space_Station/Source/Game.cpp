@@ -127,6 +127,7 @@ void GAME::Control() {
 
 	if (player.GetHp() <= 0) {
 		is_clear = false;
+		step = ReleaseStep;
 	}
 
 	

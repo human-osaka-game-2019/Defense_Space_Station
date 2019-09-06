@@ -23,7 +23,7 @@ private:
 
 	const Vec RetryPos = {750,550 };
 	const Size RetrySize = { 400,100 };
-	const Vec GoTitlePos = { 675, 700 };
+	const Vec GoTitlePos = { 650, 700 };
 	const Size GoTitleSize = { 600, 100 };
 
 	const Vec RetryCursorPos = { 700,600 };

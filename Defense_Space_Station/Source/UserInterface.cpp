@@ -128,13 +128,6 @@ namespace UserInterface
 			hpuv->tu = 140.0f / 2480.0f;
 
 			break;
-
-		default:
-			if (hpcount == 0) {
-				hpuv->tu = 140.0f / 2480.0f;
-			}
-
-
 		}
 	}
 
