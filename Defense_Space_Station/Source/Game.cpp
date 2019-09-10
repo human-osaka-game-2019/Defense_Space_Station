@@ -78,12 +78,12 @@ void GAME::Load() {
 	HpPos5.y = HpLeftPos.y;
 	HpPos6.y = HpLeftPos.y;
 
-	UltPos1.x = UltLeftPos.x + 56 * 5;
-	UltPos2.x = UltLeftPos.x + 56 * 4;
-	UltPos3.x = UltLeftPos.x + 56 * 3;
-	UltPos4.x = UltLeftPos.x + 56 * 2;
-	UltPos5.x = UltLeftPos.x + 56 * 1;
-	UltPos6.x = UltLeftPos.x;
+	UltPos1.x = UltLeftPos.x;
+	UltPos2.x = UltLeftPos.x + 56 * 1;
+	UltPos3.x = UltLeftPos.x + 56 * 2;
+	UltPos4.x = UltLeftPos.x + 56 * 3;
+	UltPos5.x = UltLeftPos.x + 56 * 4;
+	UltPos6.x = UltLeftPos.x + 56 * 5;
 
 	UltPos1.y = UltLeftPos.y;
 	UltPos2.y = UltLeftPos.y;
