@@ -36,7 +36,6 @@ private:
 	};
 
 	STEP step = LoadStep;
-
 	PLAYER player;
 	Enemy enemy[EnemyMax];
 	const Size HpSize{ 40,40 };
@@ -58,12 +57,31 @@ private:
 	Vec UltPos4;
 	Vec UltPos5;
 	Vec UltPos6;
-	const Size HpVarSize{580,100};
+	
+	const Size RemainingEnemyValueSize{ 90,140 };
+	const Vec RemainingEnemyValuePos{ 1520,25 };
+	UserInterface::UV RemainingEnemyValueUV{ 20.0f / 2480.0f,20.0f / 1024.0f,70.0f / 2480.0f,96.0f / 1024.0f };
+	
+	const Size RemainingEnemyValueSize2{ 90,140 };
+	const Vec RemainingEnemyValuePos2{ 1620,25 };
+	UserInterface::UV RemainingEnemyValueUV2{ 20.0f / 2480.0f,20.0f / 1024.0f,70.0f / 2480.0f,96.0f / 1024.0f };
+	
+	const Size RemainingSize2{ 125,150 };
+	const Vec RemainingPos2{ 1720,25 };
+	UserInterface::UV ReminingUV2{ 1460.0f / 2480.0f,20.0f / 1024.0f,120.0f / 2480.0f,120.0f / 1024.0f };
+	
+	const Size RemainingSize{ 200,150 };
+	const Vec RemainingPos{ 1300,25 };
+	UserInterface::UV ReminingUV{ 1220.0f / 2480.0f,20.0f / 1024.0f,200.0f / 2480.0f,120.0f / 1024.0f };
+	
+	const Size HpVarSize{ 580,100 };
 	const Vec HpVarPos{ 40, 35 };
 	UserInterface::UV HpVarUV = { 320.0f / 2480.0f,150.0f / 1024.0f,575.0f / 2480.0f,100.0f / 1024.0f };
+	
 	const Size UltVarSize{ 580,100 };
 	const Vec UltVarPos{ 675,35 };
 	UserInterface::UV UltVarUV = { 980.0f / 2480.f,150.0f / 1024.0f,575.0f / 2480.0f,100.0f / 1024.0f };
+	
 	AnimeData AttackMotion = { 0.0f, 535.0f / 16384.0f , 0, _1F, false};
 	AnimeData SwoonEnemy = { 0.0f, 100.0f / 1024.0f, 0, _15F, false};
 	AnimeData Jump = { 0.0f, 535.0f / 16384.0f, 0, _6F, false };

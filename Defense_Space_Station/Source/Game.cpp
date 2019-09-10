@@ -2,6 +2,7 @@
 #include "../Header/Main.h"
 #include "../Header/Collision.h"
 #include "../Header/UserInterface.h"
+#include "../Header/Enemy.h"
 
 using Collision::RightAirBlockPos;
 using Collision::LeftAirBlockPos;
@@ -63,12 +64,12 @@ void GAME::Load() {
 	}
 	*/
 
-	HpPos1.x = HpLeftPos.x;
-	HpPos2.x = HpLeftPos.x + 56 * 1;
-	HpPos3.x = HpLeftPos.x + 56 * 2;
-	HpPos4.x = HpLeftPos.x + 56 * 3;
-	HpPos5.x = HpLeftPos.x + 56 * 4;
-	HpPos6.x = HpLeftPos.x + 56 * 5;
+	HpPos1.x = HpLeftPos.x + 56 * 5;
+	HpPos2.x = HpLeftPos.x + 56 * 4;
+	HpPos3.x = HpLeftPos.x + 56 * 3;
+	HpPos4.x = HpLeftPos.x + 56 * 2;
+	HpPos5.x = HpLeftPos.x + 56 * 1;
+	HpPos6.x = HpLeftPos.x ;
 
 	HpPos1.y = HpLeftPos.y;
 	HpPos2.y = HpLeftPos.y;
@@ -77,12 +78,12 @@ void GAME::Load() {
 	HpPos5.y = HpLeftPos.y;
 	HpPos6.y = HpLeftPos.y;
 
-	UltPos1.x = UltLeftPos.x;
-	UltPos2.x = UltLeftPos.x + 56 * 1;
-	UltPos3.x = UltLeftPos.x + 56 * 2;
-	UltPos4.x = UltLeftPos.x + 56 * 3;
-	UltPos5.x = UltLeftPos.x + 56 * 4;
-	UltPos6.x = UltLeftPos.x + 56 * 5;
+	UltPos1.x = UltLeftPos.x + 56 * 5;
+	UltPos2.x = UltLeftPos.x + 56 * 4;
+	UltPos3.x = UltLeftPos.x + 56 * 3;
+	UltPos4.x = UltLeftPos.x + 56 * 2;
+	UltPos5.x = UltLeftPos.x + 56 * 1;
+	UltPos6.x = UltLeftPos.x;
 
 	UltPos1.y = UltLeftPos.y;
 	UltPos2.y = UltLeftPos.y;
@@ -119,6 +120,17 @@ void GAME::Control() {
 	UserInterface::HpUi4(player.GetHp(), &HpUV4);
 	UserInterface::HpUi5(player.GetHp(), &HpUV5);
 	UserInterface::HpUi6(player.GetHp(), &HpUV6);
+
+	
+	UserInterface::UltUi1(player.GetCatchCount(), &UltUV1);
+	UserInterface::UltUi2(player.GetCatchCount(), &UltUV2);
+	UserInterface::UltUi3(player.GetCatchCount(), &UltUV3);
+	UserInterface::UltUi4(player.GetCatchCount(), &UltUV4);
+	UserInterface::UltUi5(player.GetCatchCount(), &UltUV5);
+	UserInterface::UltUi6(player.GetCatchCount(), &UltUV6);
+	
+
+
 
 	for (int i = 0; i < EnemyMax; i++) {
 		enemy[i].EnemyMove(player.GetPos(), player.GetSize());
@@ -195,6 +207,8 @@ void GAME::Release() {
 }
 
 void GAME::DrawUI() {
+	dx.DrawEx(RemainingPos2.x, RemainingPos2.y, 0.0f, RemainingSize2.width, RemainingSize2.height, 0.0f, 1.0f, false, "UI", ReminingUV2.tu, ReminingUV2.tv, ReminingUV2.tw, ReminingUV2.th);
+	dx.DrawEx(RemainingPos.x, RemainingPos.y, 0.0f, RemainingSize.width, RemainingSize.height, 0.0f, 1.0f, false, "UI", ReminingUV.tu, ReminingUV.tv, ReminingUV.tw, ReminingUV.th);
 	dx.DrawEx(HpVarPos.x, HpVarPos.y, 0.0f, HpVarSize.width, HpVarSize.height, 0.0f, 1.0f, false, "UI", HpVarUV.tu, HpVarUV.tv, HpVarUV.tw, HpVarUV.th);
 	dx.DrawEx(UltVarPos.x, UltVarPos.y, 0.0f, UltVarSize.width, UltVarSize.height, 0.0f, 1.0f, false, "UI", UltVarUV.tu, UltVarUV.tv, UltVarUV.tw, UltVarUV.th);
 
@@ -212,6 +226,8 @@ void GAME::DrawUI() {
 	dx.DrawEx(UltPos5.x, UltPos5.y, 0.0f, UltSize.width, UltSize.height, 0.0f, 1.0f, false, "UI", UltUV5.tu, UltUV5.tv, UltUV5.tw, UltUV5.th);
 	dx.DrawEx(UltPos6.x, UltPos6.y, 0.0f, UltSize.width, UltSize.height, 0.0f, 1.0f, false, "UI", UltUV6.tu, UltUV6.tv, UltUV6.tw, UltUV6.th);
 
+	dx.DrawEx(RemainingEnemyValuePos.x, RemainingEnemyValuePos.y, 0.0f, RemainingEnemyValueSize.width, RemainingEnemyValueSize.height, 0.0f, 1.0f, false, "UI", RemainingEnemyValueUV.tu, RemainingEnemyValueUV.tv, RemainingEnemyValueUV.tw, RemainingEnemyValueUV.th);
+	dx.DrawEx(RemainingEnemyValuePos2.x, RemainingEnemyValuePos2.y, 0.0f, RemainingEnemyValueSize2.width, RemainingEnemyValueSize2.height, 0.0f, 1.0f, false, "UI", RemainingEnemyValueUV2.tu, RemainingEnemyValueUV2.tv, RemainingEnemyValueUV2.tw, RemainingEnemyValueUV2.th);
 }
 
 void GAME::PlayerDraw() {

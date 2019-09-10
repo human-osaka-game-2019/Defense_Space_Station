@@ -30,6 +30,14 @@ int PLAYER::GetHp() {
 	return this->hp;
 }
 
+void PLAYER::SetCatchCount(int catchcount) {
+	this->catchcount = catchcount;
+}
+
+int PLAYER::GetCatchCount() {
+	return this->catchcount;
+}
+
 DIRECTION::Direction PLAYER::GetDirection() {
 	return direction;
 }
@@ -138,6 +146,8 @@ void PLAYER::Catch(Enemy enemy[]) {
 					&& UnderPos.x <= EnemyCenter.x
 					&& UnderPos.y >= EnemyCenter.y) {
 					enemy[i].SetMode(Enemy::MODE::DEAD);
+					catchcount++;
+					if (0 < remainingenemycount) {remainingenemycount--;}
 				}
 			}
 			if (direction == LEFT) {
@@ -145,6 +155,7 @@ void PLAYER::Catch(Enemy enemy[]) {
 					&& UnderPos.x >= EnemyCenter.x
 					&& UnderPos.y >= EnemyCenter.y) {
 					enemy[i].SetMode(Enemy::MODE::DEAD);
+					catchcount++;
 				}
 			}
 		}
@@ -152,8 +163,11 @@ void PLAYER::Catch(Enemy enemy[]) {
 }
 
 void PLAYER::SpecialAttack(Enemy enemy[]) {
-	for (int i = 0; i < EnemyMax; i++) {
-		enemy[i].SetMode(Enemy::MODE::SWOON);
+	if(catchcount>=6){
+		for (int i = 0; i < EnemyMax; i++) {
+			enemy[i].SetMode(Enemy::MODE::SWOON);
+			catchcount = 0;
+		}
 	}
 }
 
@@ -219,7 +233,7 @@ void PLAYER::Collision(Enemy enemy[]) {
 	collision_count++;
 }
 
-PLAYER::PLAYER():item(HAMMER), is_attack(false), is_catch(false), is_move(false), pos(100.0f,100.0f),direction(RIGHT),speed(0.0f),hp(12), collision_count(0), is_god(false), PrevPos(pos), acc(0.20f), is_damege(false){
+PLAYER::PLAYER():item(HAMMER), is_attack(false), is_catch(false), is_move(false), pos(100.0f,100.0f),direction(RIGHT),speed(0.0f),hp(12), collision_count(0), is_god(false), PrevPos(pos), acc(0.20f), is_damege(false),catchcount(0),remainingenemycount(10){
 	SetSize(500.0f, 400.0f);
 }
 

@@ -132,51 +132,128 @@ namespace UserInterface
 	}
 
 
-	void Ult1(int count, UV* ultuv) {
+	void UltUi1(int count, UV* ultuv) {
+		
+		if (count > 1) {
+			ultuv->tu = 200.0f / 2480.0f;
+		}
+
 		switch (count)
 		{
+
 		case 1:
-			ultuv->tu = 200;
+			ultuv->tu = 200.0f / 2480.0f;
+
+			break;
+
+		case 0:
+			ultuv->tu = 260.0f / 2480.0f;
+
+			break;
 		}
+		
 	}
 
-	void Ult2(int count, UV* ultuv) {
+	void UltUi2(int count, UV* ultuv) {
+
+		if (count > 2) {
+			ultuv->tu = 200.0f / 2480.0f;
+		}
+
 		switch (count)
 		{
 		case 2:
-			ultuv->tu = 200;
+			ultuv->tu = 200.0f / 2480.0f;
+
+			break;
+
+		case 0:
+			ultuv->tu = 260.0f / 2480.0f;
+
+			break;
+
 		}
 	}
 
-	void Ult3(int count, UV* ultuv) {
+	void UltUi3(int count, UV* ultuv) {
+
+		if (count > 3) {
+			ultuv->tu = 200.0f / 2480.0f;
+		}
+
 		switch (count)
 		{
 		case 3:
-			ultuv->tu = 200;
+			ultuv->tu = 200.0f / 2480.0f;
+			
+			break;
+
+		case 0:
+			ultuv->tu = 260.0f / 2480.0f;
+
+			break;
 		}
 	}
 
-	void Ult4(int count, UV* ultuv) {
+	void UltUi4(int count, UV* ultuv) {
+
+		if (count > 4) {
+			ultuv->tu = 200.0f / 2480.0f;
+		}
+
 		switch (count)
 		{
 		case 4:
-			ultuv->tu = 200;
+			ultuv->tu = 200.0f / 2480.0f;
+
+			break;
+
+		case 0:
+			ultuv->tu = 260.0f / 2480.0f;
+
+			break;
 		}
 	}
 
-	void Ult5(int count, UV* ultuv) {
+	void UltUi5(int count, UV* ultuv) {
+
+		if (count > 5) {
+			ultuv->tu = 200.0f / 2480.0f;
+		}
+
 		switch (count)
 		{
 		case 5:
-			ultuv->tu = 200;
+			ultuv->tu = 200.0f / 2480.0f;
+
+			break;
+
+		case 0:
+			ultuv->tu = 260.0f / 2480.0f;
+
+			break;
+
 		}
 	}
 
-	void Ult6(int count, UV* ultuv) {
+	void UltUi6(int count, UV* ultuv) {
+
+		if (count > 6) {
+			ultuv->tu = 200.0f / 2480.0f;
+		}
+
 		switch (count)
 		{
 		case 6:
-			ultuv->tu = 200;
+			ultuv->tu = 200.0f / 2480.0f;
+
+			break;
+
+		case 0:
+			ultuv->tu = 260.0f / 2480.0f;
+
+			break;
+
 		}
 	}
 }

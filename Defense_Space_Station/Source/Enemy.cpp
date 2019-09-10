@@ -210,6 +210,7 @@ void Enemy::EnemySwoonMove(Vec PlayerPos)
 
 void Enemy::EnemyDeadMove()
 {
+
 	RePopCount++;
 
 	if (RePopCount >= RePopTime)

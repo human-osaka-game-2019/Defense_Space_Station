@@ -46,9 +46,6 @@ public:
 	bool PlayerSearch(Vec PlayerPos, DIRECTION::Direction direc);
 	Vec DeadPos;
 	bool ReviveRange();
-	
-
-	
 
 private:
 

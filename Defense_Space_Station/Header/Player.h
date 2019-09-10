@@ -27,6 +27,8 @@ public:
 	Size GetSize();
 	void SetHp(int);
 	int GetHp();
+	void SetCatchCount(int);
+	int GetCatchCount();
 	DIRECTION::Direction GetDirection();
 	void Control(Enemy enemy[]);
 	LAST_ITEM item;
@@ -49,6 +51,8 @@ private:
 	int hp;
 	int collision_count;
 	bool is_god;
+	int catchcount;
+	int remainingenemycount;
 
 	Vec PrevPos;
 
@@ -60,6 +64,7 @@ private:
 	void SpecialAttack(Enemy enemy[]);
 
 	void Collision(Enemy enemy[]);
+
 };
 
 #endif
