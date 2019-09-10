@@ -5,7 +5,7 @@
 #include"../Header/Jump.h"
 #include"../Header/Direction.h"
 
-#define EnemyMax 3
+#define EnemyMax 4
 
 class Enemy
 {

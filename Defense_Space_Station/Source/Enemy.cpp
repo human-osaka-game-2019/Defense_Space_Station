@@ -224,7 +224,8 @@ void Enemy::EnemyDeadMove()
 		}
 			Pos.y = PopPos_y;
 			Mode = MODE::ALIVE;
-
+			ReviveCount = 0;
+			RePopCount = 0;
 	}
 
 
@@ -294,14 +295,14 @@ void Enemy::Chase(Vec PlayerPos, Size PlayerSize)
 
 	}
 
-	if (Collision::SquareCollision(Pos, size, PlayerPos, PlayerSize) == true)
-	{
-		Is_Stop = true;
-	}
-	else 
-	{
-		Is_Stop = false;
-	}
+	//if (Collision::SquareCollision(Pos, size, PlayerPos, PlayerSize) == true)
+	//{
+	//	Is_Stop = true;
+	//}
+	//else 
+	//{
+	//	Is_Stop = false;
+	//}
 
 
 

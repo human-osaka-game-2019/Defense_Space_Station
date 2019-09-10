@@ -94,14 +94,11 @@ void GAME::Load() {
 
 
 
-	for (int i = 0; i < EnemyMax; i++) {
-		if ( i % 2 == 0) {
-			enemy[i].SetPos(200, 780);
-		}
-		else {
-			enemy[i].SetPos(940, 780);
-		}
-	}
+			enemy[0].SetPos(0, 780);
+			enemy[1].SetPos(1300, 780);
+			enemy[2].SetPos(500, 780);
+			enemy[3].SetPos(940, 780);
+	
 	for (int j = 0; j < 3; j++) {
 		enemy[j].SetJump(25.0f, 0.09f);
 	}
@@ -159,7 +156,13 @@ void GAME::Draw() {
 
 	for (int i = 0; i < EnemyMax; i++) {
 		if (enemy[i].GetMode() == Enemy::MODE::ALIVE) {
-			dx.DrawEx(enemy[i].GetPos().x, enemy[i].GetPos().y, 0.0f, enemy[i].GetSize().width, enemy[i].GetSize().height, 0.0f, 1.0f, (bool)enemy[i].GetDirection(), "Enemy", 0.0f, 0.0f, 1.0f, 1285.0f / 1500.0f);
+			if (i % 2 == 0) {
+				dx.DrawEx(enemy[i].GetPos().x, enemy[i].GetPos().y, 0.0f, enemy[i].GetSize().width, enemy[i].GetSize().height, 0.0f, 1.0f, (bool)enemy[i].GetDirection(), "Enemy", 0.0f, 0.0f, 1.0f, 1285.0f / 1500.0f);
+			}
+			else 
+			{
+				dx.DrawEx(enemy[i].GetPos().x, enemy[i].GetPos().y, 0.0f, enemy[i].GetSize().width, enemy[i].GetSize().height, 0.0f, 1.0f, (bool)enemy[i].GetDirection(), "Low_Enemy", 0.0f, 0.0f, 1.0f, 1285.0f / 1500.0f);
+			}
 		}
 		if (enemy[i].GetMode() == Enemy::MODE::SWOON) {
 			Anime::Animation(&SwoonEnemy, 100.0f / 1024.0f * 2, true);
