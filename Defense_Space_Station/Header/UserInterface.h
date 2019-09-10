@@ -37,6 +37,10 @@ namespace UserInterface
 	void UltUi5(int count, UV* ultuv);
 
 	void UltUi6(int count, UV* ultuv);
+
+	void RemainingUV(int RemainingEnemy,UV* remainingenemyuv);
+
+	void RemainingUV2(int RemainingEnemy, UV* remainingenemyuv);
 }
 
 #endif // !UserInterface_H

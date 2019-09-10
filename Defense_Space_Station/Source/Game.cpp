@@ -22,7 +22,7 @@ void GAME::UpdateScene() {
 		Release();
 		break;
 	default:
-		break;
+		break;	
 	}
 }
 
@@ -126,7 +126,8 @@ void GAME::Control() {
 	UserInterface::UltUi5(player.GetCatchCount(), &UltUV5);
 	UserInterface::UltUi6(player.GetCatchCount(), &UltUV6);
 	
-
+	UserInterface::RemainingUV(player.GetRemainingEnemyCount(), &RemainingEnemyValueUV);
+	UserInterface::RemainingUV2(player.GetRemainingEnemyCount(), &RemainingEnemyValueUV2);
 
 
 	for (int i = 0; i < EnemyMax; i++) {

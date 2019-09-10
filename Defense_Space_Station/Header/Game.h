@@ -41,7 +41,7 @@ private:
 	const Size HpSize{ 40,40 };
 	const Size UltSize{ 40,40 };
 	Vec HpLeftPos = { 246, 60 };
-	Vec UltLeftPos = {890,60};
+	Vec UltLeftPos = { 890,60 };
 
 	//Vec HpPos[6];
 	Vec HpPos1;
@@ -58,19 +58,23 @@ private:
 	Vec UltPos5;
 	Vec UltPos6;
 	
-	const Size RemainingEnemyValueSize{ 90,140 };
-	const Vec RemainingEnemyValuePos{ 1520,25 };
-	UserInterface::UV RemainingEnemyValueUV{ 20.0f / 2480.0f,20.0f / 1024.0f,70.0f / 2480.0f,96.0f / 1024.0f };
+	//左数字
+	const Size RemainingEnemyValueSize{ 90,120 };
+	const Vec RemainingEnemyValuePos{ 1527,30 };
+	UserInterface::UV RemainingEnemyValueUV{ 140.0f / 2480.0f,20.0f / 1024.0f,70.0f / 2480.0f,96.0f / 1024.0f };
 	
-	const Size RemainingEnemyValueSize2{ 90,140 };
-	const Vec RemainingEnemyValuePos2{ 1620,25 };
+	//右数字
+	const Size RemainingEnemyValueSize2{ 90,120 };
+	const Vec RemainingEnemyValuePos2{ 1627,30 };
 	UserInterface::UV RemainingEnemyValueUV2{ 20.0f / 2480.0f,20.0f / 1024.0f,70.0f / 2480.0f,96.0f / 1024.0f };
 	
-	const Size RemainingSize2{ 125,150 };
-	const Vec RemainingPos2{ 1720,25 };
+	//体
+	const Size RemainingSize2{ 125,130 };
+	const Vec RemainingPos2{ 1747,25 };
 	UserInterface::UV ReminingUV2{ 1460.0f / 2480.0f,20.0f / 1024.0f,120.0f / 2480.0f,120.0f / 1024.0f };
 	
-	const Size RemainingSize{ 200,150 };
+	//残り
+	const Size RemainingSize{ 200,130 };
 	const Vec RemainingPos{ 1300,25 };
 	UserInterface::UV ReminingUV{ 1220.0f / 2480.0f,20.0f / 1024.0f,200.0f / 2480.0f,120.0f / 1024.0f };
 	

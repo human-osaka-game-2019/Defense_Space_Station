@@ -38,6 +38,14 @@ int PLAYER::GetCatchCount() {
 	return this->catchcount;
 }
 
+void PLAYER::SetRemainingEnemyCount(int remainnigenemycount) {
+	this->remainingenemycount = remainnigenemycount;
+}
+
+int PLAYER::GetRemainingEnemyCount() {
+	return this->remainingenemycount;
+}
+
 DIRECTION::Direction PLAYER::GetDirection() {
 	return direction;
 }

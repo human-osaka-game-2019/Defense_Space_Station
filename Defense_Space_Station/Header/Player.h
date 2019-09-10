@@ -29,6 +29,8 @@ public:
 	int GetHp();
 	void SetCatchCount(int);
 	int GetCatchCount();
+	void SetRemainingEnemyCount(int);
+	int GetRemainingEnemyCount();
 	DIRECTION::Direction GetDirection();
 	void Control(Enemy enemy[]);
 	LAST_ITEM item;

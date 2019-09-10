@@ -256,4 +256,59 @@ namespace UserInterface
 
 		}
 	}
+
+	//ç∂
+	void RemainingUV(int remainingenemy,UV* remainingenemyuv) {
+		if(remainingenemy < 10){
+			remainingenemyuv->tu = 20 / 2480.0f;
+		}
+	}
+
+	//âE
+	void RemainingUV2(int remainingenemy, UV* remainingenemyuv) {
+
+		if (remainingenemy == 1) {
+			remainingenemyuv->tu = 140 / 2480.0f;
+		}
+		else if (remainingenemy==2) {
+			remainingenemyuv->tu = 260 / 2480.0f;
+		}
+
+		else if (remainingenemy == 3) {
+			remainingenemyuv->tu = 380 / 2480.0f;
+		}
+
+		else if (remainingenemy == 4) {
+			remainingenemyuv->tu = 500 / 2480.0f;
+		}
+
+		else if (remainingenemy == 5) {
+			remainingenemyuv->tu = 620 / 2480.0f;
+		}
+
+		else if (remainingenemy == 6) {
+			remainingenemyuv->tu = 740 / 2480.0f;
+		}
+
+		else if (remainingenemy == 7) {
+			remainingenemyuv->tu = 860 / 2480.0f;
+		}
+
+		else if (remainingenemy == 8) {
+			remainingenemyuv->tu = 980 / 2480.0f;
+		}
+
+		else if (remainingenemy == 9) {
+			remainingenemyuv->tu = 1100 / 2480.0f;
+		}
+
+		else if (remainingenemy == 10) {
+			remainingenemyuv->tu = 20 / 2480.0f;
+		}
+
+		else if (remainingenemy == 0) {
+			remainingenemyuv->tu = 20 / 2480.0f;
+		}
+
+	}
 }
